@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.local/
+.git/
+graphify-out/
+research/
+docs/
+materialer/
+*.md
+**/*.md
+
+index.html

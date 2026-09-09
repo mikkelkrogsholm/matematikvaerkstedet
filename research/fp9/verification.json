@@ -500,7 +500,9 @@
     "studentPilot": false
   },
   "acceptanceAudit": "../../docs/FP9-ACCEPTANCE.md",
-  "remainingRequiredEvidence": [
+  "remainingRequiredEvidence": [],
+  "deferredValidation": [
     "Real student pilot with decreasing support, unseen structural variant without AI, delayed follow-up"
-  ]
+  ],
+  "prototypeScopeDecision": "2026-09-09: Owner clarified prototype has no pupils; pupil pilot is future validation, not an epic 1 completion requirement."
 }

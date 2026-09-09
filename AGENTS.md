@@ -7,7 +7,7 @@ TypeScript, Bun, Cordis og Mafs. Brugerflade og undervisningstekst er på dansk.
 Der er et FP9-forløb på `/fp9` med 18 generatorfamilier og to oprindelige demonstrationsforløb: brøker/procent til 6. klasse og parabler/tangenter
 til 2.g. Guiden kan bruge lokalt Codex/ChatGPT-login via en udskiftelig provider.
 AI fra bruger faste forklaringer. Præsenter aldrig lokale svar som modelsvar.
-Læs docs/AI-PROTOTYPE.md og docs/FP9-IMPLEMENTATION.md ved ændringer i AI-forbindelsen. FP9-browserkontrollernes dokumenterede delresultater findes i research/fp9/browser-checks/README.md. Resterende kontroller og elevpilot er ikke afsluttet; fremstil dem aldrig som udført.
+Læs docs/AI-PROTOTYPE.md og docs/FP9-IMPLEMENTATION.md ved ændringer i AI-forbindelsen. FP9-browserkontrollernes dokumenterede delresultater findes i research/fp9/browser-checks/README.md. Prototypeaccept er dokumenteret i docs/FP9-ACCEPTANCE.md. Elevpilot er ikke udført og er efter ejerens beslutning udskudt uden for epic 1; fremstil aldrig læringseffekt som valideret.
 
 Læs README.md og research/PRODUCT-REQUIREMENTS.md før produktændringer.
 research/PROTOTYPE-RESULTS.md beskriver det afprøvede; SCRATCHPAD.md indeholder
@@ -98,3 +98,9 @@ absolutte hjemmemappestier og elevdata i versionsstyrede filer.
 
 GitHub-repository oprettes af ejeren. Tilføj remote eller push, når brugeren
 beder om det og angiver destinationen.
+
+## Lokal arkitekturgraf
+
+Graphify bruges til navigation og arkitekturreview. Se research/architecture/README.md
+for genbygning og kendte begrænsninger. Grafens forbindelsestal er ikke i sig selv
+et argument for refaktorering; kontroller altid fund i koden.

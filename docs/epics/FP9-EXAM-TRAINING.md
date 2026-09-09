@@ -3,10 +3,11 @@
 Registreret som [GitHub-epic #1](https://github.com/mikkelkrogsholm/matematikvaerkstedet/issues/1).
 GitHub-issue bruges til fremdrift; dette dokument bevarer det oprindelige planlægningsgrundlag.
 
-Status: Aktiv implementering, 9. september 2026. De 18 familier og den lokale
-arbejdsflade er implementeret; afsluttende browserkontrol, visuel gennemgang og
-reel elevpilot er åbne. [Verificeret status](../FP9-IMPLEMENTATION.md).
-Epic'en er ikke færdig, før de åbne acceptpunkter er opfyldt.
+Status: Prototype færdig, 9. september 2026. De implementerede funktioner,
+maskinkontroller og browserforløb er dokumenteret i
+[acceptkontrollen](../FP9-ACCEPTANCE.md). Ejeren har præciseret, at der ikke er
+elever i denne prototypefase. Elevpilot med forsinket gentagelse er derfor
+udskudt til senere validering og er ikke et afslutningskrav for epic 1.
 
 ## Problem og ønsket resultat
 
@@ -222,7 +223,7 @@ Afhænger af: E01, E02, E03 og E06; fuldt assisteret flow kræver E05.
 - [x] Mål lokal interaktionsrespons på dokumenteret referenceudstyr; foreslået
   mål er p95 under 100 ms uden modelkald. Registrér AI-latens og faktiske tokens
   pr. hjælpeniveau separat; budget og timeout er konfigurerbare.
-- [ ] Afprøv et elevforløb med gradvist mindre støtte og en ny, tilbageholdt
+- Senere validering (uden for epic 1): Afprøv et elevforløb med gradvist mindre støtte og en ny, tilbageholdt
   variant uden hjælp. Gentag efter en forsinkelse og beskriv resultaterne uden
   at generalisere læringseffekt ud fra få børn.
 - [x] Faglig gennemgang, generatorchecks, tilgængelighed, licenser, datadeling
@@ -273,8 +274,8 @@ Se [integrationskrav](../../research/fp9/ANIMATION-INTEGRATION.md).
 
 Opdatering: trinvis animation er nu integreret og verificeret, inklusive Stop-race
 og tabt ACK-svar. F05 er præciseret, og 108 visninger er gennemgået med hashmanifest.
-Tidligere noter om manglende integration ovenfor er historiske. Elevpilot er fortsat åben.
+Tidligere noter om manglende integration ovenfor er historiske. Elevpilot er ikke udført og er nu udskudt uden for prototypefasen.
 
 Den samlede [acceptkontrol](../FP9-ACCEPTANCE.md) registrerer evidens for E01–E08.
-Tokens/latenstid er nu målt for alle fire hjælpeniveauer. Kun den faktiske elevpilot
-med forsinket gentagelse står tilbage som åbent acceptkriterium.
+Tokens/latenstid er nu målt for alle fire hjælpeniveauer. Prototypeaccept er opfyldt. Den faktiske elevpilot
+med forsinket gentagelse er udskudt efter ejerens præcisering af scope.

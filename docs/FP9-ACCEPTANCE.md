@@ -1,8 +1,10 @@
 # Epic 1: samlet acceptkontrol
 
 9. september 2026. Kodegrundlag: dd691a6 samt efterfølgende dokumenteret
-måling af fire hjælpeniveauer. Implementeringsaccept er gennemgået; epic'en
-kan **ikke lukkes**, fordi elevpiloten og dens forsinkede gentagelse mangler.
+måling af fire hjælpeniveauer. **Prototypens accept er opfyldt.**
+Ejeren har præciseret, at vi bygger og afprøver en lokal prototype uden elever.
+Elevpilot og forsinket gentagelse udskydes til senere validering; de er ikke
+udført og indgår ikke længere i epic 1's afslutningskriterier.
 
 | Krav | Autoritativ evidens | Vurdering |
 |---|---|---|
@@ -17,7 +19,7 @@ kan **ikke lukkes**, fordi elevpiloten og dens forsinkede gentagelse mangler.
 | E08: fejlforløb og egentlig agentinteraktion | Browserresultater for fire kombinationer, netværk, renderfejl, tabt ACK, Stop-race og animation | Bestået med syntetiske data og faktisk model, hvor resultatfilen angiver det. |
 | E08: lokal latenstid, tokens og budget | `latency-print-results.json`, `help-levels-results.json`; konfigurationsfelter i server | Tekstredigering p95 27,3 ms på M3 Max/128 GiB, 100 input. AI-kald separat pr. niveau; ikke en latencygaranti eller alle interaktioners p95. |
 | E08: faglig QA, licenser og begrænsninger samlet | Denne kontrol, `research/LICENSE-REVIEW.md`, `THIRD_PARTY_NOTICES.md`, `generated/COVERAGE.md` | Registreret. Licensscreening er teknisk/dokumentbaseret og afgrænset til det undersøgte indhold; ingen nye dependencies i epic'en. |
-| E08: reel elev, gradvist mindre hjælp, uset variant og forsinket gentagelse | `docs/FP9-PILOT.md` | **Mangler.** Modeltests kan ikke erstatte eleven eller bevise læring. |
+| E08: reel elev, gradvist mindre hjælp, uset variant og forsinket gentagelse | `docs/FP9-PILOT.md` | **Udskudt uden for prototypeaccept.** Ikke udført; modeltests beviser ikke læring. |
 
 Seneste kodekontrol: typecheck, 48 tests med 101598 assertions og produktionsbuild
 består. Browserfiler og observerede resultater findes i

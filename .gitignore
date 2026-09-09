@@ -44,3 +44,7 @@ materialer/**/*.xls
 .env.*
 !.env.example
 *.log
+
+# Rebuildable local Graphify graph, caches and machine paths
+graphify-out/
+.graphify_cache/
