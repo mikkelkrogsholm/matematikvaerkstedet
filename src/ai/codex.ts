@@ -1,8 +1,6 @@
-import { mkdtemp, rm } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
 import type { TutorProvider } from './provider';
 import { parseReply, replySchema, type TutorRequest } from './contracts';
+import { runCodex } from './runtime';
 
 const instructions = `Du er en rolig dansk matematikunderviser. Eleven går i 6. klasse (fractions) eller 2.g (functions).
 Svar kort og pædagogisk på dansk med almindelig tekst, ikke LaTeX eller Markdown. Giv ét overskueligt næste skridt og gerne et spørgsmål.
@@ -25,37 +23,7 @@ export class CodexProvider implements TutorProvider {
     } catch { return { available: false, detail: 'Installér Codex CLI og log ind med ChatGPT.' }; }
   }
   async reply(request: TutorRequest, signal: AbortSignal) {
-    signal.throwIfAborted();
-    const directory = await mkdtemp(join(tmpdir(), 'matematik-ai-'));
-    try {
-      const schema = join(directory, 'reply.schema.json');
-      await Bun.write(schema, JSON.stringify(replySchema));
-      const args = [this.binary, '-a', 'never', 'exec', '--ignore-user-config', '--ignore-rules', '--ephemeral',
-        '--skip-git-repo-check', '--sandbox', 'read-only', '--cd', directory, '--color', 'never', '--output-schema', schema,
-        '-c', 'project_doc_max_bytes=0', '-c', 'skills.include_instructions=false', '-c', 'web_search="disabled"',
-        '-c', 'model_reasoning_effort="low"'];
-      for (const feature of ['shell_tool','unified_exec','apps','plugins','hooks','multi_agent','browser_use','computer_use','image_generation','in_app_browser','tool_suggest','goals']) args.push('--disable', feature);
-      if (process.env.CODEX_MODEL) args.push('--model', process.env.CODEX_MODEL);
-      args.push('-');
-      signal.throwIfAborted();
-      // Reuse the CLI login; an inherited API key must not change the billing path.
-      const env = { ...process.env };
-      delete env.OPENAI_API_KEY; delete env.CODEX_API_KEY;
-      const child = Bun.spawn(args, {
-        env,
-        cwd: directory, stdin: new Blob([instructions + '\n\nElevens aktuelle data:\n' + JSON.stringify(request)]),
-        stdout: 'pipe', stderr: 'pipe', timeout: 90000,
-      });
-      const cancel = () => child.kill('SIGKILL');
-      signal.addEventListener('abort', cancel, { once: true });
-      if (signal.aborted) cancel();
-      try {
-        // Drain both streams, but never send CLI diagnostics or account details to the browser.
-        const [code, output] = await Promise.all([child.exited, new Response(child.stdout).text(), new Response(child.stderr).text()]);
-        signal.throwIfAborted();
-        if (code !== 0) throw Error('Codex kunne ikke svare. Kontrollér login og abonnementsgrænse, eller prøv igen.');
-        return parseReply(JSON.parse(output), request.scene.mode);
-      } finally { signal.removeEventListener('abort', cancel); }
-    } finally { await rm(directory, { recursive: true, force: true }); }
+    const result = await runCodex({ binary: this.binary, schema: replySchema, signal, prompt: instructions + '\n\nElevens aktuelle data:\n' + JSON.stringify(request) });
+    return parseReply(result.output, request.scene.mode);
   }
 }

@@ -1,9 +1,11 @@
 import { resolve, sep } from 'node:path';
 import { createTutorApi } from './src/ai/http';
+import { createFp9Api } from './src/fp9/server';
 import { createLessonRegistry } from './src/lessons';
 
 const { registry } = await createLessonRegistry();
 const tutorApi = createTutorApi();
+const fp9Api = createFp9Api();
 const root = resolve(import.meta.dir, 'dist');
 const server = Bun.serve({
   maxRequestBodySize: 48 * 1024, idleTimeout: 120,
@@ -11,6 +13,7 @@ const server = Bun.serve({
   async fetch(request) {
     const url = new URL(request.url);
     if (url.pathname.startsWith('/api/ai/')) return tutorApi(request);
+    if (url.pathname.startsWith('/api/fp9/')) return fp9Api(request);
     if (url.pathname === '/favicon.ico') return new Response(null, { status: 204 });
     if (url.pathname === '/api/lessons') return Response.json([...registry.values()]);
     let pathname: string;
