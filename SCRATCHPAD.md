@@ -4,9 +4,31 @@ Opdateret: 9. september 2026. Levende arbejdsnoter fra vores samtale; forslag er
 
 Samlet beskrivelse: [Krav og designnoter](research/PRODUCT-REQUIREMENTS.md). Dokumentet samler generative opgaver, analyse af prøvekrav, korrekt og dynamisk grafik, agentens fælles arbejdsflade, fortællinger og sammenhængende delopgaver, træning/prøve samt et forslag til første afprøvning. Brugerønsker, observationer fra prøverne og vores løsningsforslag er markeret særskilt.
 
+## Aktuel prioritering — indhold før organisationsfunktioner
+
+Beslutning 9. september 2026: FP9-prototypen er implementeret og epic #1 afsluttet.
+Næste ønskede fokus er at bruge og udbygge den eksisterende motor til fagligt
+indhold for 0.–9. klasse og gymnasiets 1.g, 2.g og 3.g med matematik på A-, B-
+og C-niveau. Dette er retning for næste planlægning, ikke en bestilling på at
+implementere alle niveauer i denne dokumentationsrunde.
+
+Før indholdsarbejdet skal vi kortlægge faglige mål, progression og relevante
+kombinationer af gymnasial uddannelse, årgang og niveau. Årgang og A/B/C er
+separate dimensioner; vi må ikke antage, at alle kombinationer er selvstændige
+eller ens på tværs af uddannelser. Uddannelsestyper og konkret dækning er endnu ikke afklaret.
+
+Bevar generative opgavefamilier med strukturel variation, uafhængig facitkontrol,
+korrekt grafik, alderssvarende sprog, relevante fortællinger og reel AI-interaktion.
+Udbyg kun motoren, hvor konkrete nye indholdstyper kræver det. Dækning skal
+beskrives pr. fagområde og niveau; et enkelt eksempel betyder ikke fuld dækning.
+
+Organisationer, brugere, kombinerbare roller, hold, tildelte forløb, Better Auth
+og SQLite pr. organisation er samlet i en [udskudt epic](docs/epics/ORGANISATIONS-AND-USERS.md).
+De skal ikke implementeres før det faglige indhold alene på baggrund af denne plan.
+
 ## Produktidé
 
-FP9 er nu valgt som næste udviklingsforløb. Research fra ministeriet og en
+Historisk plan for det nu afsluttede FP9-forløb: Research fra ministeriet og en
 opgavekortlægning er samlet i [FP9-grundlaget](research/fp9/FOUNDATION.md).
 Brugerens præcisering er central: prøvetype (med/uden hjælpemidler) og AI-støtte
 (til/fra) er to uafhængige valg. Begge prøvetyper kan trænes med støttehjul,
@@ -14,7 +36,7 @@ som gradvist fjernes. Hjælp logges og nulstilles ikke ved at slukke AI på samm
 opgave. Agenten skal kunne læse og ændre arbejdsfladens konkrete objekter.
 Se [UX og agentkontrakt](docs/FP9-EXPERIENCE.md) og
 [implementeringsepic](docs/epics/FP9-EXAM-TRAINING.md). Research er udført;
-implementering er ikke startet.
+implementering og prototypeaccept er nu afsluttet; se [acceptkontrollen](docs/FP9-ACCEPTANCE.md).
 
 Epic'en er registreret på GitHub som [#1](https://github.com/mikkelkrogsholm/matematikvaerkstedet/issues/1),
 med otte delopgaver og acceptkriterier. De fire kombinationer af prøvetype og

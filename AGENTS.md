@@ -14,6 +14,14 @@ research/PROTOTYPE-RESULTS.md beskriver det afprøvede; SCRATCHPAD.md indeholder
 historiske idéer og åbne spørgsmål. Forslag i dokumenterne er ikke implementerede
 funktioner eller automatisk en bestilling på at bygge dem.
 
+## Aktuel prioritering
+
+Ejeren har udskudt organisations-/brugerimplementering. Planen findes i
+`docs/epics/ORGANISATIONS-AND-USERS.md`. Næste ønskede planlægningsfokus er fagligt
+indhold på den eksisterende motor til 0.–9. klasse og gymnasiets årgange/niveauer;
+se SCRATCHPAD.md. Dette er en prioritering, ikke automatisk autorisation til en
+fuld indholdsudbygning. Afklar gymnasial uddannelse og faglig dækningsmatrix før påstande om alle niveauer.
+
 ## Struktur
 
 - `src/main.tsx`: brugerflade og guidede forløb.
