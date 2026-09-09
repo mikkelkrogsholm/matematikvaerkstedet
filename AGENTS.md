@@ -31,6 +31,8 @@ fuld indholdsudbygning. Afklar gymnasial uddannelse og faglig dækningsmatrix f�
 - `src/main.tsx`: brugerflade og guidede forløb.
 - `src/lessons.ts`: Cordis-registry og lektionsplugins.
 - `src/fp9/`: Domæne/generatorer, sceneejerskab, lokal forsøgsserver, værktøjer og FP9-brugerflade.
+- `src/gymnasium/learning/`: To trinvise STX-forløb, deterministisk matematik, scene, valgfri guide og lokale refleksionsdata.
+- `src/gymnasium/`: Det tidligere STX-øvebibliotek på `/matematik-a/opgaver`.
 - `src/ai/`: Provider-interface, Codex-adapter, HTTP-endpoints og scenevalidering.
 - `src/math.ts`: fælles matematiske beregninger og svarinput.
 - `src/math.test.ts`: tests for matematik og registry.

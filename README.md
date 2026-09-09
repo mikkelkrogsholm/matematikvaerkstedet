@@ -87,5 +87,6 @@ Remote `origin` peger på dette repository. Ændringer på `main` kan pushes med
 ## Matematik A: første emnepilot
 
 Åbn `/matematik-a` efter lokal opstart. Plangeometri og deskriptiv statistik
-har 12 opgaveformer med nye data, visuel udforskning, rigtig AI og lokal
-feedbackeksport. Se [pilotens dækning og kontroller](docs/MATEMATIK-A-PILOT.md).
+har nu to guidede forløb med forudsigelse, udforskning, beregning, forklaring
+og en ny opgave uden støtte. Rigtig AI er valgfri undervejs. De 12 tidligere
+opgaveformer findes på `/matematik-a/opgaver`. Begge dele har lokal feedbackeksport. Se [pilotens dækning og kontroller](docs/MATEMATIK-A-PILOT.md).

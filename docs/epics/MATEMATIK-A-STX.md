@@ -2,7 +2,7 @@
 
 Registreret som [GitHub-epic #3](https://github.com/mikkelkrogsholm/matematikvaerkstedet/issues/3).
 
-Status: Første afgrænsede plangeometri-/statistikpilot implementeret; den samlede epic er fortsat åben. Dato: 9. september 2026.
+Status: Første afgrænsede plangeometri-/statistikpilot implementeret og forbedret med to sammenhængende læringsforløb; den samlede epic er fortsat åben. Dato: 9. september 2026.
 Denne epic bestiller en kommende indholdsudbygning; oprettelsen af planen er
 ikke i sig selv autorisation til at starte implementering i denne samtalerunde.
 Organisationer og brugere i epic #2 forbliver udskudt.
@@ -19,6 +19,19 @@ Den skal kunne gemme lokal feedback til en konkret opgave, så afprøvningen kan
 føre til præcise forbedringer. Se [pilotstatus](../MATEMATIK-A-PILOT.md).
 Det resterende plangeometri-/statistikstof og funktionsværkstedet er fortsat
 planlagt; piloten afslutter ikke hele G07 eller epic'en.
+
+### Pædagogisk forbedring gennemført 9. september 2026
+
+- [x] To fokuserede forløb: hældning og gennemsnit/median ved ekstremværdi.
+- [x] Forudsig, udforsk faktiske værdier, beregn, forklar og prøv en ny variant selv.
+- [x] Tydelig UI-fremdrift, mobilvisning, valgfri kontekstbevidst Codex-guide.
+- [x] Konkret fejlfeedback og ærlig adskillelse mellem beregning og fri begrundelse.
+- [x] Browserafprøvede komplette forløb, rigtig AI og matematiske regressionstests.
+- [ ] Feedback fra sønnen og efterfølgende vurdering af sværhedsgrad og læring.
+
+Det tidligere øvebibliotek er bevaret. To fungerende forløb er ikke fuld
+emnedækning eller dokumenteret læringseffekt. Detaljer og afgrænsninger:
+[pilotstatus](../MATEMATIK-A-PILOT.md).
 
 ## 1. Problem og resultat
 

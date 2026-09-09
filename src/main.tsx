@@ -1,3 +1,4 @@
+import { LearningApp } from './gymnasium/learning/App';
 import { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Mafs, Coordinates, Plot, MovablePoint, Line } from 'mafs';
@@ -159,4 +160,4 @@ function App() {
 function Slider({label,value,min,max,step=1,onChange}:{label:string;value:number;min:number;max:number;step?:number;onChange:(value:number)=>void}) {
   return <label className="slider"><span>{label}<output>{format(value)}</output></span><input aria-label={label} type="range" min={min} max={max} step={step} value={value} onChange={e=>onChange(Number(e.target.value))}/><span className="range-labels"><small>{format(min)}</small><small>{format(max)}</small></span></label>;
 }
-createRoot(document.getElementById('root')!).render(window.location.pathname.startsWith('/fp9') ? <FP9App/> : window.location.pathname.startsWith('/matematik-a') ? <MatematikAApp/> : <App/>);
+createRoot(document.getElementById('root')!).render(window.location.pathname.startsWith('/fp9') ? <FP9App/> : window.location.pathname.startsWith('/matematik-a/opgaver') ? <MatematikAApp/> : window.location.pathname.startsWith('/matematik-a') ? <LearningApp/> : <App/>);

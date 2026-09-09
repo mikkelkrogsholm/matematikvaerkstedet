@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-09",
+  "scope": "Two conceptual STX journeys: slope and descriptive statistics",
+  "syntheticData": true,
+  "automated": {"tests": 62, "assertions": 109362, "typecheck": "pass", "build": "pass", "seedsPerJourney": 100, "bundleSizeWarning": true},
+  "browser": {
+    "completeJourneys": ["geometry", "statistics"],
+    "misconceptions": ["inverted slope ratio", "swapped mean and median"],
+    "independentFinalTask": "no guide or scaffold; calculation and written explanation required",
+    "liveCodex": [
+      {"topic": "geometry", "action": "move B +2 and highlight rise", "observed": "correctly compared rise 6 and run 8 with original 4/8"},
+      {"topic": "statistics", "action": "highlight median", "observed": "read current data 2,3,4,5,26 and correctly explained unchanged median 4"}
+    ],
+    "reload": "AI off and slider +20 preserved",
+    "export": "JSON download triggered",
+    "delayedResponseFixtures": ["Stop discards response", "stage navigation discards response"],
+    "networkErrorFixture": "typed answer 123 retained",
+    "layouts": ["1440 px desktop", "390 px mobile"],
+    "horizontalPageOverflow": false,
+    "regressionRoutes": ["/", "/fp9", "/matematik-a/opgaver"]
+  },
+  "limits": ["No pupil trial or measured learning effect", "Free writing is not automatically assessed", "Two conceptual structures, not full subject coverage", "AI hints can still reveal answers", "One current journey in localStorage"]
+}

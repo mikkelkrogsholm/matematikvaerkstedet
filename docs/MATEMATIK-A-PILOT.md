@@ -3,7 +3,67 @@
 9. september 2026. Lokal, afgrænset pilot til afprøvning og feedback.
 Start med `bun run dev` og åbn `/matematik-a`. Forsiden linker til forløbet.
 
-## Det kan afprøves nu
+## To sammenhængende forløb — ny startside
+
+`/matematik-a` åbner nu to afgrænsede forløb:
+
+- **Hvad bestemmer en linjes hældning?** Forudsig effekten af at flytte B,
+  flyt selv punktet, beregn en positiv hældning, begrund forholdet mellem
+  koordinatforskellene og beregn derefter en ny negativ hældning uden hjælp.
+- **Hvornår er gennemsnittet misvisende?** Forudsig effekten af en lang
+  ventetid, ændr observationen, beregn og begrund gennemsnit/median og anvend
+  derefter begreberne på syv observationer med gentagelser og en ny ekstremværdi.
+
+Begge følger **forudsig → udforsk → beregn → forklar → prøv selv**.
+Udforskningen ændrer de faktiske matematiske værdier. Beregningsfasen fastlåser
+et tydeligt beskrevet eksempel. Sidste trin har hverken AI, slider eller
+hjælpelag; feedback gives efter aflevering. Det er en øveopgave, ikke en låst
+prøve: eleven kan gå tilbage til tidligere trin. Tilbageblikket skelner mellem
+første korrekte aflevering og korrekt efter feedback og registrerer brug af AI.
+
+Forklaringsfasen kombinerer et fagligt valg med elevens egen tekst. Kun valget
+kontrolleres fagligt automatisk. Den frie tekst gemmes, men godkendes aldrig
+som korrekt alene på baggrund af dens længde. Sidste opgave har kontrolspørgsmål
+til egen refleksion efter korrekt beregning.
+
+UI har tydelig trinvis fremdrift, valgfri guide, tastaturbetjente kontroller,
+fokus på overskriften ved trinskift og mobilvisning med læsbare data ved figuren.
+Geometrien bruger samme målestok på begge akser. Prikdiagrammet placerer data
+på en fælles numerisk akse og stabler gentagelser.
+
+Guiden bruger rigtig Codex gennem en udskiftelig provider og får den aktuelle
+fase, figur, elevsvar, forudsigelse og kort samtalehistorik. Den kan ændre
+udforskningsværdien og fremhæve synlige hjælpelag. Handlinger er begrænsede og
+validerede; navigation, elevændringer og Stop annullerer forældede svar.
+Modellen instrueres i at give små skub, men kan stadig afsløre mere end ønsket.
+`AI_PROVIDER=off` giver ingen modelkald. De nye forløb har højst 40 kald pr.
+serverproces, to samtidige og 90 sekunders timeout; det er en lokal demogrænse.
+
+Ét aktuelt forløb gemmes i localStorage inklusive fase, udforskning, svar,
+AI-valg og forsøgstal. Et nyt forløb erstatter dette. Feedback kan eksporteres
+med opgavevariant, svar og støttehistorik som JSON. Der er ingen identitet,
+serverlagret elevhistorik eller automatisk deling.
+
+### Verificeret efter forbedringen
+
+- Typecheck, build og **62 tests / 109362 assertions** består.
+- 100 seeds med uafhængige beregninger af hældning, gennemsnit og median.
+- Begge komplette browserforløb, bevidst forkert svar og målrettet feedback,
+  egen begrundelse, ny selvstændig opgave og tilbageblik.
+- Rigtig Codex flyttede B og forklarede korrekte koordinatforskelle; statistik-
+  guiden aflæste ændrede data og fremhævede den korrekte median.
+- AI fra og udforskning bevaret efter reload; feedbackeksport starter download.
+- Forsinkede fixtures afvist efter Stop/trinskift; netværksfejl bevarede svaret.
+- Desktop og 390 px mobil visuelt inspiceret, ingen vandret sideoverflow.
+- Forside, FP9 og eksisterende øvebibliotek åbner fortsat.
+
+Se [kontrolresultater](../research/gymnasium/learning-checks.json).
+Dette er to konceptforløb med et begrænset antal matematiske strukturer; nye
+seeds giver ikke uendelig faglig variation. Næste indholdsudbygning bør variere
+repræsentation, kontekst og metodevalg. Ingen elevtest eller læringseffekt er
+påstået. Build har fortsat en advarsel om størrelsen på den fælles JS-fil.
+
+## Øvebiblioteket — bevaret på `/matematik-a/opgaver`
 
 | Gruppe | De tre opgaveformer |
 |---|---|
@@ -25,7 +85,7 @@ osv., med klassemidtpunkter 5, 15, 25 og 35. Grupperede deskriptorer mærkes som
 estimater. Medianintervalopgaver har ulige observationstal, så de to midterste
 observationer ikke kan ligge i forskellige klasser. Afrunding oplyses i opgaven.
 
-## Rigtig AI og lokal gemning
+## Øvebibliotekets AI og lokale gemning
 
 Hint, deltrin og løsning kalder eksisterende `runCodex` via en lille provideradapter.
 Opgave, indtastet svar og udforskning sendes ved hjælp. Hint får ikke skjult facit;
@@ -50,7 +110,7 @@ nulstilles ved reload. Feedback har opgavereference, sværhedsoplevelse, note og
 og kan eksporteres som JSON. Noter skal gemmes med knappen før eksport. Ingen
 identitet kræves, og feedback sendes ikke automatisk til andre.
 
-## Kontrolleret
+## Tidligere kontroller af øvebiblioteket
 
 - `bun run check`: 54 tests, 107933 assertions, typecheck og build består.
 - 100 seeds × 3 strukturer × 4 grupper med uafhængige formler/egenskaber.
