@@ -139,6 +139,14 @@ Snapshots og kompakte ændringer bruges til den løbende dialog; screenshots kan
 
 ## 8. Træning, prøve og tegn på forståelse
 
+**Præcisering fra brugeren:** Prøvetype og AI-støtte er uafhængige akser.
+Både opgaver med og uden hjælpemidler skal kunne tages med AI til eller fra.
+AI er støttehjul, som kan trappes ned; AI fra fjerner ikke de almindelige
+værktøjer i typen med hjælpemidler. Tid og feedbacktid vælges særskilt.
+En prøvesimulation er én særlig profil, ikke hele produktets træningsmodel.
+Detaljer og acceptkriterier: [FP9-oplevelsen](../docs/FP9-EXPERIENCE.md) og
+[epic'en](../docs/epics/FP9-EXAM-TRAINING.md).
+
 **Forslag:** Træning tillader hints, forklaringer og justeret støtte. Prøvetilstand holder opgaven fast og tilbageholder hjælp og løsninger til aflevering. Hjælp registreres, så en løsning med omfattende støtte ikke sidestilles med en selvstændig løsning.
 
 Læring undersøges gennem nye kontekster, repræsentationer og opgaveformer uden hjælp og gerne med forsinkelse. Nogle varianter skal holdes ude af træningen. En enkelt korrekt løsning er utilstrækkelig til at erklære et begreb mestret. For åbne opgaver vurderes både resultat og ræsonnement efter tydelige kriterier.

@@ -30,6 +30,10 @@ Sammensæt prøver efter en eksplicit fordeling af emner, kompetencer, svarforme
 
 ## Agent og fælles arbejdsflade
 
+Senere præcisering: Begge prøvetyper (med/uden hjælpemidler) kan trænes med
+AI til/fra som uafhængigt valg. AI er støttehjul, ikke en egenskab ved
+prøvetypen. Se [FP9-designet](../docs/FP9-EXPERIENCE.md) for den aktuelle model.
+
 Agenten skal kunne læse scenens objekter, værdier, akser, enheder, markeringer og elevens handlinger via struktureret tilstand. Den skal kunne oprette og ændre figurer, fremhæve områder og aflæse resultatet af handlinger. Kommandoer skal returnere den faktisk anvendte tilstand, også ved afvisning af ugyldige ændringer.
 
 Matematik, facit og visualisering deler datagrundlag. Visningsregler håndterer størrelsesforhold, aksemærkning og overlap. En skitse uden korrekte mål skal mærkes tydeligt. Visuel kontrol supplerer datakontrol, fordi korrekt geometri stadig kan blive ulæselig på skærmen. Agenten behøver ikke et screenshot efter hvert træk; hændelser og kompakte ændringer begrænser tokens. Skeln mellem elevsynlig information og internt facit.

@@ -6,6 +6,16 @@ Samlet beskrivelse: [Krav og designnoter](research/PRODUCT-REQUIREMENTS.md). Dok
 
 ## Produktidé
 
+FP9 er nu valgt som næste udviklingsforløb. Research fra ministeriet og en
+opgavekortlægning er samlet i [FP9-grundlaget](research/fp9/FOUNDATION.md).
+Brugerens præcisering er central: prøvetype (med/uden hjælpemidler) og AI-støtte
+(til/fra) er to uafhængige valg. Begge prøvetyper kan trænes med støttehjul,
+som gradvist fjernes. Hjælp logges og nulstilles ikke ved at slukke AI på samme
+opgave. Agenten skal kunne læse og ændre arbejdsfladens konkrete objekter.
+Se [UX og agentkontrakt](docs/FP9-EXPERIENCE.md) og
+[implementeringsepic](docs/epics/FP9-EXAM-TRAINING.md). Research er udført;
+implementering er ikke startet.
+
 Forretningsmodel afklaret: Gratis privat brug til egne børn eller børn under
 værgemål. Skoler, organisationer, undervisning af andres børn og kommerciel brug
 kræver en særskilt skriftlig aftale med ejeren, som ønsker at kunne sælge til

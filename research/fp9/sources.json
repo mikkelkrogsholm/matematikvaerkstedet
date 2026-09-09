@@ -1,0 +1,102 @@
+[
+  {
+    "id": "UVM-GUIDE",
+    "title": "Prøvevejledning matematik 9. klasse, oktober 2025",
+    "url": "https://uvm.dk/media/br4hbu3h/251022-vejledning-til-folkeskolens-proever-i-matematik-i-9-klasse.pdf",
+    "location": "s. 3–4, 7–14; mundtlig prøve orienteret s. 16–23",
+    "status": "current_guidance",
+    "accessed": "2026-09-09",
+    "sha256": "158daac32cac14cf9b61c2d423bc6ed349cb207d872deb0adfc6e7b964098278"
+  },
+  {
+    "id": "UVM-NO-AIDS",
+    "title": "Retningslinjer FP9 uden hjælpemidler, maj 2026",
+    "url": "https://uvm.dk/media/eo3njh4l/260324-fp9-matematik-uden-hjaelpemidler-retningslinjer-maj-2026-a.pdf",
+    "location": "s. 2",
+    "status": "term_specific",
+    "accessed": "2026-09-09"
+  },
+  {
+    "id": "UVM-AIDS",
+    "title": "Retningslinjer FP9 med hjælpemidler, maj 2026",
+    "url": "https://uvm.dk/media/cogektni/260324-fp9-matematik-med-hjaelpemidler-retningslinjer-maj-2026-a.pdf",
+    "location": "s. 2–3",
+    "status": "term_specific",
+    "accessed": "2026-09-09"
+  },
+  {
+    "id": "UVM-AI",
+    "title": "Digitale hjælpemidler og kunstig intelligens",
+    "url": "https://uvm.dk/grundskole/folkeskolen/folkeskolens-proever/proeveafholdelse/brug-af-digitale-hjaelpemidler-og-kunstig-intelligens-ved-folkeskolens-proever/",
+    "location": "Afsnit om internet og skriftlige stedprøver",
+    "status": "current_guidance",
+    "accessed": "2026-09-09"
+  },
+  {
+    "id": "UVM-CURRICULUM",
+    "title": "Fælles Mål matematik, 2024",
+    "url": "https://uvm.dk/media/ko0dtyah/240513-faellesmaal-matematik.pdf",
+    "location": "s. 8: efter 9. klassetrin; bindende status skal læses sammen med UVM-STATUS",
+    "status": "curriculum_with_status_caveat",
+    "accessed": "2026-09-09",
+    "sha256": "f8d5515db5b85fab42efaf8e0df82120a4e409bf55fb37721b7dfa7bf73ead29"
+  },
+  {
+    "id": "UVM-STATUS",
+    "title": "Obligatoriske fag: ændrede bindinger og nye fagplaner",
+    "url": "https://uvm.dk/grundskole/folkeskolen/fag-og-indhold/fag-emner-og-tvaergaaende-temaer/faelles-maal/faelles-maal-for-folkeskolens-fag/obligatoriske-fag/",
+    "location": "Lempelse af bindinger; nye fagplaner; matematik",
+    "status": "current_guidance",
+    "accessed": "2026-09-09"
+  },
+  {
+    "id": "UVM-2027",
+    "title": "Prøveplan sommer 2027",
+    "url": "https://uvm.dk/grundskole/folkeskolen/folkeskolens-proever/aarsplan-og-proeveplaner/proeveplan-sommer-2027/",
+    "location": "Mandag 3. maj",
+    "status": "term_specific",
+    "accessed": "2026-09-09"
+  },
+  {
+    "id": "UVM-INDEX",
+    "title": "Aktuel oversigt over prøvevejledninger",
+    "url": "https://uvm.dk/grundskole/folkeskolen/folkeskolens-proever/proeveforberedelse/proevevejledninger/",
+    "location": "Matematik; konsekvensrettelser oktober 2025",
+    "status": "source_discovery",
+    "accessed": "2026-09-09"
+  },
+  {
+    "id": "UVM-STRUCTURE",
+    "title": "Ny prøvestruktur fra 2025/2026",
+    "url": "https://uvm.dk/grundskole/folkeskolen/folkeskolens-proever/aarsplan-og-proeveplaner/ny-proevestruktur-fra-skoleaaret-2025-2026/",
+    "location": "Oversigt over bundne prøver og udtræk",
+    "status": "current_guidance",
+    "accessed": "2026-09-09"
+  },
+  {
+    "id": "IES-LEARNING",
+    "title": "Organizing Instruction and Study to Improve Student Learning, 2007",
+    "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/1",
+    "location": "Anbefalinger og evidensgrader",
+    "status": "research_synthesis",
+    "accessed": "2026-09-09"
+  },
+  {
+    "id": "EXAM-2022-A",
+    "title": "FP9 december 2022 med hjælpemidler",
+    "url": "https://www.bk-net.dk/MC/FP9MA/med.pdf",
+    "location": "Alle 7 opgavegrupper, 20 nummererede delopgaver",
+    "status": "historical_exam",
+    "accessed": "2026-09-09",
+    "sha256": "064729331e4ec3c37af14d3e888af2ba47a040148929a17142a326c33ae3328e"
+  },
+  {
+    "id": "EXAM-2023-N",
+    "title": "FP9 maj 2023 uden hjælpemidler",
+    "url": "https://slutspurt.nu/wp-content/uploads/2024/10/FP9-Matematik-uden-hjaelpemidler-maj-2023.pdf",
+    "location": "Alle 20 opgavegrupper; registreret på gruppeniveau",
+    "status": "historical_exam",
+    "accessed": "2026-09-09",
+    "sha256": "c3238900fbcf9c6edf2a17f49d88c324c8b05dd72f8f3e7d8367c1aee7b1988d"
+  }
+]

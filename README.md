@@ -57,6 +57,11 @@ Start med [krav og designnoter](research/PRODUCT-REQUIREMENTS.md) og
 [dokumentationsoversigten](docs/README.md). Før kodeændringer, læs
 [AGENTS.md](AGENTS.md). Samlet kodekontrol: `bun run check`.
 
+Næste planlagte udviklingsforløb er [FP9-epic'en](docs/epics/FP9-EXAM-TRAINING.md):
+træning i prøven med og uden hjælpemidler, begge med valgfri AI som støttehjul.
+Se [researchgrundlaget](research/fp9/FOUNDATION.md) og
+[oplevelsesbeskrivelsen](docs/FP9-EXPERIENCE.md). Funktionerne er endnu ikke bygget.
+
 ## GitHub
 
 Projektnavn: **Matematikværkstedet**. Teknisk repository- og pakkenavn:

@@ -2,6 +2,10 @@
 
 ## Produkt og udvikling
 
+- [FP9-epic: fra støttehjul til selvstændighed](epics/FP9-EXAM-TRAINING.md)
+- [FP9-brugeroplevelse og agentkontrakt](FP9-EXPERIENCE.md)
+- [FP9-researchgrundlag](../research/fp9/FOUNDATION.md)
+
 - [Samlede krav og designnoter](../research/PRODUCT-REQUIREMENTS.md)
 - [Generative øveprøver](../research/GENERATIVE-EXAMS.md)
 - [Scratchpad og tidligere idéer](../SCRATCHPAD.md)
