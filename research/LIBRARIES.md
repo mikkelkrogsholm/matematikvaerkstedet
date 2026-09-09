@@ -2,6 +2,12 @@
 
 Dato: 2026-09-09.
 
+Opdatering efter afklaring af forretningsmodel: Biblioteker skal kunne indgå i
+et produkt, der sælges til skoler. Se [licensscreeningen](LICENSE-REVIEW.md) for
+verificerede kilder og afgrænsning. De fleste kandidater kan fortsat afprøves;
+GeoGebra er ikke standardvalg uden særskilt afklaring. Licensangivelser nedenfor
+erstatter ikke gennemgang af den konkret valgte version og dens afhængigheder.
+
 Fire underagenter på GPT-5.6 Sol / medium undersøgte primære kilder i separate spor: 2D, nye agentvenlige værktøjer, animation/3D samt beregning. Routing fulgte codex-model-router; hovedagenten samlede vurderingen. Ingen biblioteker blev installeret eller kørt. Alle anbefalinger er hypoteser til afprøvning, ikke verificerede integrationer eller performance-resultater.
 
 ## Samlet anbefaling

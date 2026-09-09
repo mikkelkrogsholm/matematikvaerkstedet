@@ -12,6 +12,15 @@ Den langsigtede ambition spænder fra 0. klasse til 3.g. De første konkrete bru
 
 Muligt layout: emner og niveauvalg i venstre panel, fælles visuel arbejdsflade i midten og samtale i højre panel. Arbejdsfladen er central: her skal eleven se, undersøge og arbejde med matematikken.
 
+### Afklaret forretningsmodel
+
+Gratis privat brug med egne børn eller børn under værgemål. Skolebrug,
+organisationsbrug, undervisning af andres børn og kommerciel brug kræver en
+særskilt aftale med ejeren. Ejeren ønsker at kunne sælge løsningen til skoler.
+Offentlig kildekode udgives under en privat familielicens (source available).
+Biblioteker og assets skal derfor kunne bruges i en kommerciel løsning; se
+[licensscreeningen](LICENSE-REVIEW.md) og [vilkårene](../LICENSE.md).
+
 ## 2. Hvad tester en opgave, og hvordan?
 
 **Brugerønske:** Undersøg de eksisterende prøver for at forstå både det faglige indhold og måden, eleven bliver testet på.

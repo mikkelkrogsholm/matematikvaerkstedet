@@ -7,6 +7,13 @@ varierede øveopgaver, der træner begrebsforståelse. Generative prøvesæt og 
 AI-agent med adgang til arbejdsfladen er beskrevet som næste muligheder, men er
 endnu ikke implementeret.
 
+**Gratis til privat brug med egne børn.** Brug på skoler, i organisationer,
+til undervisning af andres børn eller i en virksomhed kræver en særskilt
+skriftlig aftale med projektejeren. Det gælder også gratis institutionsbrug.
+Koden er offentligt tilgængelig (*source available*), men har ikke en
+open-source-licens. Se [licensen](LICENSE.md) og
+[forklaring af vilkårene](docs/LICENSING.md).
+
 ![Matematikværkstedet — prototype](docs/screenshots/desktop.png)
 
 ## Start
@@ -55,14 +62,12 @@ Start med [krav og designnoter](research/PRODUCT-REQUIREMENTS.md) og
 Projektnavn: **Matematikværkstedet**. Teknisk repository- og pakkenavn:
 `matematikvaerkstedet`. Den lokale branch hedder `main`.
 
-Når ejeren har oprettet et tomt GitHub-repository uden automatisk README,
-licens eller `.gitignore`, forbindes den eksisterende historik sådan:
+Repository: [mikkelkrogsholm/matematikvaerkstedet](https://github.com/mikkelkrogsholm/matematikvaerkstedet).
 
 ```sh
-git remote add origin https://github.com/DIT-BRUGERNAVN/matematikvaerkstedet.git
-git push -u origin main
+git clone https://github.com/mikkelkrogsholm/matematikvaerkstedet.git
+cd matematikvaerkstedet
 ```
 
-Erstat `DIT-BRUGERNAVN` med den valgte bruger eller organisation. Remote er ikke
-konfigureret som del af den lokale klargøring. Der er endnu ikke valgt en licens
-for projektet.
+Remote `origin` peger på dette repository. Ændringer på `main` kan pushes med
+`git push origin main` efter kontrol og commit.

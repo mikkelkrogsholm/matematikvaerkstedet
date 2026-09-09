@@ -70,6 +70,16 @@ Skeln mellem ønsket produkt, foreløbige forslag og verificeret funktionalitet.
 
 ## Repository og lokale materialer
 
+Forretningsmodel: gratis privat brug med egne børn; skole-, organisations- og
+kommerciel brug kræver en særskilt aftale. Læs `LICENSE.md` og
+`docs/LICENSING.md`. Kald projektet source available, ikke open source.
+Ændr ikke brugsrettigheder uden ejerens instruktion. Ved nye dependencies skal
+den præcise versions licens, transitive afhængigheder og medfølgende assets
+undersøges for salg til skoler og distribution under projektets egne vilkår.
+Bevar tredjepartsrettigheder og notices. Se `research/LICENSE-REVIEW.md`.
+Eksterne bidrag skal have dokumenterede kommercielle genbrugsrettigheder før
+integration; familielicensen alene giver ikke ejeren disse rettigheder.
+
 Commit kode, dokumentation, lockfil og offentlige kildehenvisninger. `.local/`
 indeholder eventuelle private originalnoter; de må ikke læses eller publiceres
 uden et konkret behov. Lokale PDF-prøver og regneark, browserlogs, miljøfiler,

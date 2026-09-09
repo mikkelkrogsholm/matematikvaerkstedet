@@ -1,0 +1,108 @@
+{
+  "date": "2026-09-09",
+  "scope": "Upstream root license snapshots, not complete release or transitive dependency audits. GitHub detection can miss dual licensing and multi-license files.",
+  "candidates": [
+    {
+      "repository": "jsxgraph/jsxgraph",
+      "license": "LGPL-3.0",
+      "source": "https://github.com/jsxgraph/jsxgraph/blob/main/LICENSE.LGPL",
+      "file_sha": "0a041280bd00a9d068f503b8ee7ce35214bd24a1",
+      "review_note": "Dual licensed MIT or LGPL; choose MIT. API detected only the LGPL file.",
+      "additional_sources": [
+        "https://github.com/jsxgraph/jsxgraph/blob/main/LICENSE.MIT",
+        "https://github.com/jsxgraph/jsxgraph#license"
+      ]
+    },
+    {
+      "repository": "stevenpetryk/mafs",
+      "license": "MIT",
+      "source": "https://github.com/stevenpetryk/mafs/blob/main/LICENSE",
+      "file_sha": "fab9acd5011acd3e2646046886d520ddb0cf35c7"
+    },
+    {
+      "repository": "CindyJS/CindyJS",
+      "license": "Apache-2.0",
+      "source": "https://github.com/CindyJS/CindyJS/blob/main/LICENSE",
+      "file_sha": "66b0c46095acf2851c1923789f61f1805396e529"
+    },
+    {
+      "repository": "mauriciopoppe/function-plot",
+      "license": "MIT",
+      "source": "https://github.com/mauriciopoppe/function-plot/blob/master/LICENSE",
+      "file_sha": "57bde726fffd2aa430e3264e5ace6845b352b21b"
+    },
+    {
+      "repository": "penrose/penrose",
+      "license": "MIT",
+      "source": "https://github.com/penrose/penrose/blob/main/LICENSE",
+      "file_sha": "8864d4a39633c1bcb33a8983d146d0b6390ed3d0"
+    },
+    {
+      "repository": "maloyan/manim-web",
+      "license": "MIT",
+      "source": "https://github.com/maloyan/manim-web/blob/main/LICENSE",
+      "file_sha": "48a2e837dd198109f4dd88dc93368e1baea38cb6"
+    },
+    {
+      "repository": "shand001/geometry-dsl",
+      "license": "MIT",
+      "source": "https://github.com/shand001/geometry-dsl/blob/main/LICENSE",
+      "file_sha": "02151a400c938a027f7d70c80bfae00e6f37963b"
+    },
+    {
+      "repository": "unconed/mathbox",
+      "license": "MIT",
+      "source": "https://github.com/unconed/mathbox/blob/master/LICENSE.md",
+      "file_sha": "5da991c824507ea6c7f4b4cf44ed6610d6ef7693"
+    },
+    {
+      "repository": "motion-canvas/motion-canvas",
+      "license": "MIT",
+      "source": "https://github.com/motion-canvas/motion-canvas/blob/main/LICENSE",
+      "file_sha": "b30f04e173f68773714b7d9e2652caecbeec53f9"
+    },
+    {
+      "repository": "paulmasson/mathcell",
+      "license": "MIT",
+      "source": "https://github.com/paulmasson/mathcell/blob/master/LICENSE.md",
+      "file_sha": "2986e07c44212f2ad35922e269acb0962eedf6dc"
+    },
+    {
+      "repository": "josdejong/mathjs",
+      "license": "Apache-2.0",
+      "source": "https://github.com/josdejong/mathjs/blob/develop/LICENSE",
+      "file_sha": "9cf8c11d8823732157f3292b8425b1e803fa5dde"
+    },
+    {
+      "repository": "jiggzson/nerdamer",
+      "license": "MIT",
+      "source": "https://github.com/jiggzson/nerdamer/blob/master/license.txt",
+      "file_sha": "9d8a69181dd12c308178b9c4a421247b01f43519"
+    },
+    {
+      "repository": "sympy/sympy",
+      "license": "NOASSERTION",
+      "source": "https://github.com/sympy/sympy/blob/master/LICENSE",
+      "file_sha": "0744f229d697ca3ed1b1b257bfdb70e3eecf0b9e",
+      "review_note": "Read license text: BSD-3-Clause-style main terms and additional BSD/MIT third-party notices; NOASSERTION is API detection, not absence of a license."
+    },
+    {
+      "repository": "pyodide/pyodide",
+      "license": "MPL-2.0",
+      "source": "https://github.com/pyodide/pyodide/blob/main/LICENSE",
+      "file_sha": "a612ad9813b006ce81d1ee438dd784da99a54007"
+    },
+    {
+      "repository": "cordiverse/cordis",
+      "license": "MIT",
+      "source": "https://github.com/cordiverse/cordis/blob/main/LICENSE",
+      "file_sha": "9fdec8c979b135b9433ad31949828f42a8eaa8a6"
+    },
+    {
+      "repository": "cortex-js/compute-engine",
+      "license": "MIT",
+      "source": "https://github.com/cortex-js/compute-engine/blob/main/LICENSE",
+      "file_sha": "a5cb137267740a21f13edbbccc1f6690da05ac93"
+    }
+  ]
+}

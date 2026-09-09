@@ -6,6 +6,13 @@ Samlet beskrivelse: [Krav og designnoter](research/PRODUCT-REQUIREMENTS.md). Dok
 
 ## Produktidé
 
+Forretningsmodel afklaret: Gratis privat brug til egne børn eller børn under
+værgemål. Skoler, organisationer, undervisning af andres børn og kommerciel brug
+kræver en særskilt skriftlig aftale med ejeren, som ønsker at kunne sælge til
+skoler. Offentlig kildekode med en privat familielicens (source available), ikke
+open source. Se [vilkårene](LICENSE.md), [forklaringen](docs/LICENSING.md) og
+[bibliotekernes licensgennemgang](research/LICENSE-REVIEW.md).
+
 Første konkrete brugere: brugerens datter går i 6. klasse, og sønnen går i 2.g på et dansk gymnasium. Gymnasiets matematikniveau er endnu ikke oplyst.
 
 En matematikunderviser, der kombinerer samtale, pædagogiske forklaringer og dynamiske, interaktive visualiseringer. Langsigtet målgruppe: fra 0. klasse til 3.g, med alderssvarende sprog og interaktion.

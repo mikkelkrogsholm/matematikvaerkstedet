@@ -6,6 +6,8 @@
 - [Generative øveprøver](../research/GENERATIVE-EXAMS.md)
 - [Scratchpad og tidligere idéer](../SCRATCHPAD.md)
 - [Agentvejledning](../AGENTS.md)
+- [Licens og forretningsmodel](LICENSING.md)
+- [Bibliotekernes licenser](../research/LICENSE-REVIEW.md)
 
 ## Research og afprøvning
 

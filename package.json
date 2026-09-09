@@ -28,5 +28,6 @@
     "check": "bun run typecheck && bun test && bun run build"
   },
   "description": "Interaktivt matematikværksted med dynamiske visualiseringer og en pluginbaseret undervisningsprototype.",
-  "packageManager": "bun@1.4.0"
+  "packageManager": "bun@1.4.0",
+  "license": "SEE LICENSE IN LICENSE.md"
 }
