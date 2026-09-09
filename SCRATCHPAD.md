@@ -16,6 +16,10 @@ Se [UX og agentkontrakt](docs/FP9-EXPERIENCE.md) og
 [implementeringsepic](docs/epics/FP9-EXAM-TRAINING.md). Research er udført;
 implementering er ikke startet.
 
+Epic'en er registreret på GitHub som [#1](https://github.com/mikkelkrogsholm/matematikvaerkstedet/issues/1),
+med otte delopgaver og acceptkriterier. De fire kombinationer af prøvetype og
+AI-støtte er obligatoriske i planen.
+
 Forretningsmodel afklaret: Gratis privat brug til egne børn eller børn under
 værgemål. Skoler, organisationer, undervisning af andres børn og kommerciel brug
 kræver en særskilt skriftlig aftale med ejeren, som ønsker at kunne sælge til

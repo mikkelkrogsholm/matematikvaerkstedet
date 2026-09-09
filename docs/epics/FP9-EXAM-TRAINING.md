@@ -1,5 +1,8 @@
 # EPIC: FP9 matematik — fra AI-støttehjul til selvstændig prøveløsning
 
+Registreret som [GitHub-epic #1](https://github.com/mikkelkrogsholm/matematikvaerkstedet/issues/1).
+GitHub-issue bruges til fremdrift; dette dokument bevarer det oprindelige planlægningsgrundlag.
+
 Status: Planlagt. Research og designgrundlag udarbejdet 9. september 2026.
 Implementeringen er ikke igangsat af denne epic.
 
