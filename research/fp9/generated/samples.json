@@ -1,0 +1,977 @@
+{
+  "generatorVersion": "1.1.0",
+  "samples": [
+    {
+      "familyId": "F01",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f01-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "Skriv 3/10 som decimal."
+    },
+    {
+      "familyId": "F01",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f01-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Beregn 3/10 + 7/10. Skriv som brøk."
+    },
+    {
+      "familyId": "F01",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f01-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "Hvilken tæller skal stå i □/10, så brøken er lig 3/10?"
+    },
+    {
+      "familyId": "F01",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f01-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "Skriv 6/11 som decimal."
+    },
+    {
+      "familyId": "F01",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f01-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Beregn 6/11 + 5/11. Skriv som brøk."
+    },
+    {
+      "familyId": "F01",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f01-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "Hvilken tæller skal stå i □/11, så brøken er lig 6/11?"
+    },
+    {
+      "familyId": "F02",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f02-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "En vare koster 240 kr. Hvad er 30 % af prisen?"
+    },
+    {
+      "familyId": "F02",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f02-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Efter 30 % rabat koster en vare 168 kr. Hvad kostede den før rabatten?"
+    },
+    {
+      "familyId": "F02",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f02-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "3 kg koster 12 kr. Hvad koster 24 kg ved samme kilopris?"
+    },
+    {
+      "familyId": "F02",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f02-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "En vare koster 100 kr. Hvad er 60 % af prisen?"
+    },
+    {
+      "familyId": "F02",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f02-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Efter 60 % rabat koster en vare 40 kr. Hvad kostede den før rabatten?"
+    },
+    {
+      "familyId": "F02",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f02-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "6 kg koster 5 kr. Hvad koster 18 kg ved samme kilopris?"
+    },
+    {
+      "familyId": "F03",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f03-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "Beregn 3^2."
+    },
+    {
+      "familyId": "F03",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f03-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Kvadratroden af 9 ligger mellem hvilke to hele tal? Skriv det nederste tal."
+    },
+    {
+      "familyId": "F03",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f03-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "Skriv 3000000 på videnskabelig form: hvad er eksponenten i  3 · 10^□?"
+    },
+    {
+      "familyId": "F03",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f03-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "Beregn 6^2."
+    },
+    {
+      "familyId": "F03",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f03-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Kvadratroden af 36 ligger mellem hvilke to hele tal? Skriv det nederste tal."
+    },
+    {
+      "familyId": "F03",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f03-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "Skriv 6000000 på videnskabelig form: hvad er eksponenten i  6 · 10^□?"
+    },
+    {
+      "familyId": "F04",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f04-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "Løs 3x + 7 = 31."
+    },
+    {
+      "familyId": "F04",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f04-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Hvad er det mindste hele tal x, der opfylder 3x > 24?"
+    },
+    {
+      "familyId": "F04",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f04-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "I systemet x+y=10 og x-y=-4: hvad er x?"
+    },
+    {
+      "familyId": "F04",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f04-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "Løs 6x + 5 = 23."
+    },
+    {
+      "familyId": "F04",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f04-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Hvad er det mindste hele tal x, der opfylder 6x > 18?"
+    },
+    {
+      "familyId": "F04",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f04-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "I systemet x+y=11 og x-y=1: hvad er x?"
+    },
+    {
+      "familyId": "F05",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f05-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "Udvid 3*(x+7)."
+    },
+    {
+      "familyId": "F05",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f05-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Skriv et udtryk ækvivalent med 3x+21."
+    },
+    {
+      "familyId": "F05",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f05-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "En elev siger 3(x+7) = 3x+7. Forklar kort fejlen."
+    },
+    {
+      "familyId": "F05",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f05-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "Udvid 6*(x+5)."
+    },
+    {
+      "familyId": "F05",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f05-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Skriv et udtryk ækvivalent med 6x+30."
+    },
+    {
+      "familyId": "F05",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f05-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "En elev siger 6(x+5) = 6x+5. Forklar kort fejlen."
+    },
+    {
+      "familyId": "F06",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f06-v1-without-aids-101-0",
+      "scene": "price",
+      "question": "Hvad koster tilbud A ved 2 besøg?"
+    },
+    {
+      "familyId": "F06",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f06-v1-without-aids-101-1",
+      "scene": "price",
+      "question": "Du har højst 151 kr. Hvor mange hele besøg kan du højst købe med tilbud B?"
+    },
+    {
+      "familyId": "F06",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f06-v1-without-aids-101-2",
+      "scene": "price",
+      "question": "Ved hvor mange hele besøg er tilbuddene lige dyre? Skriv også kort, hvordan du finder det."
+    },
+    {
+      "familyId": "F06",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f06-v1-with-aids-202-0",
+      "scene": "price",
+      "question": "Hvad koster tilbud A ved 4 besøg?"
+    },
+    {
+      "familyId": "F06",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f06-v1-with-aids-202-1",
+      "scene": "price",
+      "question": "Du har højst 216 kr. Hvor mange hele besøg kan du højst købe med tilbud B?"
+    },
+    {
+      "familyId": "F06",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f06-v1-with-aids-202-2",
+      "scene": "price",
+      "question": "Ved hvor mange hele besøg er tilbuddene lige dyre? Skriv også kort, hvordan du finder det."
+    },
+    {
+      "familyId": "F07",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f07-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "1200 kr. vokser 30 % i ét år. Hvad er beløbet?"
+    },
+    {
+      "familyId": "F07",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f07-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Et beløb er vokset 30 % til 1560 kr. Hvad var startbeløbet?"
+    },
+    {
+      "familyId": "F07",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f07-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "En tabel har værdierne 1, 4, 9, 16. Hvad er næste værdi, hvis mønsteret er kvadrattal?"
+    },
+    {
+      "familyId": "F07",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f07-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "500 kr. vokser 60 % i ét år. Hvad er beløbet?"
+    },
+    {
+      "familyId": "F07",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f07-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Et beløb er vokset 60 % til 800 kr. Hvad var startbeløbet?"
+    },
+    {
+      "familyId": "F07",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f07-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "En tabel har værdierne 1, 4, 9, 16. Hvad er næste værdi, hvis mønsteret er kvadrattal?"
+    },
+    {
+      "familyId": "F08",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f08-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "En cyklist kører 36 km på 3 timer. Hvad er farten?"
+    },
+    {
+      "familyId": "F08",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f08-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "En bil kører 12 km/t. Hvor lang tid tager 36 km?"
+    },
+    {
+      "familyId": "F08",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f08-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "Hvor mange cm² er 3 m²?"
+    },
+    {
+      "familyId": "F08",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f08-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "En cyklist kører 30 km på 6 timer. Hvad er farten?"
+    },
+    {
+      "familyId": "F08",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f08-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "En bil kører 5 km/t. Hvor lang tid tager 30 km?"
+    },
+    {
+      "familyId": "F08",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f08-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "Hvor mange cm² er 6 m²?"
+    },
+    {
+      "familyId": "F09",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f09-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "To vinkler i en trekant er 30° og 70°. Bestem den tredje."
+    },
+    {
+      "familyId": "F09",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f09-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "En ydre vinkel er 100°. Den ene modstående indre vinkel er 30°. Bestem den anden."
+    },
+    {
+      "familyId": "F09",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f09-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "Forklar kort, hvorfor vinkelsummen i en trekant er 180°. Skitsen er ikke målfast."
+    },
+    {
+      "familyId": "F09",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f09-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "To vinkler i en trekant er 60° og 50°. Bestem den tredje."
+    },
+    {
+      "familyId": "F09",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f09-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "En ydre vinkel er 110°. Den ene modstående indre vinkel er 60°. Bestem den anden."
+    },
+    {
+      "familyId": "F09",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f09-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "Forklar kort, hvorfor vinkelsummen i en trekant er 180°. Skitsen er ikke målfast."
+    },
+    {
+      "familyId": "F10",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f10-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "På kortet er afstanden 3 cm i målestok 1:12000. Hvad er den virkelige afstand i meter?"
+    },
+    {
+      "familyId": "F10",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f10-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "36 m er 3 cm på en tegning. Hvad er målestokkens nævner?"
+    },
+    {
+      "familyId": "F10",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f10-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "En figur forstørres med faktor 3. Arealet var 12 cm². Hvad bliver det?"
+    },
+    {
+      "familyId": "F10",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f10-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "På kortet er afstanden 6 cm i målestok 1:5000. Hvad er den virkelige afstand i meter?"
+    },
+    {
+      "familyId": "F10",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f10-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "30 m er 6 cm på en tegning. Hvad er målestokkens nævner?"
+    },
+    {
+      "familyId": "F10",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f10-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "En figur forstørres med faktor 6. Arealet var 5 cm². Hvad bliver det?"
+    },
+    {
+      "familyId": "F11",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f11-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "Et rektangel er 3 cm gange 7 cm. Hvad er omkredsen?"
+    },
+    {
+      "familyId": "F11",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f11-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Et rektangel har areal 21 cm² og bredde 7 cm. Hvad er længden?"
+    },
+    {
+      "familyId": "F11",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f11-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "En kasse er 3 cm × 7 cm × 12 cm. Hvad er rumfanget?"
+    },
+    {
+      "familyId": "F11",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f11-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "Et rektangel er 6 cm gange 5 cm. Hvad er omkredsen?"
+    },
+    {
+      "familyId": "F11",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f11-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Et rektangel har areal 30 cm² og bredde 5 cm. Hvad er længden?"
+    },
+    {
+      "familyId": "F11",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f11-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "En kasse er 6 cm × 5 cm × 5 cm. Hvad er rumfanget?"
+    },
+    {
+      "familyId": "F12",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f12-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "En retvinklet trekant har kateter 9 cm og 12 cm. Bestem hypotenusen."
+    },
+    {
+      "familyId": "F12",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f12-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Hypotenusen er 15 cm og én katete 9 cm. Bestem den anden."
+    },
+    {
+      "familyId": "F12",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f12-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "Kan sidelængderne 9, 12 og 15 danne en retvinklet trekant? Skriv 1 for ja og forklar."
+    },
+    {
+      "familyId": "F12",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f12-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "En retvinklet trekant har kateter 18 cm og 24 cm. Bestem hypotenusen."
+    },
+    {
+      "familyId": "F12",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f12-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Hypotenusen er 30 cm og én katete 18 cm. Bestem den anden."
+    },
+    {
+      "familyId": "F12",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f12-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "Kan sidelængderne 18, 24 og 30 danne en retvinklet trekant? Skriv 1 for ja og forklar."
+    },
+    {
+      "familyId": "F13",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f13-v1-without-aids-101-0",
+      "scene": "grid",
+      "question": "Indtegn rektanglets fire hjørner. Rækkefølgen er ligegyldig."
+    },
+    {
+      "familyId": "F13",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f13-v1-without-aids-101-1",
+      "scene": "grid",
+      "question": "Indtegn A, B og et tredje hjørne til en trekant med det angivne areal."
+    },
+    {
+      "familyId": "F13",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f13-v1-without-aids-101-2",
+      "scene": "grid",
+      "question": "Indtegn det flyttede punkt P'."
+    },
+    {
+      "familyId": "F13",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f13-v1-with-aids-202-0",
+      "scene": "grid",
+      "question": "Indtegn rektanglets fire hjørner. Rækkefølgen er ligegyldig."
+    },
+    {
+      "familyId": "F13",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f13-v1-with-aids-202-1",
+      "scene": "grid",
+      "question": "Indtegn A, B og et tredje hjørne til en trekant med det angivne areal."
+    },
+    {
+      "familyId": "F13",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f13-v1-with-aids-202-2",
+      "scene": "grid",
+      "question": "Indtegn det flyttede punkt P'."
+    },
+    {
+      "familyId": "F14",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f14-v1-without-aids-101-0",
+      "scene": "grid",
+      "question": "Indtegn billedpunktet P'."
+    },
+    {
+      "familyId": "F14",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f14-v1-without-aids-101-1",
+      "scene": "grid",
+      "question": "Indtegn billedpunktet P'."
+    },
+    {
+      "familyId": "F14",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f14-v1-without-aids-101-2",
+      "scene": "grid",
+      "question": "Indtegn billedpunktet P'."
+    },
+    {
+      "familyId": "F14",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f14-v1-with-aids-202-0",
+      "scene": "grid",
+      "question": "Indtegn billedpunktet P'."
+    },
+    {
+      "familyId": "F14",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f14-v1-with-aids-202-1",
+      "scene": "grid",
+      "question": "Indtegn billedpunktet P'."
+    },
+    {
+      "familyId": "F14",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f14-v1-with-aids-202-2",
+      "scene": "grid",
+      "question": "Indtegn billedpunktet P'."
+    },
+    {
+      "familyId": "F15",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f15-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "Find medianen af tallene 3, 7, 12, 10, 15."
+    },
+    {
+      "familyId": "F15",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f15-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Fire tal har gennemsnit 12. Tre er 3, 7 og 12. Hvad er det fjerde?"
+    },
+    {
+      "familyId": "F15",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f15-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "3 af 10 elever valgte cykel. Hvor mange procent er det?"
+    },
+    {
+      "familyId": "F15",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f15-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "Find medianen af tallene 6, 5, 5, 11, 11."
+    },
+    {
+      "familyId": "F15",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f15-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Fire tal har gennemsnit 5. Tre er 6, 5 og 5. Hvad er det fjerde?"
+    },
+    {
+      "familyId": "F15",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f15-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "6 af 11 elever valgte cykel. Hvor mange procent er det?"
+    },
+    {
+      "familyId": "F16",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f16-v1-without-aids-101-0",
+      "scene": "data",
+      "question": "Sammenlign holdenes resultater. Hvilket hold vil du beskrive som mest stabilt? Begrund med data."
+    },
+    {
+      "familyId": "F16",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f16-v1-without-aids-101-1",
+      "scene": "data",
+      "question": "Vil gennemsnit eller median være mest retvisende til at sammenligne holdene? Begrund dit valg."
+    },
+    {
+      "familyId": "F16",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f16-v1-without-aids-101-2",
+      "scene": "data",
+      "question": "Vurder, om den usædvanlige måling bør undersøges nærmere før man konkluderer. Begrund med data."
+    },
+    {
+      "familyId": "F16",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f16-v1-with-aids-202-0",
+      "scene": "data",
+      "question": "Sammenlign holdenes resultater. Hvilket hold vil du beskrive som mest stabilt? Begrund med data."
+    },
+    {
+      "familyId": "F16",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f16-v1-with-aids-202-1",
+      "scene": "data",
+      "question": "Vil gennemsnit eller median være mest retvisende til at sammenligne holdene? Begrund dit valg."
+    },
+    {
+      "familyId": "F16",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f16-v1-with-aids-202-2",
+      "scene": "data",
+      "question": "Vurder, om den usædvanlige måling bør undersøges nærmere før man konkluderer. Begrund med data."
+    },
+    {
+      "familyId": "F17",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f17-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "En pose har 3 røde og 7 blå kugler. Hvad er sandsynligheden for rød? Skriv som brøk."
+    },
+    {
+      "familyId": "F17",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f17-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Sandsynligheden for regn er 3/10. Hvad er sandsynligheden for ikke regn? Skriv som brøk."
+    },
+    {
+      "familyId": "F17",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f17-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "3 ud af 10 kort er grønne. Hvor mange grønne kort er der blandt 80 kort med samme andel?"
+    },
+    {
+      "familyId": "F17",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f17-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "En pose har 6 røde og 5 blå kugler. Hvad er sandsynligheden for rød? Skriv som brøk."
+    },
+    {
+      "familyId": "F17",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f17-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Sandsynligheden for regn er 6/10. Hvad er sandsynligheden for ikke regn? Skriv som brøk."
+    },
+    {
+      "familyId": "F17",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f17-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "6 ud af 11 kort er grønne. Hvor mange grønne kort er der blandt 33 kort med samme andel?"
+    },
+    {
+      "familyId": "F18",
+      "seed": 101,
+      "variant": 0,
+      "examType": "without-aids",
+      "id": "fp9-f18-v1-without-aids-101-0",
+      "scene": "text",
+      "question": "En fair mønt kastes to gange med tilbagelægning. Sandsynligheden for to plat? Skriv som brøk."
+    },
+    {
+      "familyId": "F18",
+      "seed": 101,
+      "variant": 1,
+      "examType": "without-aids",
+      "id": "fp9-f18-v1-without-aids-101-1",
+      "scene": "text",
+      "question": "Der er 3 røde og 7 blå kugler. To trækkes uden tilbagelægning. Sandsynligheden for to røde? Skriv som brøk."
+    },
+    {
+      "familyId": "F18",
+      "seed": 101,
+      "variant": 2,
+      "examType": "without-aids",
+      "id": "fp9-f18-v1-without-aids-101-2",
+      "scene": "text",
+      "question": "En simulation på 10 kast gav 8 plat. Kan det alene bevise sandsynligheden? Skriv 0 for nej og forklar."
+    },
+    {
+      "familyId": "F18",
+      "seed": 202,
+      "variant": 0,
+      "examType": "with-aids",
+      "id": "fp9-f18-v1-with-aids-202-0",
+      "scene": "text",
+      "question": "En fair mønt kastes to gange med tilbagelægning. Sandsynligheden for to plat? Skriv som brøk."
+    },
+    {
+      "familyId": "F18",
+      "seed": 202,
+      "variant": 1,
+      "examType": "with-aids",
+      "id": "fp9-f18-v1-with-aids-202-1",
+      "scene": "text",
+      "question": "Der er 6 røde og 5 blå kugler. To trækkes uden tilbagelægning. Sandsynligheden for to røde? Skriv som brøk."
+    },
+    {
+      "familyId": "F18",
+      "seed": 202,
+      "variant": 2,
+      "examType": "with-aids",
+      "id": "fp9-f18-v1-with-aids-202-2",
+      "scene": "text",
+      "question": "En simulation på 10 kast gav 8 plat. Kan det alene bevise sandsynligheden? Skriv 0 for nej og forklar."
+    }
+  ]
+}

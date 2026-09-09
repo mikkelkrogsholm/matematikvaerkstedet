@@ -86,7 +86,8 @@ export class Fp9Service {
     const seed = input.seed === undefined ? Math.floor(Math.random() * 2_000_000_000) : input.seed;
     if (!Number.isSafeInteger(seed)) throw Error('Seed skal være et sikkert heltal.');
     const available=families.filter(f=>f.status==='implemented'&&f.examTypes.includes(input.examType)).map(f=>f.id);
-    const blueprint:FamilyId[]=input.examType==='with-aids'?['F06','F13','F16','F11','F04','F15','F18'].filter(f=>available.includes(f as FamilyId)) as FamilyId[]:available;
+    // Alle implementerede familier kan indgå; hver generator holder selv tal inden for den valgte prøvetypes enkle ramme.
+    const blueprint:FamilyId[]=available;
     const groupCount=input.length==='full'?(input.examType==='without-aids'?20:7):input.length==='topic'?1:3;
     const groups:AttemptView['groups']=[],parts:Task[]=[];
     for(let group=0;group<groupCount;group++){
@@ -231,7 +232,7 @@ export class Fp9Service {
           if(command.status!=='applied')throw Error('Ugyldigt forklaringsobjekt: '+command.reason);
           scene=setAiEnabled(command.state,false);
         }
-        if(source.viewport!==null){scene=setAiEnabled(scene,true);const v=applyCommand(scene,{attemptId:fresh.id,sceneId:taskId,actionId:'import-viewport',expectedRevision:scene.revision,policyRevision:scene.policyRevision,operations:[{type:'setViewport',viewport:source.viewport}]});if(v.status!=='applied')throw Error('Ugyldigt udsnit.');scene=setAiEnabled(v.state,false);}
+        if(source.viewport!==null){if(x.tasks[taskId]!.scene.kind==='grid'&&Math.abs((source.viewport.xMax-source.viewport.xMin)-(source.viewport.yMax-source.viewport.yMin))>1e-9)throw Error('Koordinatgeometri kræver samme målestok på begge akser.');scene=setAiEnabled(scene,true);const v=applyCommand(scene,{attemptId:fresh.id,sceneId:taskId,actionId:'import-viewport',expectedRevision:scene.revision,policyRevision:scene.policyRevision,operations:[{type:'setViewport',viewport:source.viewport}]});if(v.status!=='applied')throw Error('Ugyldigt udsnit.');scene=setAiEnabled(v.state,false);}
         scene=updateStudent(scene,{selection:source.selection});
         x.view.scenes[taskId]=scene;
         for(const q of x.tasks[taskId]!.questions)if(q.answerKind==='geometry'){

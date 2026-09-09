@@ -1,3 +1,4 @@
+import { equivalent } from '../tools/math';
 /**
  * Seedede FP9-opgaver. Modulet er lokalt og indeholder bevidst ingen LLM-kald.
  * `Task.marking` er internt; brug `publicTask` til data, der må sendes til UI'et.
@@ -93,17 +94,18 @@ const observed: Partial<Record<FamilyId, string>> = {
   F11: 'EXAM-2022-A 7.1; EXAM-2023-N 15', F12: 'EXAM-2022-A 3.1; EXAM-2022-A 3.3', F13: 'EXAM-2022-A 7.1',
   F15: 'EXAM-2022-A 2.1; EXAM-2023-N 18', F16: 'EXAM-2022-A 2.1; EXAM-2022-A 5.2; EXAM-2022-A 5.3', F17: 'EXAM-2023-N 20',
 };
-const implemented = new Set<FamilyId>(['F06', 'F13', 'F16']);
+const implemented = new Set<FamilyId>(Object.keys(familyNames) as FamilyId[]);
+const details: Record<FamilyId, Pick<Family, 'skills'|'prerequisites'|'action'|'answerForms'>> = {
+ F01:{skills:['brøk, decimal og ækvivalens'],prerequisites:['de fire regningsarter'],action:'omskrive og beregne',answerForms:['number']}, F02:{skills:['procent og forhold'],prerequisites:['multiplikation og division'],action:'beregne og finde den oprindelige størrelse',answerForms:['number']}, F03:{skills:['potenser, rødder og tierpotenser'],prerequisites:['pladsværdi'],action:'beregne, overslagsregne og sammenligne',answerForms:['number']}, F04:{skills:['ligninger, uligheder og systemer'],prerequisites:['regning med negative tal'],action:'opstille og løse',answerForms:['number']}, F05:{skills:['polynomier og algebraisk omskrivning'],prerequisites:['distributiv lov'],action:'forenkle og kontrollere',answerForms:['expression','reasoning']}, F06:{skills:['lineære prisfunktioner','diskrete antal','sammenligning'],prerequisites:['multiplikation','ligninger'],action:'modellere, sammenligne og begrunde',answerForms:['number','expression']}, F07:{skills:['procentvis og kvadratisk vækst'],prerequisites:['potenser'],action:'modellere og sammenligne',answerForms:['number','reasoning']}, F08:{skills:['fart og enhedsomregning'],prerequisites:['division','enheder'],action:'beregne og omregne',answerForms:['number']}, F09:{skills:['vinkelsum og parallelle linjer'],prerequisites:['grader'],action:'bestemme og begrunde',answerForms:['number','reasoning']}, F10:{skills:['målestok og ligedannethed'],prerequisites:['forhold','areal'],action:'skalere og beregne',answerForms:['number']}, F11:{skills:['omkreds, areal og rumfang'],prerequisites:['multiplikation','enheder'],action:'beregne og isolere størrelse',answerForms:['number']}, F12:{skills:['Pythagoras'],prerequisites:['kvadratrødder'],action:'beregne og begrunde',answerForms:['number','reasoning']}, F13:{skills:['koordinater','konstruktion','flytning'],prerequisites:['koordinatplan','areal'],action:'konstruere og kontrollere egenskaber',answerForms:['geometry']}, F14:{skills:['spejling, rotation og translation'],prerequisites:['koordinatplan'],action:'flytte punkter efter regel',answerForms:['geometry']}, F15:{skills:['gennemsnit, median og andele'],prerequisites:['sortering','procent'],action:'beregne og aflæse',answerForms:['number']}, F16:{skills:['datasammenligning','gennemsnit','median','outlier'],prerequisites:['læse tabeller','gennemsnit'],action:'undersøge data og begrunde valg',answerForms:['reasoning']}, F17:{skills:['sandsynlighed og komplement'],prerequisites:['brøker'],action:'beregne og finde antal',answerForms:['number']}, F18:{skills:['uafhængige og afhængige hændelser'],prerequisites:['brøker','sandsynlighed'],action:'beregne og vurdere simulation',answerForms:['number','reasoning']},
+};
 
 /** Dækningsregister: historiske eksempler er observationer, mens familien er et produktvalg. */
 export const families: readonly Family[] = (Object.keys(familyNames) as FamilyId[]).map((id) => ({
   id,
   title: familyNames[id],
-  skills: id === 'F06' ? ['lineære prisfunktioner', 'diskrete antal', 'sammenligning'] : id === 'F13' ? ['koordinater', 'konstruktion', 'flytning'] : id === 'F16' ? ['datasammenligning', 'gennemsnit', 'median', 'outlier'] : ['fagområde under afgrænsning'],
-  prerequisites: id === 'F06' ? ['multiplikation', 'ligninger'] : id === 'F13' ? ['koordinatplan', 'areal'] : id === 'F16' ? ['læse tabeller', 'gennemsnit'] : ['afklares før implementering'],
-  action: id === 'F06' ? 'modellere, sammenligne og begrunde' : id === 'F13' ? 'konstruere og kontrollere egenskaber' : id === 'F16' ? 'undersøge data og begrunde valg' : 'afklares før implementering',
+  skills: details[id].skills, prerequisites: details[id].prerequisites, action: details[id].action,
   examTypes: ['with-aids', 'without-aids'],
-  answerForms: id === 'F13' ? ['geometry'] : id === 'F16' ? ['reasoning'] : id === 'F06' ? ['number', 'expression'] : ['number'],
+  answerForms: details[id].answerForms,
   sources: [
     ...(observed[id] ? [{ kind: 'historical-observation' as const, reference: observed[id]!, note: 'Observeret i det valgte opgavekort; ikke en påstand om gældende prøveregler.' }] : []),
     { kind: 'product-design' as const, reference: 'research/fp9/coverage.csv', note: 'Læreplansinformeret produktfamilie og ikke dokumentation for fuld prøvedækning.' },
@@ -130,14 +132,21 @@ export interface DataScene {
   data: Array<{ label: string; values: number[] }>;
   givens: { unit: string; description: string };
 }
-export type Scene = PriceScene | GridScene | DataScene;
+export interface TextScene { kind: 'text'; axes: { x: Axis; y: Axis }; givens: { heading: string; lines: string[]; note?: string }; }
+export type Scene = PriceScene | GridScene | DataScene | TextScene;
 export interface Question { id: string; prompt: string; answerKind: AnswerKind; unit?: string; }
 export interface Marking {
-  kind: 'numeric' | 'geometry' | 'review';
+  kind: 'numeric' | 'geometry' | 'review' | 'expression';
   criteria: string[];
   examples: string[];
   requiresExplanation?: boolean;
   expected?: number;
+  tolerance?: number;
+  unit?: string;
+  integer?: boolean;
+  fraction?: boolean;
+  scientific?: boolean;
+  expression?: string;
   geometry?: { variant: 0 | 1 | 2; base?: [Point, Point]; area?: number; translation?: Point; source?: Point };
 }
 export interface Task {
@@ -169,13 +178,37 @@ function checkInputs(seed: number, variant: number): asserts variant is 0 | 1 | 
 }
 const taskId = (familyId: FamilyId, seed: number, variant: number, examType: ExamType) => `fp9-${familyId.toLowerCase()}-v1-${examType}-${seed}-${variant}`;
 
-/** Genererer en reproducerbar opgave; de resterende familier er registreret, men ikke genereret endnu. */
+/** Genererer én selvstændigt besvarbar delopgave. Varianten ændrer ukendt eller repræsentation. */
 export function generateTask(familyId: FamilyId, seed: number, variant: number, examType: ExamType): Task {
   checkInputs(seed, variant);
-  if (!implemented.has(familyId)) throw new Error(`${familyId} er registreret, men generatoren er ikke implementeret endnu.`);
   if (familyId === 'F06') return generatePrice(seed, variant, examType);
   if (familyId === 'F13') return generateGrid(seed, variant, examType);
-  return generateData(seed, variant, examType);
+  if (familyId === 'F16') return generateData(seed, variant, examType);
+  if (familyId === 'F14') return generateTransform(seed, variant, examType);
+  return generateTextFamily(familyId, seed, variant, examType);
+}
+
+const textScene=(heading:string,...lines:string[]):TextScene=>({kind:'text',axes:{x:axis('Oplysning',0,10,1),y:axis('Værdi',0,10,1)},givens:{heading,lines}});
+const simple=(familyId:FamilyId,seed:number,variant:0|1|2,examType:ExamType,title:string,story:string,prompt:string,expected:number,unit:string|undefined,extra:Partial<Marking>={}, scene:Scene=textScene(title,story)):Task=>({id:taskId(familyId,seed,variant,examType),familyId,version:'1.1.0',seed,variant,examType,title,story,questions:[{id:'q1',prompt,answerKind:extra.expression?'expression':extra.requiresExplanation?'reasoning':'number',...(unit?{unit}:{})}],scene,marking:{q1:{kind:extra.expression?'expression':extra.requiresExplanation?'review':'numeric',expected,unit,tolerance:extra.tolerance??0,integer:extra.integer, fraction:extra.fraction,scientific:extra.scientific,expression:extra.expression,criteria:extra.criteria??['Bruger de givne oplysninger og angiver korrekt resultat.'],examples:extra.examples??[`Det kontrollerbare resultat er ${expected}${unit?` ${unit}`:''}.`],...extra}}});
+function generateTextFamily(f:FamilyId,s:number,v:0|1|2,e:ExamType):Task {
+ const a=integer(s,1,2,9),b=integer(s,2,2,8),c=integer(s,3,3,12), n=integer(s,4,3,8); const q=(p:string,x:number,u?:string,o:Partial<Marking>={})=>simple(f,s,v,e,families.find(x=>x.id===f)!.title,`Original øveopgave med seed ${s}.`,p,x,u,o);
+ switch(f){
+ case 'F01': {const den=a+b; return v===0?q(`Skriv ${a}/${den} som decimal.`,a/den,undefined,{tolerance:1e-9}):v===1?q(`Beregn ${a}/${den} + ${b}/${den}. Skriv som brøk.`,1,undefined,{fraction:true}):q(`Hvilken tæller skal stå i □/${den}, så brøken er lig ${a}/${den}?`,a,undefined,{integer:true});}
+ case 'F02': {const price=20*c, pct=10*a; return v===0?q(`En vare koster ${price} kr. Hvad er ${pct} % af prisen?`,price*pct/100,'kr.'):v===1?q(`Efter ${pct} % rabat koster en vare ${price-price*pct/100} kr. Hvad kostede den før rabatten?`,price,'kr.'):q(`${a} kg koster ${c} kr. Hvad koster ${a*n} kg ved samme kilopris?`,c*n,'kr.');}
+ case 'F03': return v===0?q(`Beregn ${a}^2.`,a*a):v===1?q(`Kvadratroden af ${a*a} ligger mellem hvilke to hele tal? Skriv det nederste tal.`,a,undefined,{integer:true}):q(`Skriv ${a}000000 på videnskabelig form: hvad er eksponenten i  ${a} · 10^□?`,6,undefined,{integer:true});
+ case 'F04': return v===0?q(`Løs ${a}x + ${b} = ${a*n+b}.`,n):v===1?q(`Hvad er det mindste hele tal x, der opfylder ${a}x > ${a*n}?`,n+1,undefined,{integer:true}):q(`I systemet x+y=${a+b} og x-y=${a-b}: hvad er x?`,a);
+ case 'F05': {const exp=`${a}*(x+${b})`; return v===0?q(`Udvid ${exp}.`,0,undefined,{expression:`${a}x+${a*b}`}):v===1?q(`Skriv et udtryk ækvivalent med ${a}x+${a*b}.`,0,undefined,{expression:exp}):q(`En elev siger ${a}(x+${b}) = ${a}x+${b}. Forklar kort fejlen.`,0,undefined,{requiresExplanation:true,criteria:['Forklarer at begge led i parentesen skal ganges med tallet udenfor.'],examples:[`${a}(x+${b})=${a}x+${a*b}.`]});}
+ case 'F07': {const start=100*c,rate=10*a; return v===0?q(`${start} kr. vokser ${rate} % i ét år. Hvad er beløbet?`,start*(1+rate/100),'kr.',{tolerance:1e-9}):v===1?q(`Et beløb er vokset ${rate} % til ${start*(1+rate/100)} kr. Hvad var startbeløbet?`,start,'kr.',{tolerance:1e-9}):q(`En tabel har værdierne 1, 4, 9, 16. Hvad er næste værdi, hvis mønsteret er kvadrattal?`,25);}
+ case 'F08': return v===0?q(`En cyklist kører ${a*c} km på ${a} timer. Hvad er farten?`,c,'km/t'):v===1?q(`En bil kører ${c} km/t. Hvor lang tid tager ${a*c} km?`,a,'timer'):q(`Hvor mange cm² er ${a} m²?`,a*10000,'cm²');
+ case 'F09': return v===0?q(`To vinkler i en trekant er ${a*10}° og ${b*10}°. Bestem den tredje.`,180-a*10-b*10,'°'):v===1?q(`En ydre vinkel er ${a*10+b*10}°. Den ene modstående indre vinkel er ${a*10}°. Bestem den anden.`,b*10,'°'):q('Forklar kort, hvorfor vinkelsummen i en trekant er 180°. Skitsen er ikke målfast.',0,undefined,{requiresExplanation:true});
+ case 'F10': return v===0?q(`På kortet er afstanden ${a} cm i målestok 1:${c}000. Hvad er den virkelige afstand i meter?`,a*c*10,'m'):v===1?q(`${a*c} m er ${a} cm på en tegning. Hvad er målestokkens nævner?`,c*100,undefined,{integer:true}):q(`En figur forstørres med faktor ${a}. Arealet var ${c} cm². Hvad bliver det?`,c*a*a,'cm²');
+ case 'F11': return v===0?q(`Et rektangel er ${a} cm gange ${b} cm. Hvad er omkredsen?`,2*(a+b),'cm'):v===1?q(`Et rektangel har areal ${a*b} cm² og bredde ${b} cm. Hvad er længden?`,a,'cm'):q(`En kasse er ${a} cm × ${b} cm × ${c} cm. Hvad er rumfanget?`,a*b*c,'cm³');
+ case 'F12': {const leg=3*a,other=4*a,hyp=5*a; return v===0?q(`En retvinklet trekant har kateter ${leg} cm og ${other} cm. Bestem hypotenusen.`,hyp,'cm'):v===1?q(`Hypotenusen er ${hyp} cm og én katete ${leg} cm. Bestem den anden.`,other,'cm'):q(`Kan sidelængderne ${leg}, ${other} og ${hyp} danne en retvinklet trekant? Skriv 1 for ja og forklar.`,1,undefined,{requiresExplanation:true});}
+ case 'F15': return v===0?q(`Find medianen af tallene ${a}, ${b}, ${c}, ${a+b}, ${a+c}.`,[a,b,c,a+b,a+c].sort((x,y)=>x-y)[2]!):v===1?q(`Fire tal har gennemsnit ${c}. Tre er ${a}, ${b} og ${c}. Hvad er det fjerde?`,4*c-a-b-c):q(`${a} af ${a+b} elever valgte cykel. Hvor mange procent er det?`,a/(a+b)*100,undefined,{tolerance:1e-9});
+ case 'F17': return v===0?q(`En pose har ${a} røde og ${b} blå kugler. Hvad er sandsynligheden for rød? Skriv som brøk.`,a/(a+b),undefined,{fraction:true}):v===1?q(`Sandsynligheden for regn er ${a}/10. Hvad er sandsynligheden for ikke regn? Skriv som brøk.`,(10-a)/10,undefined,{fraction:true}):q(`${a} ud af ${a+b} kort er grønne. Hvor mange grønne kort er der blandt ${n*(a+b)} kort med samme andel?`,a*n,undefined,{integer:true});
+ case 'F18': return v===0?q(`En fair mønt kastes to gange med tilbagelægning. Sandsynligheden for to plat? Skriv som brøk.`,.25,undefined,{fraction:true}):v===1?q(`Der er ${a} røde og ${b} blå kugler. To trækkes uden tilbagelægning. Sandsynligheden for to røde? Skriv som brøk.`,a/(a+b)*(a-1)/(a+b-1),undefined,{fraction:true}):q('En simulation på 10 kast gav 8 plat. Kan det alene bevise sandsynligheden? Skriv 0 for nej og forklar.',0,undefined,{requiresExplanation:true});
+ default: throw Error(`Ukendt generator ${f}`);
+ }
 }
 
 function generatePrice(seed: number, variant: 0 | 1 | 2, examType: ExamType): Task {
@@ -196,6 +229,13 @@ function generateGrid(seed: number, variant: 0 | 1 | 2, examType: ExamType): Tas
   return { id: taskId('F13', seed, variant, examType), familyId: 'F13', version: '1.0.0', seed, variant, examType, title: 'Konstruktion på koordinatplan', story: 'Brug koordinatgitteret. Der findes flere gyldige konstruktioner i de to første opgaver.', questions: [{ id: qid, prompt, answerKind: 'geometry' }], scene, marking: { [qid]: { kind: 'geometry', geometry, criteria: variant === 0 ? ['Har A og B som hjørner.', 'Danner et rektangel med areal som angivet.'] : variant === 1 ? ['Har A og B som grundlinje.', 'Det tredje hjørne giver det angivne areal.'] : ['Flytter både x- og y-koordinat med den givne vektor.'], examples: variant === 0 ? ['Rektanglet kan ligge over eller under AB.', 'Hjørnerne kan angives i vilkårlig rækkefølge.'] : variant === 1 ? ['Det tredje hjørne kan ligge på flere lodrette linjer.', 'Trekanten kan ligge på begge sider af AB.'] : [`P' = (${baseA.x + width}, ${baseA.y + height}).`, 'Læg vektorens x-led til x og y-led til y.'] } } };
 }
 
+function generateTransform(seed:number,variant:0|1|2,examType:ExamType):Task {
+ const p={x:integer(seed,1,-5,4),y:integer(seed,2,-4,5)}, dx=integer(seed,3,1,4),dy=integer(seed,4,-3,3); const qid='q1';
+ const target=variant===0?{x:-p.x,y:p.y}:variant===1?{x:-p.y,y:p.x}:{x:p.x+dx,y:p.y+dy};
+ const instruction=variant===0?'Spejl punktet P i y-aksen.':variant===1?'Drej punktet P 90° mod uret om (0,0).':`Flyt punktet P med vektoren (${dx}, ${dy}).`;
+ return {id:taskId('F14',seed,variant,examType),familyId:'F14',version:'1.1.0',seed,variant,examType,title:'Flytning i koordinatplan',story:'Brug koordinaterne; punktsættet vurderes efter den geometriske regel, ikke efter et billede.',questions:[{id:qid,prompt:'Indtegn billedpunktet P\'.',answerKind:'geometry'}],scene:{kind:'grid',axes:{x:axis('x',-10,10,1),y:axis('y',-10,10,1)},givens:{points:[{id:'P',point:p}],instruction}},marking:{[qid]:{kind:'geometry',geometry:{variant:2,source:p,translation:{x:target.x-p.x,y:target.y-p.y}},criteria:[instruction,'Angiver præcis ét billedpunkt.'],examples:[`P' = (${target.x}, ${target.y}).`]}}};
+}
+
 function generateData(seed: number, variant: 0 | 1 | 2, examType: ExamType): Task {
   const core = integer(seed, 1, 8, 14); const spread = integer(seed, 2, 2, 4); const a = [core - spread, core, core, core + spread, core]; const b = [core - 1, core - 1, core, core + 1, core + 1]; const outlier = core + integer(seed, 3, 12, 20); const data = variant === 2 ? [{ label: 'Fem normale målinger', values: b }, { label: 'Med én usædvanlig måling', values: [...b.slice(0, 4), outlier] }] : [{ label: 'Hold A', values: a }, { label: 'Hold B', values: b }];
   const prompts: [string, string, string] = [
@@ -213,8 +253,13 @@ export function publicTask(task: Task): PublicTask {
   return visible;
 }
 
-const parseNumber = (text: string): number | null => {
-  const normalized = text.trim().replace(',', '.').replace(/\s*(kr\.?|besøg)\s*$/i, '');
+const parseNumber = (text: string, marking?: Marking): number | null => {
+  const raw=text.trim(); const unit=marking?.unit;
+  if(unit){const suffix=new RegExp(`\\s*${unit.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}\\s*$`,'i');if(!suffix.test(raw))return null;}
+  else if(/[a-zæøå²³]/i.test(raw)) return null;
+  if(marking?.fraction){if(!/^[-+]?\d+\s*\/\s*\d+$/.test(raw))return null;const [p,q]=raw.split('/').map(Number);return q===undefined||p===undefined||q===0?null:p/q;}
+  if(marking?.scientific&&!/^[-+]?\d+(?:[,.]\d+)?\s*[·*]\s*10\s*\^\s*[-+]?\d+$/.test(raw))return null;
+  const normalized = unit?raw.replace(new RegExp(`\\s*${unit.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}\\s*$`,'i'),'').trim().replace(',','.') : raw.replace(',', '.');
   if (!/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/.test(normalized)) return null;
   const value = Number(normalized); return Number.isFinite(value) ? value : null;
 };
@@ -238,9 +283,14 @@ export function assess(task: Task, questionId: string, answer: Answer): Assessme
   const marking = task.marking[questionId];
   if (!marking) throw new Error(`Ukendt spørgsmål: ${questionId}`);
   if (marking.kind === 'review') return { status: 'needs-review', feedback: answer.text.trim() || answer.explanation?.trim() ? 'Din begrundelse gemmes til gennemgang ud fra kriterierne. Der gives ingen automatisk pointscore.' : 'Skriv en begrundelse, som kan gennemgås ud fra kriterierne.', criteria: marking.criteria, examples: marking.examples };
+  if (marking.kind === 'expression') {
+    // Parseren er begrænset og ren; ingen eval eller punktprøver bruges.
+    const correct=!!marking.expression&&equivalent(answer.text,marking.expression);
+    return {status:correct?'correct':'incorrect',feedback:correct?'Udtrykket er algebraisk ækvivalent.':'Udtrykket kunne ikke bekræftes. Brug tal, x, parenteser og + − * / ^ inden for værktøjets grænser.',criteria:marking.criteria,examples:marking.examples};
+  }
   if (marking.kind === 'numeric') {
-    const value = parseNumber(answer.text);
-    if (value === marking.expected) {
+    const value = parseNumber(answer.text, marking);
+    if (value !== null && Math.abs(value - marking.expected!) <= (marking.tolerance ?? 0) && (!marking.integer || Number.isInteger(value))) {
       if (marking.requiresExplanation && !answer.explanation?.trim()) return { status: 'partial', feedback: 'Tallet er korrekt, men opgaven beder også om en kort forklaring.', criteria: marking.criteria, examples: marking.examples };
       if (marking.requiresExplanation) return { status: 'needs-review', feedback: 'Tallet er korrekt. Din begrundelse skal gennemgås ud fra kriterierne.', criteria: marking.criteria, examples: marking.examples };
       return { status: 'correct', feedback: 'Dit svar opfylder den kontrollerbare del af opgaven.', criteria: marking.criteria, examples: marking.examples };

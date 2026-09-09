@@ -3,7 +3,7 @@ import { assess, createProfile, families, generateTask, publicTask, validateProf
 
 test('registrerer alle 18 familier og holder belæg og produktvalg adskilt', () => {
   expect(families).toHaveLength(18);
-  expect(families.filter((family) => family.status === 'implemented').map((family) => family.id)).toEqual(['F06', 'F13', 'F16']);
+  expect(families.every((family) => family.status === 'implemented')).toBe(true);
   expect(families[5]!.sources.some((source) => source.kind === 'historical-observation')).toBe(true);
   expect(families[6]!.sources.some((source) => source.kind === 'historical-observation')).toBe(false);
 });
@@ -15,8 +15,8 @@ test('profil kombinerer prøvetype og AI uafhængigt', () => {
   expect(() => createProfile('with-aids', false, { aids: 'none' })).toThrow();
 });
 
-test('100 seeds i hver lodret familie og variant er reproducerbare og har kun elevsynlig scene', () => {
-  for (const familyId of ['F06', 'F13', 'F16'] as const) for (let variant = 0 as 0 | 1 | 2; variant < 3; variant++) for (let seed = -50; seed < 50; seed++) {
+test('100 seeds i hver familie og variant er reproducerbare og har kun elevsynlig scene', () => {
+  for (const familyId of families.map(f=>f.id)) for (let variant = 0 as 0 | 1 | 2; variant < 3; variant++) for (let seed = -50; seed < 50; seed++) {
     const task = generateTask(familyId, seed, variant, 'with-aids');
     expect(generateTask(familyId, seed, variant, 'with-aids')).toEqual(task);
     expect(task.scene.axes.x.step).toBeGreaterThan(0);
@@ -51,8 +51,7 @@ test('F16 er altid tydeligt menneskelig vurdering med flere eksempler', () => {
   expect(result.examples.length).toBeGreaterThanOrEqual(2);
 });
 
-test('afviser randtilfælde og endnu ikke implementerede familier', () => {
-  expect(() => generateTask('F01', 1, 0, 'with-aids')).toThrow('ikke implementeret');
+test('afviser randtilfælde', () => {
   expect(() => generateTask('F06', 1.5, 0, 'with-aids')).toThrow('Seed');
   expect(() => generateTask('F06', 1, 3, 'with-aids')).toThrow('Variant');
 });
