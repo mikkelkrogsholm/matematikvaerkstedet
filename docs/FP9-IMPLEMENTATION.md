@@ -103,8 +103,8 @@ Se [maskinlæsbar evidens](../research/fp9/verification.json).
   står fortsat åben. Målingen er ikke en garanti for alle interaktioner.
   Den rene sceneopdatering må ikke bruges som UI-latensmål.
 - [108 komplette QA-eksempler](../research/fp9/generated/samples.json) og
-  [HTML-galleriet](../research/fp9/generated/gallery.html) er klar. Endelig
-  visuel gennemgang af seks varianter pr. familie står åben.
+  [HTML-galleriet](../research/fp9/generated/gallery.html) er klar. Alle seks varianter pr. familie er nu set; se
+  [visuel QA](../research/fp9/generated/VISUAL-REVIEW.md). F05 har en åben faglig præcisering.
 - [Elevpilot og forsinket gentagelse](FP9-PILOT.md) er ikke gennemført. Der
   hævdes ingen dokumenteret læringseffekt eller mestring på grundlag af modeltests.
 - Dækningen er afgrænset: ingen mundtlig prøve, generel CAS, frie beviser med
@@ -114,3 +114,6 @@ Eksportformat 1 / blueprint `fp9-blueprint-2` gengenererer og validerer indholde
 Andre blueprint-versioner afvises eksplicit. Gemte lokale forsøgsinstanser har
 selve opgaven og bedømmelsesgrundlaget, men import lover ikke bagudkompatibilitet
 med tidligere udviklingsversioner.
+
+Trinvis animation findes foreløbig kun i scenemotoren. API/UI-integration mangler;
+se [den konkrete audit](../research/fp9/ANIMATION-INTEGRATION.md).

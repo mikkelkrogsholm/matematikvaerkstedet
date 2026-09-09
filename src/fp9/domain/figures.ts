@@ -11,7 +11,7 @@ export function triangleAngles(alpha:number,beta:number,variant:number):Scene{
  const edges:[string,string][]=[['A','B'],['B','C'],['C','A']];
  const labels:ShapeScene['givens']['labels']=[{x:0,y:-1,text:'A'},{x:10,y:-1,text:'B'},{x,y:h+1,text:'C'}];
  if(variant===0)labels.push({x:1,y:.5,text:`${alpha}°`},{x:8,y:.5,text:`${beta}°`});
- if(variant===1){points.push({id:'D',x:1.4*x,y:1.4*h});edges.push(['C','D']);labels.push({x:1,y:.5,text:`A: ${alpha}°`},{x:x+1,y:h+.7,text:`Ydre: ${alpha+beta}°`});}
+ if(variant===1){points.push({id:'D',x:1.4*x,y:1.4*h});edges.push(['C','D']);labels.push({x:1,y:.5,text:`A: ${alpha}°`},{x:x+2.5,y:h+.5,text:`Ydre: ${alpha+beta}°`});}
  if(variant===2){points.push({id:'L',x:x-6,y:h},{id:'R',x:x+6,y:h});edges.push(['L','R']);labels.push({x:x+4,y:h+1,text:'parallel med AB'});}
  return figure(points,edges,labels,'Trekant i korrekt størrelsesforhold. Bogstaver og kendte vinkler er markeret.');
 }

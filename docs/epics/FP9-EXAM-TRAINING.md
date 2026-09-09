@@ -138,7 +138,7 @@ Afhænger af: E01 og E02's første familier.
 
 - [x] Agenten kan læse den aktive opgave, scene, markering og relevante
   elevhandlinger og udføre de beskrevne, typede sceneoperationer.
-- [x] Agenten kan mindst tilføje, flytte, fremhæve og fjerne egne
+- [ ] Agenten kan mindst tilføje, flytte, fremhæve og fjerne egne
   forklaringsobjekter samt vise et kort forløb trinvis.
 - [x] Afvis ugyldige objekter, ukendte capabilities, gamle revisioner,
   uautoriserede ændringer og operationer mod et andet forsøg.
@@ -264,3 +264,9 @@ netværksfejl/genforsøg og emuleret mobil/touch er verificeret. Se
 Supplerende browserkontrol: renderfejlinjektion med faktisk negativ kvittering
 og rollback består; print-HTML viser også dataceller og noter. Lokal tekstredigering
 målte p95 27,3 ms ved 100 input på Apple M3 Max. Se målemetode i evidensen.
+
+Visuel QA: alle 108 varianter er set, og signatur/vinkeletiket er rettet;
+se [gennemgang](../../research/fp9/generated/VISUAL-REVIEW.md).
+F05 har en åben faglig præcisering. Trinvis animation er endnu ikke koblet til
+API/UI; E04-kriteriet er derfor genåbnet efter uafhængig kodekontrol.
+Se [integrationskrav](../../research/fp9/ANIMATION-INTEGRATION.md).
