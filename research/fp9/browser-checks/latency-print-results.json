@@ -1,0 +1,19 @@
+{
+  "timing": {
+    "samples": 100,
+    "p95Ms": 27.30000001192093,
+    "maxMs": 28.100000023841858,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36"
+  },
+  "method": "100 real keyboard input events to second requestAnimationFrame, including intervening paint opportunity; local note draft with background autosave, no AI. Not save-to-disk latency or input hardware latency.",
+  "hardware": "Apple M3 Max, 128 GiB RAM",
+  "print": {
+    "allThreeTasks": true,
+    "studentAnswer": true,
+    "notes": true,
+    "givenDataVisible": true,
+    "controlsHidden": true,
+    "mediaEmulation": true
+  },
+  "syntheticData": true
+}

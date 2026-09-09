@@ -1,0 +1,13 @@
+{
+  "fault": "MutationObserver removes AI object DOM before browser render acknowledgment",
+  "realModelCall": true,
+  "actualBrowserAck": false,
+  "rolledBack": true,
+  "noFalseGuideText": true,
+  "usage": {
+    "calls": 1,
+    "inputTokens": 9960,
+    "outputTokens": 131,
+    "lastLatencyMs": 8330
+  }
+}

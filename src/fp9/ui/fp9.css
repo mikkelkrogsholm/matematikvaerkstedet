@@ -11,3 +11,5 @@
 .fp9-answer textarea { min-height:5rem; }
 .fp9-scene [role=button]:focus { outline:none; stroke:#152d21; stroke-width:.8; }
 @media print { .fp9-review button,.fp9-workhead,.fp9-guide,.fp9-nav,.fp9-header button {display:none!important;} .fp9-scene svg {max-height:300px;} .fp9-review>section {break-inside:avoid;} details {display:block;} }
+/* Data cells remain content when interaction controls are hidden for printing. */
+@media print { .fp9-review .fp9-scene td button {display:inline!important;border:0;background:transparent;padding:0;color:inherit;opacity:1;} .fp9-review>section {background:white;} }

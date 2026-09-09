@@ -24,6 +24,13 @@ at gendanne i denne profil. Skærmbilleder ligger i `docs/screenshots/fp9`.
 AI-skærmbillederne er fra før flytningen af markeringsteksten under figuren;
 mobilbilledet viser den rettede placering.
 
-Åbent: browserfejlinjektion ved renderfejl, afbrudt animation, printkontrol,
-reel UI-p95, samlet visuel gennemgang af 108 opgaver samt rigtig elevpilot med
+- `render-failure.js`: reel modelhandling, kontrolleret fjernelse af AI-DOM,
+  faktisk negativ renderkvittering, rollback og synlig fejlbesked. Bestået.
+- `latency-print.js`: 100 tastaturinput til anden animation-frame med baggrundsgemning.
+  p95 27,3 ms på Apple M3 Max / 128 GiB, Chromium 152. Målingen gælder lokal
+  tekstredigering; den omfatter ikke diskpersistens eller alle interaktionstyper.
+  Printmediet viser tre opgaver, elevsvar, noter og dataceller; kontrolknapper skjules.
+  Dette kontrollerer print-HTML, ikke fysisk printer eller paginering.
+
+Åbent: afbrudt animation, samlet visuel gennemgang af 108 opgaver samt rigtig elevpilot med
 forsinket gentagelse. Browserkontrollen beviser ikke læringseffekt.

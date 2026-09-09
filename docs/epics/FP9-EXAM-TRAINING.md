@@ -144,7 +144,7 @@ Afhænger af: E01 og E02's første familier.
   uautoriserede ændringer og operationer mod et andet forsøg.
 - [x] Retry af samme handling er idempotent; en mislykket batch efterlader
   ikke en delvist ændret scene. Agentændringer kan fortrydes.
-- [ ] En agent må først hævde en udført handling efter bekræftet anvendelse og
+- [x] En agent må først hævde en udført handling efter bekræftet anvendelse og
   rendering. Test serveraccept efterfulgt af renderfejl og forsinket bekræftelse.
 - [x] Ingen vilkårlig kodeafvikling fra modellen. Givne data og elevsvar kan
   ikke overskrives skjult; demonstrationer har tydelig afsender.
@@ -204,7 +204,7 @@ Afhænger af: E02 og E03; AI-vurdering, hvis anvendt, afhænger af E05.
   afleverings- og hjælpestatus tydelig. Pause/ekstra tid logges, ikke skjules.
 - [x] Skeln besøgt, besvaret, til senere og afleveret. Vis samlet kontrol før
   aflevering og lås afleveret forsøg; review ændrer ikke den afleverede besvarelse.
-- [ ] Gem lokalt, genoptag efter reload, og eksportér/importér et versionsmærket
+- [x] Gem lokalt, genoptag efter reload, og eksportér/importér et versionsmærket
   forsøg. Sletning virker. Giv printvenlig HTML med egne svar og figurer.
 - [x] Prøveprofil og assistance logges. Funktionaliteten påstår ikke at kunne
   forhindre hjælp fra andre apps eller garantere eksamensintegritet.
@@ -260,3 +260,7 @@ Browserstatus 9. september 2026: Fire træningskombinationer, faktisk AI-renderk
 og elevændringer i F06/F13/F16, reload/eksport/import/aflevering/sletning,
 netværksfejl/genforsøg og emuleret mobil/touch er verificeret. Se
 [browserkontroller](../../research/fp9/browser-checks/README.md) for evidens og åbne delkontroller.
+
+Supplerende browserkontrol: renderfejlinjektion med faktisk negativ kvittering
+og rollback består; print-HTML viser også dataceller og noter. Lokal tekstredigering
+målte p95 27,3 ms ved 100 input på Apple M3 Max. Se målemetode i evidensen.

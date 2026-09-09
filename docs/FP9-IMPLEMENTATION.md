@@ -98,7 +98,9 @@ Se [maskinlæsbar evidens](../research/fp9/verification.json).
   faktisk AI-renderkvittering i F06/F13/F16, reload, eksport/import, aflevering,
   sletning, netværksfejl/genforsøg, pointer/tastatur og emuleret mobil/touch er
   nu afprøvet. Se [browserkontroller og resultater](../research/fp9/browser-checks/README.md).
-  Renderfejlinjektion, afbrudt animation, print og reel UI-p95 står fortsat åbne.
+  Renderfejlinjektion og print-HTML er nu også afprøvet. Lokal tekstredigering
+  målte p95 27,3 ms (100 input, browser-frame, Apple M3 Max). Afbrudt animation
+  står fortsat åben. Målingen er ikke en garanti for alle interaktioner.
   Den rene sceneopdatering må ikke bruges som UI-latensmål.
 - [108 komplette QA-eksempler](../research/fp9/generated/samples.json) og
   [HTML-galleriet](../research/fp9/generated/gallery.html) er klar. Endelig

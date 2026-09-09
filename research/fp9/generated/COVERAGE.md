@@ -40,8 +40,8 @@ Reproduktion, profilmatrix og oprindelige regressioner: `index.test.ts`.
 Domænegrænser, formater, præcis brøkækvivalens, metriske figurer og alternative
 geometrisvar indgår. Rene tests og SSR beviser ikke layout/touch eller læring.
 
-Visuel gennemgang af de 108 eksempler, enkelte browserfejlscenarier, print og
-UI-p95 er åbne. Browserens fire træningskombinationer, reel AI-sceneinteraktion,
+Visuel gennemgang af de 108 eksempler og afbrudt animation er åbne.
+Renderfejlinjektion, print-HTML og lokal tekstinteraktion (p95 27,3 ms) er kontrolleret. Browserens fire træningskombinationer, reel AI-sceneinteraktion,
 gendannelse og mobil/touch er afprøvet; se [evidens](../browser-checks/README.md).
 Reel elevpilot og forsinket kontrol er også åbne.
 Se [implementeringsstatus](../../../docs/FP9-IMPLEMENTATION.md).
