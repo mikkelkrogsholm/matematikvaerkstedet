@@ -1,0 +1,34 @@
+async (page) => {
+ const base='http://127.0.0.1:4317';await page.goto(base+'/fp9');
+ await page.getByRole('checkbox',{name:'Jeg vil kunne bede om hjælp'}).uncheck();
+ const creating=page.waitForResponse(r=>r.url()===base+'/api/fp9/attempts'&&r.request().method()==='POST');
+ await page.getByRole('button',{name:'Opret øverunde',exact:true}).click();const created=await(await creating).json();
+ await page.route('**/action',route=>route.abort('failed'));
+ await page.getByLabel('Dit svar (kr.)',{exact:true}).fill('123');
+ await page.getByRole('button',{name:'Gem ændringer igen',exact:true}).waitFor();
+ await page.getByRole('button',{name:'Konstruktion på koordinatplan',exact:false}).click();
+ if(!await page.getByRole('heading',{name:'Vælg et tilbud',exact:true}).isVisible())throw Error('Unsaved navigation not blocked');
+ if(await page.getByLabel('Dit svar (kr.)',{exact:true}).inputValue()!=='123')throw Error('Draft lost');
+ await page.unrouteAll({behavior:'wait'});
+ await page.getByRole('button',{name:'Gem ændringer igen',exact:true}).click();await page.getByText('Alt er gemt',{exact:true}).waitFor();
+ await page.getByRole('button',{name:'Konstruktion på koordinatplan',exact:false}).click();
+ await page.getByRole('button',{name:'Tilføj punkt',exact:true}).click();
+ await page.route('**/action',async route=>{await page.waitForTimeout(100);await route.continue();});
+ await page.getByLabel('x',{exact:true}).fill('-7');await page.getByLabel('x',{exact:true}).press('Tab');
+ await page.getByLabel('y',{exact:true}).fill('9');await page.getByLabel('y',{exact:true}).press('Tab');
+ await page.getByRole('button',{name:'Elevpunkt (-7; 9)',exact:true}).waitFor();await page.getByText('Alt er gemt',{exact:true}).waitFor();
+ const svg=page.locator('.fp9-scene svg');await svg.scrollIntoViewIfNeeded();
+ const pos=await svg.evaluate(svg=>{const p=svg.createSVGPoint();p.x=55;p.y=40;const t=p.matrixTransform(svg.getScreenCTM());return{x:t.x,y:t.y};});
+ const point=page.getByRole('button',{name:'Elevpunkt (-7; 9)',exact:true}),box=await point.boundingBox();
+ await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(pos.x,pos.y,{steps:5});await page.mouse.up();
+ await page.getByRole('button',{name:'Elevpunkt (1; 2)',exact:true}).waitFor();await page.getByText('Alt er gemt',{exact:true}).waitFor();
+ if(await page.getByLabel('x',{exact:true}).inputValue()!=='1'||await page.getByLabel('y',{exact:true}).inputValue()!=='2')throw Error('Coordinate fields stale after drag');
+ await page.getByRole('button',{name:'Elevpunkt (1; 2)',exact:true}).focus();await page.keyboard.press('ArrowRight');
+ await page.getByRole('button',{name:'Elevpunkt (2; 2)',exact:true}).waitFor();await page.getByText('Alt er gemt',{exact:true}).waitFor();
+ await page.unrouteAll({behavior:'wait'});
+ await page.getByRole('button',{name:'Mine øverunder',exact:true}).click();
+ const timestamp=await page.evaluate(date=>new Date(date).toLocaleString('da-DK'),created.createdAt);
+ const row=page.locator('.fp9-attempt').filter({hasText:timestamp});await row.getByRole('button',{name:'Slet',exact:true}).click();await row.waitFor({state:'detached'});
+ const remaining=await page.evaluate(async()=>(await(await fetch('/api/fp9/attempts')).json()).attempts);if(remaining.some(a=>a.id===created.id))throw Error('Delete not persisted');
+ return {networkFailureDraftRetained:true,navigationBlocked:true,explicitRetry:true,rapidCoordinatesWith100msDelay:true,pointerDragSync:true,keyboardMovement:true,uiDelete:true};
+}

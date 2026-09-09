@@ -217,7 +217,7 @@ Afhænger af: E01, E02, E03 og E06; fuldt assisteret flow kræver E05.
 
 - [ ] Automatiske forløb dækker alle fire kombinationer, AI-skift, retry,
   netværksfejl, afbrudt animation, aflevering og gendannelse.
-- [ ] Modellen kan demonstrere en flytning/tilføjelse og derefter aflæse elevens
+- [x] Modellen kan demonstrere en flytning/tilføjelse og derefter aflæse elevens
   efterfølgende ændring i pris-, geometri- og datafamilierne.
 - [ ] Mål lokal interaktionsrespons på dokumenteret referenceudstyr; foreslået
   mål er p95 under 100 ms uden modelkald. Registrér AI-latens og faktiske tokens
@@ -255,3 +255,8 @@ arbejde og kontroller transfer på nye varianter.
 Modeludbyder, konkrete nye biblioteker og endelige produktbudgetter vælges under
 de relevante delopgaver. Ingen ny modeltjeneste, elevdataindsamling eller
 institutionsdrift er startet som del af denne research og epicregistrering.
+
+Browserstatus 9. september 2026: Fire træningskombinationer, faktisk AI-renderkvittering
+og elevændringer i F06/F13/F16, reload/eksport/import/aflevering/sletning,
+netværksfejl/genforsøg og emuleret mobil/touch er verificeret. Se
+[browserkontroller](../../research/fp9/browser-checks/README.md) for evidens og åbne delkontroller.

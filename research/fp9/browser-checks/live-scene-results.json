@@ -1,0 +1,87 @@
+{
+  "date": "2026-09-09",
+  "syntheticData": true,
+  "results": [
+    {
+      "familyId": "F06",
+      "frames": [
+        {
+          "success": true,
+          "displayedObjects": 1,
+          "guideCountBeforeAck": 0,
+          "expectedPriorGuideCount": 0
+        },
+        {
+          "success": true,
+          "displayedObjects": 1,
+          "guideCountBeforeAck": 1,
+          "expectedPriorGuideCount": 1
+        }
+      ],
+      "reply": "GUIDE\nDet valgte elevpunkt har koordinaterne (4, 6). Hvilken af dem er x-koordinaten?",
+      "calls": 3,
+      "usage": {
+        "calls": 3,
+        "inputTokens": 30750,
+        "outputTokens": 250,
+        "lastLatencyMs": 6826
+      },
+      "realBrowserAcknowledgment": true,
+      "studentReadback": true
+    },
+    {
+      "familyId": "F13",
+      "frames": [
+        {
+          "success": true,
+          "displayedObjects": 1,
+          "guideCountBeforeAck": 0,
+          "expectedPriorGuideCount": 0
+        },
+        {
+          "success": true,
+          "displayedObjects": 1,
+          "guideCountBeforeAck": 1,
+          "expectedPriorGuideCount": 1
+        }
+      ],
+      "reply": "GUIDE\nDit valgte elevpunkt har koordinaterne x = 4 og y = 6. Hvilken koordinat aflæser du først?",
+      "calls": 3,
+      "usage": {
+        "calls": 3,
+        "inputTokens": 30810,
+        "outputTokens": 264,
+        "lastLatencyMs": 7581
+      },
+      "realBrowserAcknowledgment": true,
+      "studentReadback": true
+    },
+    {
+      "familyId": "F16",
+      "frames": [
+        {
+          "success": true,
+          "displayedObjects": 1,
+          "guideCountBeforeAck": 0,
+          "expectedPriorGuideCount": 0
+        },
+        {
+          "success": true,
+          "displayedObjects": 1,
+          "guideCountBeforeAck": 1,
+          "expectedPriorGuideCount": 1
+        }
+      ],
+      "reply": "GUIDE\nDet valgte elevpunkt har koordinaterne (4, 6). Hvilken koordinat er x-koordinaten?",
+      "calls": 3,
+      "usage": {
+        "calls": 3,
+        "inputTokens": 30834,
+        "outputTokens": 266,
+        "lastLatencyMs": 7118
+      },
+      "realBrowserAcknowledgment": true,
+      "studentReadback": true
+    }
+  ]
+}

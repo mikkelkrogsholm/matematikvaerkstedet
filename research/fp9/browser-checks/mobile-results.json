@@ -1,0 +1,11 @@
+{
+  "viewport": 390,
+  "body": 390,
+  "reducedMotion": true,
+  "touchPointPlacement": true,
+  "viewportSize": {
+    "width": 390,
+    "height": 844
+  },
+  "syntheticData": true
+}

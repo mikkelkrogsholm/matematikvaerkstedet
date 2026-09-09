@@ -7,7 +7,7 @@ TypeScript, Bun, Cordis og Mafs. Brugerflade og undervisningstekst er på dansk.
 Der er et FP9-forløb på `/fp9` med 18 generatorfamilier og to oprindelige demonstrationsforløb: brøker/procent til 6. klasse og parabler/tangenter
 til 2.g. Guiden kan bruge lokalt Codex/ChatGPT-login via en udskiftelig provider.
 AI fra bruger faste forklaringer. Præsenter aldrig lokale svar som modelsvar.
-Læs docs/AI-PROTOTYPE.md og docs/FP9-IMPLEMENTATION.md ved ændringer i AI-forbindelsen. FP9-browserkontrol og elevpilot er endnu ikke afsluttet; fremstil dem aldrig som udført.
+Læs docs/AI-PROTOTYPE.md og docs/FP9-IMPLEMENTATION.md ved ændringer i AI-forbindelsen. FP9-browserkontrollernes dokumenterede delresultater findes i research/fp9/browser-checks/README.md. Resterende kontroller og elevpilot er ikke afsluttet; fremstil dem aldrig som udført.
 
 Læs README.md og research/PRODUCT-REQUIREMENTS.md før produktændringer.
 research/PROTOTYPE-RESULTS.md beskriver det afprøvede; SCRATCHPAD.md indeholder

@@ -1,0 +1,9 @@
+{
+  "networkFailureDraftRetained": true,
+  "navigationBlocked": true,
+  "explicitRetry": true,
+  "rapidCoordinatesWith100msDelay": true,
+  "pointerDragSync": true,
+  "keyboardMovement": true,
+  "uiDelete": true
+}

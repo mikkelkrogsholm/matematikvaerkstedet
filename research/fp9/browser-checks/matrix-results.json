@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-09",
+  "browser": "Playwright Chromium, 1440×1000",
+  "syntheticData": true,
+  "results": [
+    {
+      "withAids": false,
+      "ai": false,
+      "realModelCalls": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "latencyMs": null,
+      "answerSaved": true,
+      "geometrySaved": true,
+      "notesRestored": true,
+      "toolsRestored": false,
+      "exportImport": true,
+      "submitted": true,
+      "assistancePreserved": false
+    },
+    {
+      "withAids": false,
+      "ai": true,
+      "realModelCalls": 1,
+      "inputTokens": 9942,
+      "outputTokens": 54,
+      "latencyMs": 6279,
+      "answerSaved": true,
+      "geometrySaved": true,
+      "notesRestored": true,
+      "toolsRestored": false,
+      "exportImport": true,
+      "submitted": true,
+      "assistancePreserved": true
+    },
+    {
+      "withAids": true,
+      "ai": false,
+      "realModelCalls": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "latencyMs": null,
+      "answerSaved": true,
+      "geometrySaved": true,
+      "notesRestored": true,
+      "toolsRestored": true,
+      "exportImport": true,
+      "submitted": true,
+      "assistancePreserved": false
+    },
+    {
+      "withAids": true,
+      "ai": true,
+      "realModelCalls": 1,
+      "inputTokens": 9976,
+      "outputTokens": 58,
+      "latencyMs": 5848,
+      "answerSaved": true,
+      "geometrySaved": true,
+      "notesRestored": true,
+      "toolsRestored": true,
+      "exportImport": true,
+      "submitted": true,
+      "assistancePreserved": true
+    }
+  ]
+}

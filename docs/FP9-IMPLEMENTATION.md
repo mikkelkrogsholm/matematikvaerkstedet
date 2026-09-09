@@ -94,10 +94,12 @@ Se [maskinlæsbar evidens](../research/fp9/verification.json).
 
 ## Åbne acceptpunkter
 
-- Mac'en var låst under den afsluttende implementering. Browserforløb,
-  tastatur/touch, mobilvisning, render-kvittering og reel p95 for brugerinteraktion
-  er **ikke afsluttende verificeret**. Den meget hurtige rene sceneopdatering i
-  evidensfilen udelader DOM/netværk og må ikke bruges som UI-latensmål.
+- Den interne browser virker også med låst Mac. Fire træningskombinationer,
+  faktisk AI-renderkvittering i F06/F13/F16, reload, eksport/import, aflevering,
+  sletning, netværksfejl/genforsøg, pointer/tastatur og emuleret mobil/touch er
+  nu afprøvet. Se [browserkontroller og resultater](../research/fp9/browser-checks/README.md).
+  Renderfejlinjektion, afbrudt animation, print og reel UI-p95 står fortsat åbne.
+  Den rene sceneopdatering må ikke bruges som UI-latensmål.
 - [108 komplette QA-eksempler](../research/fp9/generated/samples.json) og
   [HTML-galleriet](../research/fp9/generated/gallery.html) er klar. Endelig
   visuel gennemgang af seks varianter pr. familie står åben.
