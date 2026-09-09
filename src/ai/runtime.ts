@@ -26,11 +26,13 @@ export async function runCodex(input: {
     if (process.env.CODEX_MODEL) args.push('--model', process.env.CODEX_MODEL);
     args.push('-');
     const env = { ...process.env }; delete env.OPENAI_API_KEY; delete env.CODEX_API_KEY;
+    input.signal.throwIfAborted();
     const child = Bun.spawn(args, { env, cwd: directory, stdin: new Blob([input.prompt]), stdout: 'pipe', stderr: 'pipe', timeout: input.timeoutMs ?? 90_000 });
     const cancel = () => child.kill('SIGKILL');
     input.signal.addEventListener('abort', cancel, { once: true });
+    if(input.signal.aborted)cancel();
     try {
-      const [code, stdout] = await Promise.all([child.exited, new Response(child.stdout).text(), new Response(child.stderr).text()]);
+      const [code, stdout] = await Promise.all([child.exited, readLimited(child.stdout,cancel), readLimited(child.stderr,cancel)]);
       input.signal.throwIfAborted();
       if (code !== 0) throw Error('Codex kunne ikke svare. Kontrollér login og abonnementsgrænse, eller prøv igen.');
       let output: unknown; let inputTokens = 0; let outputTokens = 0;
@@ -58,3 +60,5 @@ export async function runCodex(input: {
     } finally { input.signal.removeEventListener('abort', cancel); }
   } finally { await rm(directory, { recursive: true, force: true }); }
 }
+
+async function readLimited(stream:ReadableStream<Uint8Array>,cancel:()=>void){const reader=stream.getReader();const decoder=new TextDecoder();let count=0,text='';try{while(true){const {done,value}=await reader.read();if(done)break;count+=value.byteLength;if(count>1024*1024){cancel();throw Error('Codex-output overskred grænsen.');}text+=decoder.decode(value,{stream:true});}return text+decoder.decode();}finally{reader.releaseLock();}}

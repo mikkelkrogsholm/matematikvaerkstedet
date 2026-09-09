@@ -117,3 +117,14 @@ describe("transactional FP9 scene", () => {
     expect(policyChanged.animation).toBeNull();
   });
 });
+
+test('AI disable rejects replay and undo keeps action identity reserved', () => {
+ const initial=setAiEnabled(createScene('attempt-extra','scene-extra',{}),true);
+ const command={attemptId:initial.attemptId,sceneId:initial.sceneId,expectedRevision:initial.revision,policyRevision:initial.policyRevision,actionId:'action-extra',operations:[{type:'addObject' as const,object:{kind:'point' as const,id:'ai-p',source:'ai' as const,x:0,y:0,visible:true}}]};
+ const applied=applyCommand(initial,command);
+ expect(applyCommand(setAiEnabled(applied.state,false),command).status).toBe('rejected');
+ const confirmed=acknowledgeRender(applied.state,applied.pendingRender!);
+ const undone=undoAgentAction(confirmed.state,'action-extra');
+ expect(undone.state.explanationObjects).toHaveLength(0);
+ expect(applyCommand(undone.state,{...command,expectedRevision:undone.state.revision}).status).toBe('rejected');
+});

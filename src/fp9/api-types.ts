@@ -2,7 +2,7 @@ import type {Answer,Assessment,ExamType,Family,FamilyId,Profile,PublicTask} from
 import type {SceneState,StudentObject} from './scene';
 export type HelpLevel='question'|'hint'|'step'|'solution';
 export type Group={id:string;title:string;parts:PublicTask[]};
-export type Assistance={id:string;taskId:string;level:HelpLevel;source:'ai'|'local'|'feedback';at:string};
+export type Assistance={id:string;taskId:string;level:HelpLevel;source:'ai'|'local'|'feedback';at:string;tokens?:{input:number;output:number};latencyMs?:number};
 export type ClockState={elapsedSeconds:number;lastResumedAt:string|null;extraSeconds:number;events:{kind:'pause'|'resume'|'extra';at:string;seconds?:number}[]};
 export type ToolState={tab:'calculator'|'sheet'|'cas';expression:string;result:string;cells:Record<string,string>;rows:number};
 export interface AttemptView {

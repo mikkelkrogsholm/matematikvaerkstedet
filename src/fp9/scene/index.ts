@@ -124,6 +124,7 @@ export type SceneState<G = unknown> = Readonly<{
   actionLedger: readonly Readonly<{
     actionId: string;
     fingerprint: string;
+    undone?: boolean;
     beforeExplanationObjects: readonly ExplanationObject[];
     beforeViewport: Viewport | null;
   }> [];
@@ -189,6 +190,7 @@ export function setAiEnabled<G>(state: SceneState<G>, aiEnabled: boolean): Scene
 export function updateStudent<G>(state: SceneState<G>, update: StudentUpdate): SceneState<G> {
   if (!isPlainObject(update)) throw new Error("student update must be an object");
   const objects = update.objects === undefined ? state.studentObjects : validateStudentObjects(update.objects);
+  if (objects.some(object => state.explanationObjects.some(ai => ai.id === object.id))) throw new Error("student object id overlaps explanation object");
   const selection = update.selection === undefined ? state.selection : validateSelection(update.selection, objects, state.explanationObjects);
   return next(state, { studentObjects: objects, selection, pendingRender: null, animation: null }, "student", state.animation ? "cancelled" : "applied");
 }
@@ -197,6 +199,9 @@ export function updateStudent<G>(state: SceneState<G>, update: StudentUpdate): S
 export function applyCommand<G>(state: SceneState<G>, command: SceneCommand): CommandResult<G> {
   const basicError = validateCommandEnvelope(command);
   if (basicError) return rejected(state, basicError);
+  if (command.attemptId !== state.attemptId || command.sceneId !== state.sceneId) return rejected(state, "command targets another attempt or scene");
+  if (!state.aiEnabled) return rejected(state, "AI is disabled by policy");
+  if (command.policyRevision !== state.policyRevision) return stale(state, "policy revision is stale");
   const fingerprint = stableStringify(command);
   const prior = state.actionLedger.find((entry) => entry.actionId === command.actionId);
   if (prior) {
@@ -209,6 +214,7 @@ export function applyCommand<G>(state: SceneState<G>, command: SceneCommand): Co
   if (command.policyRevision !== state.policyRevision) return stale(state, "policy revision is stale");
   if (command.expectedRevision !== state.revision) return stale(state, "scene revision is stale");
   if (state.pendingRender) return rejected(state, "a prior agent action awaits render acknowledgment");
+  if (state.actionLedger.length >= MAX_LEDGER) return rejected(state, "scene action limit reached");
 
   let applied: Pick<SceneState<G>, "explanationObjects" | "viewport" | "selection"> | string;
   try {
@@ -272,7 +278,7 @@ export function isRenderConfirmed<G>(state: SceneState<G>, acknowledgment: Rende
 export function undoAgentAction<G>(state: SceneState<G>, actionId: string): CommandResult<G> {
   requireId(actionId, "actionId");
   if (state.pendingRender) return rejected(state, "cannot undo while render acknowledgment is pending");
-  const latest = state.actionLedger.at(-1);
+  const latest = state.actionLedger.findLast(entry => !entry.undone);
   if (!latest || latest.actionId !== actionId) return rejected(state, "only the latest agent action can be undone");
   return {
     status: "applied",
@@ -280,7 +286,7 @@ export function undoAgentAction<G>(state: SceneState<G>, actionId: string): Comm
       explanationObjects: latest.beforeExplanationObjects,
       viewport: latest.beforeViewport,
       selection: state.selection.filter((id) => state.studentObjects.some((object) => object.id === id) || latest.beforeExplanationObjects.some((object) => object.id === id)),
-      actionLedger: state.actionLedger.slice(0, -1),
+      actionLedger: state.actionLedger.map(entry => entry.actionId === actionId ? { ...entry, undone: true } : entry),
       animation: null,
     }, "agent", "applied", `undo:${actionId}`),
   };
@@ -390,6 +396,8 @@ function applyOperations<G>(state: SceneState<G>, operations: readonly SceneOper
         return "unknown scene operation";
     }
   }
+  if (objects.length > MAX_OBJECTS) return "too many explanation objects";
+  if (objects.some(object => object.kind === "highlight" && !object.targetIds.every(id => objects.some(target => target.id === id && target.kind !== "highlight") || state.studentObjects.some(target => target.id === id)))) return "highlight targets an unknown object";
   const knownIds = new Set([...state.studentObjects, ...objects].map((object) => object.id));
   return { explanationObjects: objects, viewport, selection: state.selection.filter((id) => knownIds.has(id)) };
 }
@@ -488,7 +496,7 @@ function bounded<T>(values: readonly T[], length: number): readonly T[] { return
 function validId(value: string): boolean { return value.length > 0 && value.length <= MAX_ID && /^[A-Za-z0-9._:-]+$/.test(value); }
 function requireId(value: unknown, name: string): asserts value is string { if (typeof value !== "string" || !validId(value)) throw new Error(`${name} must be a bounded identifier`); }
 function requireText(value: unknown, name: string): asserts value is string { if (typeof value !== "string" || value.length > MAX_TEXT) throw new Error(`${name} must be a bounded string`); }
-function hasFinite(object: Record<string, unknown>, key: string): boolean { return typeof object[key] === "number" && Number.isFinite(object[key]); }
+function hasFinite(object: Record<string, unknown>, key: string): boolean { return typeof object[key] === "number" && Number.isFinite(object[key]) && Math.abs(object[key] as number) <= 1e6; }
 function isPlainObject(value: unknown): value is Record<string, unknown> { return typeof value === "object" && value !== null && !Array.isArray(value); }
 function errorMessage(error: unknown): string { return error instanceof Error ? error.message : "invalid input"; }
 function freeze<T>(value: T): T { return deepFreeze(value); }
