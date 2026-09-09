@@ -19,7 +19,8 @@ funktioner eller automatisk en bestilling på at bygge dem.
 Ejeren har udskudt organisations-/brugerimplementering. Planen findes i
 `docs/epics/ORGANISATIONS-AND-USERS.md`. Næste ønskede planlægningsfokus er fagligt
 indhold på den eksisterende motor til 0.–9. klasse og gymnasiets årgange/niveauer;
-se SCRATCHPAD.md. Dette er en prioritering, ikke automatisk autorisation til en
+se SCRATCHPAD.md. Første prioritet er nu matematik A til ejerens søn i 2.g,
+med research i research/gymnasium/MATEMATIK-A.md (stx foreløbigt, ikke bekræftet). Dette er en prioritering, ikke automatisk autorisation til en
 fuld indholdsudbygning. Afklar gymnasial uddannelse og faglig dækningsmatrix før påstande om alle niveauer.
 
 ## Struktur

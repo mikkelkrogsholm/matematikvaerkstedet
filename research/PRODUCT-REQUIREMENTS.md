@@ -8,7 +8,7 @@ Dato: 9. september 2026. Levende dokument fra samtalen.
 
 **Brugerønske:** En matematisk underviser, der kombinerer samtale, forklaringer og dynamiske visualiseringer. Eleven skal blive god til begreber og fremgangsmåder og kunne bruge dem i nye situationer. Eleven skal ikke blot lære en bestemt opgave udenad.
 
-Den langsigtede ambition spænder fra 0. klasse til 3.g. De første konkrete brugere er en elev i 6. klasse og en elev i 2.g; gymnasiets matematikniveau er ikke afklaret. FP9-materialet er et konkret analysegrundlag og en mulig senere målgruppe, ikke i sig selv en passende sværhedsgrad for begge børn.
+Den langsigtede ambition spænder fra 0. klasse til 3.g. De første konkrete brugere er en elev i 6. klasse og en elev i 2.g; gymnasieeleven har matematik A, mens uddannelsestypen endnu ikke er bekræftet. Matematik A er nu første prioritet for næste indholdsudbygning; se [research](gymnasium/MATEMATIK-A.md). FP9-materialet er et konkret analysegrundlag og en mulig senere målgruppe, ikke i sig selv en passende sværhedsgrad for begge børn.
 
 Muligt layout: emner og niveauvalg i venstre panel, fælles visuel arbejdsflade i midten og samtale i højre panel. Arbejdsfladen er central: her skal eleven se, undersøge og arbejde med matematikken.
 

@@ -4,6 +4,15 @@ Opdateret: 9. september 2026. Levende arbejdsnoter fra vores samtale; forslag er
 
 Samlet beskrivelse: [Krav og designnoter](research/PRODUCT-REQUIREMENTS.md). Dokumentet samler generative opgaver, analyse af prøvekrav, korrekt og dynamisk grafik, agentens fælles arbejdsflade, fortællinger og sammenhængende delopgaver, træning/prøve samt et forslag til første afprøvning. Brugerønsker, observationer fra prøverne og vores løsningsforslag er markeret særskilt.
 
+## Første indholdsprioritet: matematik A til 2.g
+
+Ejeren har nu oplyst, at sønnen har matematik A i 2.g. Undersøg først fagligt
+indhold gennem 1.g–3.g og eksamensforberedelse, så næste udbygning kan afprøves
+på ham. Se [research om matematik A](research/gymnasium/MATEMATIK-A.md).
+Stx er foreløbig arbejdshypotese; uddannelsestype afventer bekræftelse.
+Bred dækning af 0.–9. klasse og øvrige gymnasieniveauer er fortsat ambitionen,
+men A-forløbet prioriteres først. Organisations-epic #2 forbliver udskudt.
+
 ## Aktuel prioritering — indhold før organisationsfunktioner
 
 Beslutning 9. september 2026: FP9-prototypen er implementeret og epic #1 afsluttet.
@@ -49,7 +58,7 @@ skoler. Offentlig kildekode med en privat familielicens (source available), ikke
 open source. Se [vilkårene](LICENSE.md), [forklaringen](docs/LICENSING.md) og
 [bibliotekernes licensgennemgang](research/LICENSE-REVIEW.md).
 
-Første konkrete brugere: brugerens datter går i 6. klasse, og sønnen går i 2.g på et dansk gymnasium. Gymnasiets matematikniveau er endnu ikke oplyst.
+Første konkrete brugere: brugerens datter går i 6. klasse, og sønnen går i 2.g på et dansk gymnasium. Matematikniveauet er A; uddannelsestypen er endnu ikke oplyst.
 
 En matematikunderviser, der kombinerer samtale, pædagogiske forklaringer og dynamiske, interaktive visualiseringer. Langsigtet målgruppe: fra 0. klasse til 3.g, med alderssvarende sprog og interaktion.
 
