@@ -125,7 +125,13 @@ Vi skal generere egne opgaver; kildefiler må ikke automatisk genudgives i vores
 source-available produkt. Gamle sæt mærkes med ordning frem for at blandes ind
 som repræsentative for 2024-læreplanen.
 
-## Anbefalet første byggeforløb: funktionsværksted
+## Første afprøvning: plangeometri og deskriptiv statistik
+
+Ejeren har efter researchen oplyst, at sønnen arbejder med netop disse emner.
+De prioriteres nu først i en afgrænset pilot, jf. [pilotstatus](../../docs/MATEMATIK-A-PILOT.md).
+Funktionsværkstedet nedenfor bevares som efterfølgende forslag.
+
+## Efterfølgende byggeforløb: funktionsværksted
 
 Vores forslag er et sammenhængende funktionsværksted først, tilpasset hans aktuelle emne:
 

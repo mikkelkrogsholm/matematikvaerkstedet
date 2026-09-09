@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-09",
+  "scope": "local plane geometry and descriptive statistics pilot",
+  "syntheticData": true,
+  "checks": {
+    "tests": 54,
+    "assertions": 107933,
+    "typecheck": "pass",
+    "build": "pass",
+    "generatorCoverage": {
+      "families": 4,
+      "structuresPerFamily": 3,
+      "seedsPerStructure": 100
+    },
+    "browserSeed": 1,
+    "browserCases": 12,
+    "browserCorrectAnswers": [
+      "1.00",
+      "-0.33",
+      "2.00",
+      "7.21",
+      "32.00",
+      "4.95",
+      "6.29",
+      "6.00",
+      "8.29",
+      "44.00",
+      "17.22",
+      "10.00"
+    ],
+    "reloadAnswerAndFeedback": true,
+    "feedbackDownload": true,
+    "aiOffPersists": true,
+    "staleResponseDiscarded": true,
+    "stopResponseDiscarded": true,
+    "networkFailurePreservesAnswer": true,
+    "desktopOverflow": false,
+    "mobileWidth": 390,
+    "mobileOverflow": false
+  },
+  "liveAI": [
+    {
+      "family": "analytisk",
+      "seed": 49390675,
+      "variant": 0,
+      "observed": "Point B highlighted, explanation identifies B(3;12)"
+    },
+    {
+      "family": "analytisk",
+      "seed": 49390675,
+      "variant": 0,
+      "observed": "Reads exploration cursor (4;5), distinguishes fixed A(-1;0) and B(3;12)"
+    },
+    {
+      "family": "grupperet",
+      "seed": 1,
+      "variant": 1,
+      "observed": "Highlights data-0 and correctly describes six packages in [0;10[ kg without solving mean"
+    }
+  ],
+  "limitations": [
+    "No real pupil session yet",
+    "No complete A-level or full topic coverage",
+    "Only selected screenshots visually inspected",
+    "Stale/Stop/network scenarios use fixtures; three ordinary help calls use real Codex"
+  ]
+}

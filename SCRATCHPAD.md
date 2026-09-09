@@ -8,7 +8,8 @@ Samlet beskrivelse: [Krav og designnoter](research/PRODUCT-REQUIREMENTS.md). Dok
 
 Planlagt som [epic #3](https://github.com/mikkelkrogsholm/matematikvaerkstedet/issues/3);
 [detaljeret plan](docs/epics/MATEMATIK-A-STX.md) med ti delopgaver, faglig dækning,
-AI/visualiseringer og skriftlig/mundtlig træning. Implementering er ikke startet.
+AI/visualiseringer og skriftlig/mundtlig træning. Første implementering prioriterer nu plangeometri og deskriptiv statistik, som
+sønnen arbejder med. Se [pilotstatus](docs/MATEMATIK-A-PILOT.md).
 
 Ejeren har bekræftet, at sønnen har matematik A på stx og går i 2.g.
 Produktet kaldes Matematik A på gymnasieniveau og organiseres efter emner og

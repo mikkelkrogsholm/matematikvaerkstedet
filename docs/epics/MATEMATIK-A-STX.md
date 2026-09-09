@@ -2,10 +2,23 @@
 
 Registreret som [GitHub-epic #3](https://github.com/mikkelkrogsholm/matematikvaerkstedet/issues/3).
 
-Status: Planlagt, ikke påbegyndt. Dato: 9. september 2026.
+Status: Første afgrænsede plangeometri-/statistikpilot implementeret; den samlede epic er fortsat åben. Dato: 9. september 2026.
 Denne epic bestiller en kommende indholdsudbygning; oprettelsen af planen er
 ikke i sig selv autorisation til at starte implementering i denne samtalerunde.
 Organisationer og brugere i epic #2 forbliver udskudt.
+
+## Ændret første prioritet: plangeometri og deskriptiv statistik
+
+Ejerens søn arbejder aktuelt med plangeometri og deskriptiv statistik. Efter
+beslutning 9. september 2026 leveres en afgrænset emnepilot i disse områder
+**før funktionsværkstedet**. Det ændrer leverancerækkefølgen, ikke målet om bred A-dækning.
+
+Første pilot omfatter linjer/cirkler, trekantsberegning, ugrupperede data og
+grupperede data med nye varianter, visualisering, svarfeedback og rigtig AI.
+Den skal kunne gemme lokal feedback til en konkret opgave, så afprøvningen kan
+føre til præcise forbedringer. Se [pilotstatus](../MATEMATIK-A-PILOT.md).
+Det resterende plangeometri-/statistikstof og funktionsværkstedet er fortsat
+planlagt; piloten afslutter ikke hele G07 eller epic'en.
 
 ## 1. Problem og resultat
 
@@ -270,7 +283,7 @@ Kan begynde allerede i G03; bred dækning afhænger af G07.
 ## 9. Leverancer og rækkefølge
 
 1. **Grundlag:** G01 og G02; konkret register, kontrakt og emneindgang.
-2. **Afprøvbar første milepæl:** G03 med nødvendige dele af G04–G06 og G10.
+2. **Afprøvbar første milepæl:** plangeometri/statistik-piloten ovenfor med relevante dele af G04–G06 og G10. Derefter G03.
 3. **Faglig bredde:** G07 i bølger med løbende visualisering, AI og QA.
 4. **Prøveforberedelse:** G08 og færdiggørelse af G09.
 5. **Epic-accept:** G10 samt verificeret opfyldelse af alle delopgaver.
@@ -283,7 +296,7 @@ Delopgaverne bliver ikke automatisk ti separate issues.
 
 ## 10. Afprøvning med sønnen og definition af færdig
 
-G03 skal være nem at afprøve på sønnen. Et foreslået lille forløb er selvstændig
+Plangeometri/statistik-piloten og senere G03 skal være nemme at afprøve på sønnen. Et foreslået lille forløb er selvstændig
 startopgave, guidet variant, ny variant uden AI og senere gentagelse. Observer
 misforståelser, selvstændighed, grafik og brugerflow; registrér kun nødvendige
 oplysninger lokalt. En enkelt elev dokumenterer ikke generel læringseffekt.
@@ -300,7 +313,7 @@ udtrykkeligt; et lavt resterende budget gør ikke en ufuldstændig epic færdig.
 
 ## 11. Åbne valg og sikre standarder
 
-- Sønnens aktuelle emne: kan ændre rækkefølgen; standardstart er funktionsværkstedet.
+- Sønnens aktuelle emne: kan ændre rækkefølgen; bekræftet start er nu plangeometri og deskriptiv statistik.
 - Skolens CAS: påvirker værktøjstræning; må ikke blokere generiske indholdskontrakter.
 - Holdets konkrete prøveår/version: genbekræft før terminsspecifik simulation; vis baseline indtil da.
 - Supplerende stof og skolens mundtlige spørgsmål: vores egne mærkede eksempler indtil konkret materiale foreligger.

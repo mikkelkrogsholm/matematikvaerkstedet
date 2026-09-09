@@ -83,3 +83,9 @@ cd matematikvaerkstedet
 
 Remote `origin` peger på dette repository. Ændringer på `main` kan pushes med
 `git push origin main` efter kontrol og commit.
+
+## Matematik A: første emnepilot
+
+Åbn `/matematik-a` efter lokal opstart. Plangeometri og deskriptiv statistik
+har 12 opgaveformer med nye data, visuel udforskning, rigtig AI og lokal
+feedbackeksport. Se [pilotens dækning og kontroller](docs/MATEMATIK-A-PILOT.md).

@@ -22,7 +22,8 @@ indhold på den eksisterende motor til 0.–9. klasse og gymnasiets årgange/niv
 se SCRATCHPAD.md. Første prioritet er nu matematik A til ejerens søn i 2.g,
 med research i research/gymnasium/MATEMATIK-A.md. Stx er bekræftet. Produktet
 kaldes Matematik A på gymnasieniveau og organiseres efter emner og forudsætninger,
-ikke 1.g/2.g/3.g. Implementeringsplan: docs/epics/MATEMATIK-A-STX.md (epic #3). Dette er en prioritering, ikke automatisk autorisation til en
+ikke 1.g/2.g/3.g. Implementeringsplan: docs/epics/MATEMATIK-A-STX.md (epic #3). Første pilot er
+plangeometri og deskriptiv statistik, jf. docs/MATEMATIK-A-PILOT.md. Dette er en prioritering, ikke automatisk autorisation til en
 fuld indholdsudbygning. Afklar gymnasial uddannelse og faglig dækningsmatrix før påstande om alle niveauer.
 
 ## Struktur
