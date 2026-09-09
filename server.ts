@@ -18,7 +18,7 @@ const server = Bun.serve({
     if (url.pathname === '/api/lessons') return Response.json([...registry.values()]);
     let pathname: string;
     try { pathname = decodeURIComponent(url.pathname); } catch { return new Response('Invalid path', { status: 400 }); }
-    const path = resolve(root, '.' + (['/','/fp9','/fp9/'].includes(pathname) ? '/index.html' : pathname));
+    const path = resolve(root, '.' + (['/','/fp9','/fp9/','/matematik-a','/matematik-a/'].includes(pathname) ? '/index.html' : pathname));
     if (!path.startsWith(root + sep)) return new Response('Not found', { status: 404 });
     const file = Bun.file(path);
     return await file.exists() ? new Response(file) : new Response('Not found', { status: 404 });
