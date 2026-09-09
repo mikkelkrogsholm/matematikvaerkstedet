@@ -49,6 +49,9 @@ export function createProfile(examType: ExamType, aiEnabled: boolean, settings: 
 /** Validerer profilens indbyrdes konsistens uden at slå AI og prøvetype sammen. */
 export function validateProfile(profile: Profile): string[] {
   const errors: string[] = [];
+  if (!['with-aids','without-aids'].includes(profile.examType)) errors.push('Ukendt prøvetype.');
+  if (typeof profile.aiEnabled !== 'boolean') errors.push('AI-status skal være sand eller falsk.');
+  if (!['immediate','after-submit'].includes(profile.feedback)) errors.push('Ukendt feedbacktid.');
   if (profile.examType === 'with-aids' && profile.aids !== 'standard') errors.push('Med hjælpemidler kræver hjælpemiddelprofilen standard.');
   if (profile.examType === 'without-aids' && profile.aids !== 'none') errors.push('Uden hjælpemidler kræver hjælpemiddelprofilen none.');
   if (profile.timingMinutes !== null && (!Number.isFinite(profile.timingMinutes) || profile.timingMinutes <= 0 || !Number.isInteger(profile.timingMinutes))) errors.push('Tid skal være et positivt helt antal minutter eller null.');
@@ -176,7 +179,7 @@ export function generateTask(familyId: FamilyId, seed: number, variant: number, 
 }
 
 function generatePrice(seed: number, variant: 0 | 1 | 2, examType: ExamType): Task {
-  const a = integer(seed, 1, 18, 40); const b = integer(seed, 2, 8, 18); const crossing = integer(seed, 3, 4, 10);
+  const a = integer(seed, 1, 20, 40); const b = integer(seed, 2, 8, 18); const crossing = integer(seed, 3, 4, 10);
   const fixedB = crossing * (a - b); const count = integer(seed, 4, 2, 12); const scene: PriceScene = { kind: 'price', axes: { x: axis('Antal besøg', 0, Math.max(16, crossing + 4), 1), y: axis('Pris', 0, Math.max(a * 16, fixedB + b * 16) + 20, 20, 'kr.') }, givens: { offerA: { fixed: 0, perUnit: a }, offerB: { fixed: fixedB, perUnit: b }, unit: 'besøg', discrete: true } };
   const qid = 'q1';
   const q = variant === 0 ? { id: qid, answerKind: 'number' as const, unit: 'kr.', prompt: `Hvad koster tilbud A ved ${count} besøg?` } : variant === 1 ? { id: qid, answerKind: 'number' as const, unit: 'besøg', prompt: `Du har højst ${fixedB + b * count} kr. Hvor mange hele besøg kan du højst købe med tilbud B?` } : { id: qid, answerKind: 'number' as const, unit: 'besøg', prompt: 'Ved hvor mange hele besøg er tilbuddene lige dyre? Skriv også kort, hvordan du finder det.' };
@@ -194,7 +197,7 @@ function generateGrid(seed: number, variant: 0 | 1 | 2, examType: ExamType): Tas
 }
 
 function generateData(seed: number, variant: 0 | 1 | 2, examType: ExamType): Task {
-  const core = integer(seed, 1, 8, 14); const spread = integer(seed, 2, 1, 3); const a = [core - spread, core, core, core + spread, core]; const b = [core - 1, core - 1, core, core + 1, core + 1]; const outlier = core + integer(seed, 3, 12, 20); const data = variant === 2 ? [{ label: 'Fem normale målinger', values: b }, { label: 'Med én usædvanlig måling', values: [...b.slice(0, 4), outlier] }] : [{ label: 'Hold A', values: a }, { label: 'Hold B', values: b }];
+  const core = integer(seed, 1, 8, 14); const spread = integer(seed, 2, 2, 4); const a = [core - spread, core, core, core + spread, core]; const b = [core - 1, core - 1, core, core + 1, core + 1]; const outlier = core + integer(seed, 3, 12, 20); const data = variant === 2 ? [{ label: 'Fem normale målinger', values: b }, { label: 'Med én usædvanlig måling', values: [...b.slice(0, 4), outlier] }] : [{ label: 'Hold A', values: a }, { label: 'Hold B', values: b }];
   const prompts: [string, string, string] = [
     'Sammenlign holdenes resultater. Hvilket hold vil du beskrive som mest stabilt? Begrund med data.',
     'Vil gennemsnit eller median være mest retvisende til at sammenligne holdene? Begrund dit valg.',
@@ -239,14 +242,16 @@ export function assess(task: Task, questionId: string, answer: Answer): Assessme
     const value = parseNumber(answer.text);
     if (value === marking.expected) {
       if (marking.requiresExplanation && !answer.explanation?.trim()) return { status: 'partial', feedback: 'Tallet er korrekt, men opgaven beder også om en kort forklaring.', criteria: marking.criteria, examples: marking.examples };
+      if (marking.requiresExplanation) return { status: 'needs-review', feedback: 'Tallet er korrekt. Din begrundelse skal gennemgås ud fra kriterierne.', criteria: marking.criteria, examples: marking.examples };
       return { status: 'correct', feedback: 'Dit svar opfylder den kontrollerbare del af opgaven.', criteria: marking.criteria, examples: marking.examples };
     }
     return { status: 'incorrect', feedback: 'Tjek prisopstillingen og at antal besøg er hele tal.', criteria: marking.criteria, examples: marking.examples };
   }
+  if (!(answer.points ?? []).every(p => p.length === 2 && p.every(v => Number.isFinite(v) && v >= -10 && v <= 10))) return { status: 'incorrect', feedback: 'Punkterne skal ligge i det viste koordinatgitter.', criteria: marking.criteria, examples: marking.examples };
   const points = unique((answer.points ?? []).map(([x, y]) => ({ x, y })));
   const geometry = marking.geometry!;
   let correct = false;
-  if (geometry.variant === 0) correct = points.length === 4 && contains(points, geometry.base![0]) && contains(points, geometry.base![1]) && isRectangle(points, geometry.area!);
+  if (geometry.variant === 0) correct = points.length === 4 && contains(points, geometry.base![0]) && contains(points, geometry.base![1]) && isRectangle(points, geometry.area!) && points.every(p => p.x === geometry.base![0].x || p.x === geometry.base![1].x);
   if (geometry.variant === 1) correct = points.length === 3 && contains(points, geometry.base![0]) && contains(points, geometry.base![1]) && points.some((p) => triangleArea2(geometry.base![0], geometry.base![1], p) === 2 * geometry.area!);
   if (geometry.variant === 2) correct = points.length === 1 && samePoint(points[0]!, { x: geometry.source!.x + geometry.translation!.x, y: geometry.source!.y + geometry.translation!.y });
   return { status: correct ? 'correct' : 'incorrect', feedback: correct ? 'Konstruktionen opfylder de krævede egenskaber.' : 'Kontrollér punkterne og de geometriske egenskaber; der kan være flere gyldige konstruktioner.', criteria: marking.criteria, examples: marking.examples };

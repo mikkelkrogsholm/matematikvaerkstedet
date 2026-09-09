@@ -29,7 +29,7 @@ test('F06 tjekker kendte tal og kræver forklaring ved lighed', () => {
   const task = generateTask('F06', 7, 2, 'without-aids');
   const marking = task.marking.q1!;
   expect(assess(task, 'q1', { text: String(marking.expected) }).status).toBe('partial');
-  expect(assess(task, 'q1', { text: String(marking.expected), explanation: 'Jeg satte de to priser lige store.' }).status).toBe('correct');
+  expect(assess(task, 'q1', { text: String(marking.expected), explanation: 'Jeg satte de to priser lige store.' }).status).toBe('needs-review');
   expect(assess(task, 'q1', { text: '1' }).status).toBe('incorrect');
 });
 
@@ -55,4 +55,15 @@ test('afviser randtilfælde og endnu ikke implementerede familier', () => {
   expect(() => generateTask('F01', 1, 0, 'with-aids')).toThrow('ikke implementeret');
   expect(() => generateTask('F06', 1.5, 0, 'with-aids')).toThrow('Seed');
   expect(() => generateTask('F06', 1, 3, 'with-aids')).toThrow('Variant');
+});
+
+
+test('prisernes skæringspunkt er entydigt også på regression-seed 161', () => {
+  for (let seed=0;seed<1000;seed++) {
+    const task=generateTask('F06',seed,2,'with-aids');
+    if(task.scene.kind!=='price') throw Error();
+    const {offerA:a,offerB:b}=task.scene.givens;
+    expect(a.perUnit).toBeGreaterThan(b.perUnit);
+    expect((b.fixed-a.fixed)/(a.perUnit-b.perUnit)).toBe(task.marking.q1!.expected!);
+  }
 });
