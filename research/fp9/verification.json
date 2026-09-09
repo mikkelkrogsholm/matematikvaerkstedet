@@ -1,0 +1,186 @@
+{
+  "date": "2026-09-09",
+  "officialSourceRecheck": {
+    "index": "https://uvm.dk/grundskole/folkeskolen/folkeskolens-proever/proeveforberedelse/proevevejledninger/",
+    "linkedMathematicsGuide": "https://uvm.dk/media/br4hbu3h/251022-vejledning-til-folkeskolens-proever-i-matematik-i-9-klasse.pdf",
+    "sha256": "158daac32cac14cf9b61c2d423bc6ed349cb207d872deb0adfc6e7b964098278",
+    "matchesResearchBaseline": true,
+    "scope": "Local training release, no claim of future official-term compliance"
+  },
+  "initialSceneBenchmark": {
+    "hardware": "Apple M3 Max, 128 GiB RAM",
+    "runtime": "Bun 1.4.0",
+    "warmup": 200,
+    "samples": 1000,
+    "p95Ms": 0.019709,
+    "scope": "Pure updateStudent function with one point. Excludes browser rendering and network; does not establish end-to-end UI p95."
+  },
+  "pilot": "Not performed; requires real student and delayed follow-up",
+  "liveAI": {
+    "provider": "Codex CLI through ChatGPT subscription",
+    "syntheticStudentData": true,
+    "renderAcknowledgment": "Simulated transport ACK only; does not verify browser paint",
+    "turns": [
+      {
+        "family": "F06",
+        "level": "step",
+        "latencyMs": 6989,
+        "inputTokens": 9884,
+        "outputTokens": 89
+      },
+      {
+        "family": "F06",
+        "level": "step",
+        "latencyMs": 6980,
+        "inputTokens": 10129,
+        "outputTokens": 71
+      },
+      {
+        "family": "F06",
+        "level": "question",
+        "latencyMs": 7852,
+        "inputTokens": 10411,
+        "outputTokens": 47
+      },
+      {
+        "family": "F13",
+        "level": "step",
+        "latencyMs": 8008,
+        "inputTokens": 9895,
+        "outputTokens": 94
+      },
+      {
+        "family": "F13",
+        "level": "step",
+        "latencyMs": 8091,
+        "inputTokens": 10157,
+        "outputTokens": 80
+      },
+      {
+        "family": "F13",
+        "level": "question",
+        "latencyMs": 8330,
+        "inputTokens": 10440,
+        "outputTokens": 50
+      },
+      {
+        "family": "F16",
+        "level": "step",
+        "latencyMs": 8051,
+        "inputTokens": 9917,
+        "outputTokens": 95
+      },
+      {
+        "family": "F16",
+        "level": "step",
+        "latencyMs": 7021,
+        "inputTokens": 10174,
+        "outputTokens": 85
+      },
+      {
+        "family": "F16",
+        "level": "question",
+        "latencyMs": 6165,
+        "inputTokens": 10460,
+        "outputTokens": 48
+      },
+      {
+        "family": "F16",
+        "level": "hint",
+        "latencyMs": 6550,
+        "inputTokens": 9881,
+        "outputTokens": 80
+      },
+      {
+        "family": "F16",
+        "level": "solution",
+        "latencyMs": 10164,
+        "inputTokens": 10100,
+        "outputTokens": 185
+      }
+    ],
+    "observations": [
+      "All three families added point (2,4), moved it to (3,5), then correctly read selected student point (4,6).",
+      "Initial move retained coordinate text from old position; regression discovered and contract repair required.",
+      "Existing fractions guide returned a valid 3/4 scene after generic runtime refactor."
+    ]
+  },
+  "captionRegression": {
+    "ack": "simulated transport acknowledgment, not browser paint",
+    "stages": [
+      {
+        "objects": [
+          {
+            "id": "ai-marker",
+            "source": "ai",
+            "visible": true,
+            "text": "Hj\u00e6lpepunkt",
+            "kind": "point",
+            "x": 2,
+            "y": 4
+          }
+        ],
+        "usage": {
+          "calls": 1,
+          "inputTokens": 9951,
+          "outputTokens": 83,
+          "lastLatencyMs": 7793
+        },
+        "pending": true
+      },
+      {
+        "objects": [
+          {
+            "id": "ai-marker",
+            "source": "ai",
+            "visible": true,
+            "text": "Hj\u00e6lpepunkt (3,5)",
+            "kind": "point",
+            "x": 3,
+            "y": 5
+          }
+        ],
+        "usage": {
+          "calls": 2,
+          "inputTokens": 20159,
+          "outputTokens": 167,
+          "lastLatencyMs": 9153
+        },
+        "pending": true
+      }
+    ]
+  },
+  "contentReview": {
+    "reviewedCommit": "cdbaf7f",
+    "findings": "11 findings from independent read-only review; repaired in subsequent implementation",
+    "repairs": [
+      "Bounded terminating decimals and explicit precision",
+      "Exact rational comparison",
+      "Task-specific reasoning references and original contexts",
+      "Non-square root intervals and varied scientific notation",
+      "Independent mathematics reconstructed from public task data",
+      "Metric figures and full QA corpus",
+      "Variant permissions and official/historical/product evidence separation",
+      "Meaningful mean/median comparison with outlier"
+    ]
+  },
+  "automatedChecks": {
+    "command": "bun run check",
+    "testsPassed": 45,
+    "failed": 0,
+    "assertions": 101556,
+    "typecheck": "passed",
+    "build": "passed",
+    "bundleWarning": "Main JS chunk approximately 530 kB; no build error"
+  },
+  "httpIntegration": {
+    "spaStatus": 200,
+    "implementedFamilies": 18,
+    "groups": 20,
+    "parts": 50,
+    "submittedImport": "passed",
+    "modelCalls": 0,
+    "blueprintVersion": "fp9-blueprint-2",
+    "temporaryTestAttempts": "deleted"
+  }
+}

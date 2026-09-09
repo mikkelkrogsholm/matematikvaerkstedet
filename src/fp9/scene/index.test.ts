@@ -128,3 +128,15 @@ test('AI disable rejects replay and undo keeps action identity reserved', () => 
  expect(undone.state.explanationObjects).toHaveLength(0);
  expect(applyCommand(undone.state,{...command,expectedRevision:undone.state.revision}).status).toBe('rejected');
 });
+
+test('moving objects refreshes coordinate captions instead of keeping stale text',()=>{
+ let state=enabled();
+ const command=(actionId:string,operations:SceneCommand['operations']):SceneCommand=>({attemptId:state.attemptId,sceneId:state.sceneId,expectedRevision:state.revision,policyRevision:state.policyRevision,actionId,operations});
+ const added=applyCommand(state,command('caption-add',[{type:'addObject',object:{id:'dot',source:'ai',kind:'point',x:2,y:4,text:'(2,4)',visible:true}}]));
+ state=acknowledgeRender(added.state,added.state.pendingRender!).state;
+ const moved=applyCommand(state,command('caption-move',[{type:'moveObject',objectId:'dot',position:{x:3,y:5},text:'(3,5)'}]));
+ expect(moved.state.explanationObjects[0]?.text).toBe('(3,5)');
+ state=acknowledgeRender(moved.state,moved.state.pendingRender!).state;
+ const again=applyCommand(state,command('caption-clear',[{type:'moveObject',objectId:'dot',position:{x:4,y:6}}]));
+ expect(again.state.explanationObjects[0]?.text).toBe('');
+});

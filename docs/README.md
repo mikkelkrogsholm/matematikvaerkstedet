@@ -30,3 +30,9 @@ Fra prototypens browserafprøvning 9. september 2026:
 - [Desktop: brøker](screenshots/desktop.png)
 - [Desktop: funktioner](screenshots/functions.png)
 - [Mobil](screenshots/mobile.png)
+
+## Implementeret FP9-forløb
+
+- [Implementering, dataflow og verificeret status](FP9-IMPLEMENTATION.md).
+- [Elevpilot og forsinket gentagelse](FP9-PILOT.md).
+- [108 QA-varianter](../research/fp9/generated/gallery.html).

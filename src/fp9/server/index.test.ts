@@ -95,3 +95,27 @@ test('API rejects wrong origin, malformed body and unknown ids',async()=>{
  expect((await api(new Request('http://127.0.0.1/api/fp9/attempts',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'}))).status).toBe(400);
  await expect(s.store.get('fp9-/../../elsewhere')).rejects.toThrow();
 });
+
+test('corrupted local storage reports damage and preserves the original file',async()=>{
+ const s=await service(),v=await s.create(base),path=join(s.store.path,v.id+'.json');
+ await writeFile(path,'{ broken');
+ await expect(s.load(v.id)).rejects.toThrow('beskadiget');
+ await expect(s.list()).rejects.toThrow('beskadiget');
+ expect(await Bun.file(path).text()).toBe('{ broken');
+ await expect(s.load('fp9-missing')).rejects.toThrow('findes ikke');
+});
+test('guide receives current answer/notes/tools; invisible and distorted commands are rejected atomically',async()=>{
+ let captured:Fp9Prompt|undefined,ops:SceneOperation[]=[];
+ const s=await service({reply:async input=>{captured=input;return result(ops);}});
+ let v=await s.create({...base,examType:'with-aids',aiEnabled:true});const taskId=v.activeTaskId;
+ v=await s.action(v.id,{type:'answer',taskId,questionId:'q1',answer:{text:'27',explanation:'Min metode'},expectedRevision:v.revision});
+ v=await s.action(v.id,{type:'note',taskId,text:'Min egen note',expectedRevision:v.revision});
+ v=await s.help(v.id,question(v));
+ expect(captured?.answer.q1?.text).toBe('27');expect(captured?.notes).toBe('Min egen note');expect(captured?.marking).toBeUndefined();
+ ops=[{type:'addObject',object:{id:'ai-offscreen',source:'ai',visible:true,kind:'point',x:100000,y:100000}}];
+ await expect(s.help(v.id,question(v,'step'))).rejects.toThrow('uden for');
+ expect((await s.load(v.id)).scenes[taskId]!.explanationObjects).toHaveLength(0);
+ v=await s.create({...base,aiEnabled:true,length:'topic',familyId:'F13'});
+ ops=[{type:'setViewport',viewport:{xMin:-10,xMax:10,yMin:-5,yMax:5}}];
+ await expect(s.help(v.id,question(v,'step'))).rejects.toThrow('målestok');
+});

@@ -1,4 +1,8 @@
-# AI i den lokale prototype
+# AI i de oprindelige demoer
+
+Dette dokument beskriver 6. klasse/2.g. FP9 har en særskilt forsøgs- og
+scenekontrakt: se [FP9-implementeringen](FP9-IMPLEMENTATION.md). Begge bruger
+den fælles Codex-runtime.
 
 Implementeret 9. september 2026. De to demonstrationsforløb kan nu tale med en
 rigtig model gennem ejerens eksisterende Codex-login. Dette er den lokale
@@ -26,8 +30,7 @@ Eksempler:
 - “Giv mig et lille hint, uden at fortælle facit.”
 
 Uden AI virker figurer, skydere, faste forklaringer og lokal svarkontrol stadig.
-Dette er en demonstrationsindstilling; registrering af støttehistorik og
-fulde FP9-prøver hører til den planlagte epic.
+Dette er en demonstrationsindstilling; FP9 har separat implementeret støttehistorik og genererede øvesæt på `/fp9`.
 
 ## Adaptergrænsen
 
@@ -58,14 +61,14 @@ annullerer det igangværende browserkald.
   streaming eller automatisk genforsøg, som kunne bruge ekstra kvote.
 - Kun én modelproces ad gangen. CLI-timeout er 90 sekunder. Fejl vises ærligt;
   et mislykket AI-kald erstattes ikke med et svar, der udgiver sig for at være AI.
-- Serveren binder til loopback, begrænser request-body til 48 KiB og afviser
+- Demo-endpointet begrænser input til 48 KiB. Serveren binder til loopback og afviser
   cross-origin-kald. Det er ikke autentifikation til offentlig hosting.
 - CLI genbruger selv login. Adapteren læser eller kopierer ikke credentials og
   fjerner nedarvede `OPENAI_API_KEY`/`CODEX_API_KEY` fra modelprocessens miljø.
 - CLI kører read-only med ignoreret brugerkonfiguration/projektdokumenter,
   uden shell, apps, plugins, hooks, web search og de angivne browser/agentfeatures.
   Konfigurationen er versionsafhængig og skal kontrolleres ved CLI-opgradering.
-- Appen gemmer ikke samtaler. CLI bruger ephemeral sessions; dette lover ikke,
+- Disse to demoer gemmer ikke samtaler. FP9 gemmer dem lokalt. CLI bruger ephemeral sessions; dette lover ikke,
   at Codex/OpenAI ingen driftslogs eller serverdata har. Spørgsmål og figur
   sendes til OpenAI via Codex, og historikken lever i browserens hukommelse.
 - Figurens numeriske værdier kontrolleres; modellens frie forklaringer er ikke

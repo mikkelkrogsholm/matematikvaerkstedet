@@ -9,7 +9,7 @@ import { runCodex } from '../../ai/runtime';
 
 type Internal = { view: AttemptView; tasks: Record<string, Task>; seed: number; pendingText: Record<string, {token:string;text:string;assistance:Assistance}>; examType: ExamType; assisted: boolean; generation: CreateAttempt };
 export interface Fp9Provider { reply(input: Fp9Prompt, signal: AbortSignal): Promise<{ text: string; operations: SceneOperation[]; inputTokens: number; outputTokens: number; elapsedMs: number }>; }
-export type Fp9Prompt = { level: HelpLevel; question: string; task: ReturnType<typeof publicTask>; scene: unknown; recentActions: unknown[]; history: {role:string;text:string}[]; marking?: Task['marking'] };
+export type Fp9Prompt = { level: HelpLevel; question: string; task: ReturnType<typeof publicTask>; scene: unknown; answer: Record<string,Answer>; notes: string; tools: ToolState|null; recentActions: unknown[]; history: {role:string;text:string}[]; marking?: Task['marking'] };
 const MAX_BODY = 2 * 1024 * 1024, MAX_TEXT = 4000;
 const setting=(key:string,fallback:number,max:number)=>{const value=Number(process.env[key]??fallback);if(!Number.isSafeInteger(value)||value<1||value>max)throw Error(`Ugyldig ${key}.`);return value;};
 const MAX_CALLS=setting('FP9_AI_MAX_CALLS',12,100), TIMEOUT=setting('FP9_AI_TIMEOUT_MS',90000,180000), MAX_TOKENS=setting('FP9_AI_MAX_TOKENS',150000,2000000);
@@ -129,6 +129,16 @@ export class Fp9Service {
     });
   }
   private validatePoints(task:Task,objects:unknown){if(!Array.isArray(objects)||objects.length>20||!objects.every(o=>plain(o)&&id(o.id)&&o.id.startsWith('student-')&&o.source==='student'&&o.kind==='point'&&finite(o.x)&&finite(o.y)&&o.x>=task.scene.axes.x.min&&o.x<=task.scene.axes.x.max&&o.y>=task.scene.axes.y.min&&o.y<=task.scene.axes.y.max&&(o.text===undefined||str(o.text,400))))throw Error('Ugyldige elevpunkter. Brug punkter inden for figurens akser.');}
+  private validateVisibleScene(task:Task,scene:SceneState){
+    const v=scene.viewport??{xMin:task.scene.axes.x.min,xMax:task.scene.axes.x.max,yMin:task.scene.axes.y.min,yMax:task.scene.axes.y.max};
+    if((task.scene.kind==='grid'||task.scene.kind==='shape')&&Math.abs((v.xMax-v.xMin)-(v.yMax-v.yMin))>1e-9)throw Error('Geometri kræver samme målestok på begge akser.');
+    const inside=(x:number,y:number)=>x>=v.xMin&&x<=v.xMax&&y>=v.yMin&&y<=v.yMax;
+    for(const o of scene.explanationObjects.filter(o=>o.visible)){
+      if(o.kind==='point'||o.kind==='label'){if(!inside(o.x,o.y))throw Error('AI-objektet ligger uden for det synlige udsnit.');}
+      if(o.kind==='label'&&!o.text.trim())throw Error('En synlig etiket skal have tekst.');
+      if(o.kind==='line'&&(!inside(o.x1,o.y1)||!inside(o.x2,o.y2)))throw Error('AI-linjen ligger uden for det synlige udsnit.');
+    }
+  }
   async help(id0:string,request:HelpRequest,clientSignal?:AbortSignal){
     if(!plain(request)||!Number.isSafeInteger(request.expectedRevision)||!id(request.taskId)||!['question','hint','step','solution'].includes(request.level)||!str(request.question,2000)||!request.question.trim())throw Error('Ugyldig hjælpesanmodning.');
     const start=await this.locked(id0,async()=>{
@@ -142,12 +152,12 @@ export class Fp9Service {
       const controller=new AbortController();this.aborts.set(id0,controller);
       // Reserve the call BEFORE dispatch, including failed/cancelled calls. Usage is
       // bookkeeping, not a student/policy revision, so AI-off can still use this revision.
-      x.view.aiUsage.calls++;await this.store.save(x);
-      return {task,scene:x.view.scenes[request.taskId]!,revision:x.view.revision,controller,history:(x.view.chat[request.taskId]??[]).slice(-8)};
+      x.view.aiUsage.calls++;try{await this.store.save(x);}catch(error){this.aborts.delete(id0);throw error;}
+      return {task,answer:x.view.answers[request.taskId]??{},notes:x.view.notes[request.taskId]??'',tools:x.view.profile.aids==='standard'?(x.view.tools[request.taskId]??null):null,scene:x.view.scenes[request.taskId]!,revision:x.view.revision,controller,history:(x.view.chat[request.taskId]??[]).slice(-8)};
     });
     let response:Awaited<ReturnType<Fp9Provider['reply']>>;
     try{
-      response=await this.provider!.reply({level:request.level,question:request.question,task:publicTask(start.task),scene:sceneSnapshot(start.scene),recentActions:[...start.scene.recentActions].slice(-10),history:start.history,...(request.level==='solution'?{marking:start.task.marking}:{})},AbortSignal.any([start.controller.signal,...(clientSignal?[clientSignal]:[]),AbortSignal.timeout(TIMEOUT)]));
+      response=await this.provider!.reply({level:request.level,question:request.question,task:publicTask(start.task),answer:start.answer,notes:start.notes,tools:start.tools,scene:sceneSnapshot(start.scene),recentActions:[...start.scene.recentActions].slice(-10),history:start.history,...(request.level==='solution'?{marking:start.task.marking}:{})},AbortSignal.any([start.controller.signal,...(clientSignal?[clientSignal]:[]),AbortSignal.timeout(TIMEOUT)]));
     }catch{
       if(this.aborts.get(id0)===start.controller)this.aborts.delete(id0);
       if(start.controller.signal.aborted||clientSignal?.aborted)throw Object.assign(Error('AI-kaldet blev annulleret.'),{status:409});
@@ -160,7 +170,7 @@ export class Fp9Service {
       if(validUsage){x.view.aiUsage.inputTokens+=response.inputTokens;x.view.aiUsage.outputTokens+=response.outputTokens;}
       if(finite(response.elapsedMs)&&response.elapsedMs>=0)x.view.aiUsage.lastLatencyMs=response.elapsedMs;
       await this.store.save(x);
-      if(start.controller.signal.aborted||clientSignal?.aborted||x.view.revision!==start.revision||!x.view.profile.aiEnabled||x.view.status!=='active'||x.view.scenes[request.taskId]!.policyRevision!==start.scene.policyRevision)throw Object.assign(Error('AI-svaret er forældet og blev ikke anvendt.'),{status:409});
+      if(start.controller.signal.aborted||clientSignal?.aborted||x.view.revision!==start.revision||!x.view.profile.aiEnabled||x.view.status!=='active'||this.expired(x.view)||x.view.scenes[request.taskId]!.policyRevision!==start.scene.policyRevision)throw Object.assign(Error('AI-svaret er forældet og blev ikke anvendt.'),{status:409});
       if(!str(response.text,4000)||!response.text.trim()||!Array.isArray(response.operations)||response.operations.length>12)throw Error('AI-svaret kunne ikke valideres.');
       if(response.operations.length&&!['step','solution'].includes(request.level))throw Error('Vælg Vis ét trin for at tillade en figurændring.');
       const assistance:Assistance={id:`help-${crypto.randomUUID()}`,taskId:request.taskId,level:request.level,source:'ai',at:now(),...(validUsage?{tokens:{input:response.inputTokens,output:response.outputTokens},latencyMs:response.elapsedMs}:{})};
@@ -168,6 +178,7 @@ export class Fp9Service {
       if(response.operations.length){
         const applied=applyCommand(scene,{attemptId:id0,sceneId:request.taskId,expectedRevision:scene.revision,policyRevision:scene.policyRevision,actionId:`ai-${crypto.randomUUID()}`,operations:response.operations});
         if(applied.status!=='applied')throw Error('AI-handlingen blev afvist: '+applied.reason);
+        this.validateVisibleScene(x.tasks[request.taskId]!,applied.state);
         x.view.scenes[request.taskId]=applied.state;x.pendingText[request.taskId]={token:applied.pendingRender!.token,text:response.text,assistance};
       }
       if(!response.operations.length){x.assisted=true;x.view.assistance.push(assistance);}
@@ -197,10 +208,10 @@ export class Fp9Service {
     const x=await this.store.get(id0),snapshot=this.project(x);
     snapshot.clock.elapsedSeconds=this.elapsed(snapshot);snapshot.clock.lastResumedAt=null;
     for(const [key,scene] of Object.entries(snapshot.scenes)){if(scene.pendingRender){const failed=reportRenderFailure(scene,scene.pendingRender);const undone=undoAgentAction(failed.state,scene.pendingRender.actionId);snapshot.scenes[key]=undone.state;}}
-    return {version:'1',blueprintVersion:'fp9-blueprint-1',exportedAt:now(),attempt:snapshot,generation:x.generation};
+    return {version:'1',blueprintVersion:'fp9-blueprint-2',exportedAt:now(),attempt:snapshot,generation:x.generation};
   }
   async import(value:unknown){
-    if(!plain(value)||value.version!=='1'||value.blueprintVersion!=='fp9-blueprint-1'||!plain(value.attempt)||!plain(value.generation))throw Error('Ugyldig eller ikke-understøttet eksportversion.');
+    if(!plain(value)||value.version!=='1'||value.blueprintVersion!=='fp9-blueprint-2'||!plain(value.attempt)||!plain(value.generation))throw Error('Ugyldig eller ikke-understøttet eksportversion.');
     const incoming=value.attempt as unknown as AttemptView;
     if(incoming.schemaVersion!=='1'||!['active','submitted'].includes(incoming.status)||!Array.isArray(incoming.groups)||incoming.groups.length>20||!plain(incoming.profile))throw Error('Ugyldigt forsøg.');
     const fresh=await this.create({...value.generation,aiEnabled:false} as unknown as CreateAttempt);
@@ -233,6 +244,7 @@ export class Fp9Service {
           scene=setAiEnabled(command.state,false);
         }
         if(source.viewport!==null){if(x.tasks[taskId]!.scene.kind==='grid'&&Math.abs((source.viewport.xMax-source.viewport.xMin)-(source.viewport.yMax-source.viewport.yMin))>1e-9)throw Error('Koordinatgeometri kræver samme målestok på begge akser.');scene=setAiEnabled(scene,true);const v=applyCommand(scene,{attemptId:fresh.id,sceneId:taskId,actionId:'import-viewport',expectedRevision:scene.revision,policyRevision:scene.policyRevision,operations:[{type:'setViewport',viewport:source.viewport}]});if(v.status!=='applied')throw Error('Ugyldigt udsnit.');scene=setAiEnabled(v.state,false);}
+        this.validateVisibleScene(x.tasks[taskId]!,scene);
         scene=updateStudent(scene,{selection:source.selection});
         x.view.scenes[taskId]=scene;
         for(const q of x.tasks[taskId]!.questions)if(q.answerKind==='geometry'){

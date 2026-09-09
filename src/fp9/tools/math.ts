@@ -12,6 +12,7 @@ function multiply(a: Polynomial,b: Polynomial): Polynomial {
 }
 export function polynomial(raw: string, allowVariable = true): Polynomial {
   if (raw.length > 300) throw Error('Udtrykket er for langt.');
+  if(/[\d.]\s+[\d.]/.test(raw))throw Error('Skriv en regneoperation mellem tallene.');
   const text = raw.replaceAll('−','-').replaceAll('·','*').replaceAll(',','.').replaceAll('²','^2').replaceAll('³','^3').replace(/\s/g,'');
   const tokens = text.match(/sqrt|\d+(?:\.\d*)?|\.\d+|[x()+*/^\-]/g) ?? [];
   if (!text || tokens.join('') !== text) throw Error('Brug tal, x, parenteser, + − * / ^ og sqrt.');

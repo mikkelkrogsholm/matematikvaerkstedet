@@ -1,3 +1,5 @@
+import { parseNumberAnswer, exactFractionMatches } from './number-answer';
+import { generateAdditional } from './generators';
 import { equivalent } from '../tools/math';
 /**
  * Seedede FP9-opgaver. Modulet er lokalt og indeholder bevidst ingen LLM-kald.
@@ -62,7 +64,9 @@ export function validateProfile(profile: Profile): string[] {
 }
 
 export interface SourceNote {
-  kind: 'historical-observation' | 'product-design';
+  kind: 'official-information' | 'historical-observation' | 'product-design';
+  version?: string;
+  accessed?: string;
   reference: string;
   note: string;
 }
@@ -77,6 +81,8 @@ export interface Family {
   sources: SourceNote[];
   evidence: 'curriculum-informed-product-family';
   status: 'implemented' | 'pending';
+  assessmentTypes: ('numeric'|'expression'|'geometry'|'review')[];
+  variants: {variant:0|1|2;version:string;examTypes:ExamType[];estimatedMinutes:number}[];
 }
 
 const familyNames: Record<FamilyId, string> = {
@@ -106,7 +112,10 @@ export const families: readonly Family[] = (Object.keys(familyNames) as FamilyId
   skills: details[id].skills, prerequisites: details[id].prerequisites, action: details[id].action,
   examTypes: ['with-aids', 'without-aids'],
   answerForms: details[id].answerForms,
+  assessmentTypes: details[id].answerForms.map(form=>form==='reasoning'?'review':form==='number'?'numeric':form),
+  variants: ([0,1,2] as const).map(variant=>({variant,version:id==='F06'||id==='F13'?'1.0.0':id==='F14'?'1.1.0':'2.0.0',examTypes:['with-aids','without-aids'],estimatedMinutes:details[id].answerForms.includes('reasoning')?5:3})),
   sources: [
+    {kind:'official-information' as const,reference:'UVM-CURRICULUM; UVM-STATUS',version:'2024, med statusforbehold i sources.json',accessed:'2026-09-09',note:'Officielt fagligt baggrundsgrundlag. Familien og variantfordelingen er produktvalg, ikke en officiel opgaveplan.'},
     ...(observed[id] ? [{ kind: 'historical-observation' as const, reference: observed[id]!, note: 'Observeret i det valgte opgavekort; ikke en påstand om gældende prøveregler.' }] : []),
     { kind: 'product-design' as const, reference: 'research/fp9/coverage.csv', note: 'Læreplansinformeret produktfamilie og ikke dokumentation for fuld prøvedækning.' },
   ],
@@ -128,13 +137,15 @@ export interface GridScene {
 }
 export interface DataScene {
   kind: 'data';
+  categories?: string[];
   axes: { x: Axis; y: Axis };
   data: Array<{ label: string; values: number[] }>;
   givens: { unit: string; description: string };
 }
 export interface TextScene { kind: 'text'; axes: { x: Axis; y: Axis }; givens: { heading: string; lines: string[]; note?: string }; }
-export type Scene = PriceScene | GridScene | DataScene | TextScene;
-export interface Question { id: string; prompt: string; answerKind: AnswerKind; unit?: string; }
+export interface ShapeScene { kind:'shape'; axes:{x:Axis;y:Axis}; givens:{points:{id:string;x:number;y:number}[];edges:[string,string][];labels:{x:number;y:number;text:string}[];caption:string}; }
+export type Scene = PriceScene | GridScene | DataScene | TextScene | ShapeScene;
+export interface Question { id: string; prompt: string; answerKind: AnswerKind; unit?: string; format?: 'fraction'|'scientific'|'decimal'|'integer'; }
 export interface Marking {
   kind: 'numeric' | 'geometry' | 'review' | 'expression';
   criteria: string[];
@@ -145,8 +156,11 @@ export interface Marking {
   unit?: string;
   integer?: boolean;
   fraction?: boolean;
+  rational?: {numerator:number;denominator:number};
   scientific?: boolean;
   expression?: string;
+  expanded?: boolean;
+  format?: 'decimal';
   geometry?: { variant: 0 | 1 | 2; base?: [Point, Point]; area?: number; translation?: Point; source?: Point };
 }
 export interface Task {
@@ -157,10 +171,12 @@ export interface Task {
   variant: 0 | 1 | 2;
   title: string;
   story: string;
+  facts?: string[];
   questions: Question[];
   scene: Scene;
   marking: Record<string, Marking>;
   examType: ExamType;
+  allowedExamTypes?: ExamType[];
 }
 export type PublicTask = Omit<Task, 'marking'>;
 export interface Answer { text: string; explanation?: string; points?: [number, number][]; }
@@ -181,34 +197,12 @@ const taskId = (familyId: FamilyId, seed: number, variant: number, examType: Exa
 /** Genererer én selvstændigt besvarbar delopgave. Varianten ændrer ukendt eller repræsentation. */
 export function generateTask(familyId: FamilyId, seed: number, variant: number, examType: ExamType): Task {
   checkInputs(seed, variant);
+  if(!['with-aids','without-aids'].includes(examType))throw Error('Ukendt prøvetype.');
   if (familyId === 'F06') return generatePrice(seed, variant, examType);
   if (familyId === 'F13') return generateGrid(seed, variant, examType);
   if (familyId === 'F16') return generateData(seed, variant, examType);
   if (familyId === 'F14') return generateTransform(seed, variant, examType);
-  return generateTextFamily(familyId, seed, variant, examType);
-}
-
-const textScene=(heading:string,...lines:string[]):TextScene=>({kind:'text',axes:{x:axis('Oplysning',0,10,1),y:axis('Værdi',0,10,1)},givens:{heading,lines}});
-const simple=(familyId:FamilyId,seed:number,variant:0|1|2,examType:ExamType,title:string,story:string,prompt:string,expected:number,unit:string|undefined,extra:Partial<Marking>={}, scene:Scene=textScene(title,story)):Task=>({id:taskId(familyId,seed,variant,examType),familyId,version:'1.1.0',seed,variant,examType,title,story,questions:[{id:'q1',prompt,answerKind:extra.expression?'expression':extra.requiresExplanation?'reasoning':'number',...(unit?{unit}:{})}],scene,marking:{q1:{kind:extra.expression?'expression':extra.requiresExplanation?'review':'numeric',expected,unit,tolerance:extra.tolerance??0,integer:extra.integer, fraction:extra.fraction,scientific:extra.scientific,expression:extra.expression,criteria:extra.criteria??['Bruger de givne oplysninger og angiver korrekt resultat.'],examples:extra.examples??[`Det kontrollerbare resultat er ${expected}${unit?` ${unit}`:''}.`],...extra}}});
-function generateTextFamily(f:FamilyId,s:number,v:0|1|2,e:ExamType):Task {
- const a=integer(s,1,2,9),b=integer(s,2,2,8),c=integer(s,3,3,12), n=integer(s,4,3,8); const q=(p:string,x:number,u?:string,o:Partial<Marking>={})=>simple(f,s,v,e,families.find(x=>x.id===f)!.title,`Original øveopgave med seed ${s}.`,p,x,u,o);
- switch(f){
- case 'F01': {const den=a+b; return v===0?q(`Skriv ${a}/${den} som decimal.`,a/den,undefined,{tolerance:1e-9}):v===1?q(`Beregn ${a}/${den} + ${b}/${den}. Skriv som brøk.`,1,undefined,{fraction:true}):q(`Hvilken tæller skal stå i □/${den}, så brøken er lig ${a}/${den}?`,a,undefined,{integer:true});}
- case 'F02': {const price=20*c, pct=10*a; return v===0?q(`En vare koster ${price} kr. Hvad er ${pct} % af prisen?`,price*pct/100,'kr.'):v===1?q(`Efter ${pct} % rabat koster en vare ${price-price*pct/100} kr. Hvad kostede den før rabatten?`,price,'kr.'):q(`${a} kg koster ${c} kr. Hvad koster ${a*n} kg ved samme kilopris?`,c*n,'kr.');}
- case 'F03': return v===0?q(`Beregn ${a}^2.`,a*a):v===1?q(`Kvadratroden af ${a*a} ligger mellem hvilke to hele tal? Skriv det nederste tal.`,a,undefined,{integer:true}):q(`Skriv ${a}000000 på videnskabelig form: hvad er eksponenten i  ${a} · 10^□?`,6,undefined,{integer:true});
- case 'F04': return v===0?q(`Løs ${a}x + ${b} = ${a*n+b}.`,n):v===1?q(`Hvad er det mindste hele tal x, der opfylder ${a}x > ${a*n}?`,n+1,undefined,{integer:true}):q(`I systemet x+y=${a+b} og x-y=${a-b}: hvad er x?`,a);
- case 'F05': {const exp=`${a}*(x+${b})`; return v===0?q(`Udvid ${exp}.`,0,undefined,{expression:`${a}x+${a*b}`}):v===1?q(`Skriv et udtryk ækvivalent med ${a}x+${a*b}.`,0,undefined,{expression:exp}):q(`En elev siger ${a}(x+${b}) = ${a}x+${b}. Forklar kort fejlen.`,0,undefined,{requiresExplanation:true,criteria:['Forklarer at begge led i parentesen skal ganges med tallet udenfor.'],examples:[`${a}(x+${b})=${a}x+${a*b}.`]});}
- case 'F07': {const start=100*c,rate=10*a; return v===0?q(`${start} kr. vokser ${rate} % i ét år. Hvad er beløbet?`,start*(1+rate/100),'kr.',{tolerance:1e-9}):v===1?q(`Et beløb er vokset ${rate} % til ${start*(1+rate/100)} kr. Hvad var startbeløbet?`,start,'kr.',{tolerance:1e-9}):q(`En tabel har værdierne 1, 4, 9, 16. Hvad er næste værdi, hvis mønsteret er kvadrattal?`,25);}
- case 'F08': return v===0?q(`En cyklist kører ${a*c} km på ${a} timer. Hvad er farten?`,c,'km/t'):v===1?q(`En bil kører ${c} km/t. Hvor lang tid tager ${a*c} km?`,a,'timer'):q(`Hvor mange cm² er ${a} m²?`,a*10000,'cm²');
- case 'F09': return v===0?q(`To vinkler i en trekant er ${a*10}° og ${b*10}°. Bestem den tredje.`,180-a*10-b*10,'°'):v===1?q(`En ydre vinkel er ${a*10+b*10}°. Den ene modstående indre vinkel er ${a*10}°. Bestem den anden.`,b*10,'°'):q('Forklar kort, hvorfor vinkelsummen i en trekant er 180°. Skitsen er ikke målfast.',0,undefined,{requiresExplanation:true});
- case 'F10': return v===0?q(`På kortet er afstanden ${a} cm i målestok 1:${c}000. Hvad er den virkelige afstand i meter?`,a*c*10,'m'):v===1?q(`${a*c} m er ${a} cm på en tegning. Hvad er målestokkens nævner?`,c*100,undefined,{integer:true}):q(`En figur forstørres med faktor ${a}. Arealet var ${c} cm². Hvad bliver det?`,c*a*a,'cm²');
- case 'F11': return v===0?q(`Et rektangel er ${a} cm gange ${b} cm. Hvad er omkredsen?`,2*(a+b),'cm'):v===1?q(`Et rektangel har areal ${a*b} cm² og bredde ${b} cm. Hvad er længden?`,a,'cm'):q(`En kasse er ${a} cm × ${b} cm × ${c} cm. Hvad er rumfanget?`,a*b*c,'cm³');
- case 'F12': {const leg=3*a,other=4*a,hyp=5*a; return v===0?q(`En retvinklet trekant har kateter ${leg} cm og ${other} cm. Bestem hypotenusen.`,hyp,'cm'):v===1?q(`Hypotenusen er ${hyp} cm og én katete ${leg} cm. Bestem den anden.`,other,'cm'):q(`Kan sidelængderne ${leg}, ${other} og ${hyp} danne en retvinklet trekant? Skriv 1 for ja og forklar.`,1,undefined,{requiresExplanation:true});}
- case 'F15': return v===0?q(`Find medianen af tallene ${a}, ${b}, ${c}, ${a+b}, ${a+c}.`,[a,b,c,a+b,a+c].sort((x,y)=>x-y)[2]!):v===1?q(`Fire tal har gennemsnit ${c}. Tre er ${a}, ${b} og ${c}. Hvad er det fjerde?`,4*c-a-b-c):q(`${a} af ${a+b} elever valgte cykel. Hvor mange procent er det?`,a/(a+b)*100,undefined,{tolerance:1e-9});
- case 'F17': return v===0?q(`En pose har ${a} røde og ${b} blå kugler. Hvad er sandsynligheden for rød? Skriv som brøk.`,a/(a+b),undefined,{fraction:true}):v===1?q(`Sandsynligheden for regn er ${a}/10. Hvad er sandsynligheden for ikke regn? Skriv som brøk.`,(10-a)/10,undefined,{fraction:true}):q(`${a} ud af ${a+b} kort er grønne. Hvor mange grønne kort er der blandt ${n*(a+b)} kort med samme andel?`,a*n,undefined,{integer:true});
- case 'F18': return v===0?q(`En fair mønt kastes to gange med tilbagelægning. Sandsynligheden for to plat? Skriv som brøk.`,.25,undefined,{fraction:true}):v===1?q(`Der er ${a} røde og ${b} blå kugler. To trækkes uden tilbagelægning. Sandsynligheden for to røde? Skriv som brøk.`,a/(a+b)*(a-1)/(a+b-1),undefined,{fraction:true}):q('En simulation på 10 kast gav 8 plat. Kan det alene bevise sandsynligheden? Skriv 0 for nej og forklar.',0,undefined,{requiresExplanation:true});
- default: throw Error(`Ukendt generator ${f}`);
- }
+  return generateAdditional(familyId, seed, variant, examType);
 }
 
 function generatePrice(seed: number, variant: 0 | 1 | 2, examType: ExamType): Task {
@@ -217,7 +211,7 @@ function generatePrice(seed: number, variant: 0 | 1 | 2, examType: ExamType): Ta
   const qid = 'q1';
   const q = variant === 0 ? { id: qid, answerKind: 'number' as const, unit: 'kr.', prompt: `Hvad koster tilbud A ved ${count} besøg?` } : variant === 1 ? { id: qid, answerKind: 'number' as const, unit: 'besøg', prompt: `Du har højst ${fixedB + b * count} kr. Hvor mange hele besøg kan du højst købe med tilbud B?` } : { id: qid, answerKind: 'number' as const, unit: 'besøg', prompt: 'Ved hvor mange hele besøg er tilbuddene lige dyre? Skriv også kort, hvordan du finder det.' };
   const expected = variant === 0 ? a * count : variant === 1 ? count : crossing;
-  return { id: taskId('F06', seed, variant, examType), familyId: 'F06', version: '1.0.0', seed, variant, examType, title: 'Vælg et tilbud', story: `To steder tilbyder klippekort. A koster ${a} kr. pr. besøg. B koster ${fixedB} kr. i startbetaling og ${b} kr. pr. besøg. Antal besøg er hele tal.`, questions: [q], scene, marking: { [qid]: { kind: 'numeric', expected, requiresExplanation: variant === 2, criteria: variant === 2 ? ['Sætter priserne lige store eller forklarer samme idé.', 'Angiver et helt antal besøg.'] : ['Bruger den relevante prisfunktion.', 'Respekterer at antal besøg er helt.'], examples: variant === 2 ? [`${a}·n = ${fixedB} + ${b}·n, så n = ${crossing}.`, `Ved ${crossing} besøg er begge priser ${a * crossing} kr.`] : [`Det korrekte tal er ${expected}.`] } } };
+  return { id: taskId('F06', seed, variant, examType), familyId: 'F06', version: '1.0.0', seed, variant, examType, allowedExamTypes: ['with-aids','without-aids'], title: 'Vælg et tilbud', story: `To steder tilbyder klippekort. A koster ${a} kr. pr. besøg. B koster ${fixedB} kr. i startbetaling og ${b} kr. pr. besøg. Antal besøg er hele tal.`, questions: [q], scene, marking: { [qid]: { kind: 'numeric', expected, requiresExplanation: variant === 2, criteria: variant === 2 ? ['Sætter priserne lige store eller forklarer samme idé.', 'Angiver et helt antal besøg.'] : ['Bruger den relevante prisfunktion.', 'Respekterer at antal besøg er helt.'], examples: variant === 2 ? [`${a}·n = ${fixedB} + ${b}·n, så n = ${crossing}.`, `Ved ${crossing} besøg er begge priser ${a * crossing} kr.`] : [`Det korrekte tal er ${expected}.`] } } };
 }
 
 function generateGrid(seed: number, variant: 0 | 1 | 2, examType: ExamType): Task {
@@ -226,25 +220,37 @@ function generateGrid(seed: number, variant: 0 | 1 | 2, examType: ExamType): Tas
   const scene: GridScene = { kind: 'grid', axes: { x: axis('x', -10, 10, 1), y: axis('y', -10, 10, 1) }, givens: { points: variant === 2 ? [{ id: 'P', point: baseA }] : [{ id: 'A', point: baseA }, { id: 'B', point: baseB }], instruction: variant === 0 ? `Tegn et rektangel med AB som side og areal ${width * height}.` : variant === 1 ? `Tegn en trekant med grundlinjen AB og areal ${width * height / 2}.` : `Flyt P med vektoren (${width}, ${height}).` } };
   const prompt = variant === 0 ? 'Indtegn rektanglets fire hjørner. Rækkefølgen er ligegyldig.' : variant === 1 ? 'Indtegn A, B og et tredje hjørne til en trekant med det angivne areal.' : 'Indtegn det flyttede punkt P\'.';
   const geometry = variant === 0 ? { variant, base: [baseA, baseB] as [Point, Point], area: width * height } : variant === 1 ? { variant, base: [baseA, baseB] as [Point, Point], area: width * height / 2 } : { variant, source: baseA, translation: { x: width, y: height } };
-  return { id: taskId('F13', seed, variant, examType), familyId: 'F13', version: '1.0.0', seed, variant, examType, title: 'Konstruktion på koordinatplan', story: 'Brug koordinatgitteret. Der findes flere gyldige konstruktioner i de to første opgaver.', questions: [{ id: qid, prompt, answerKind: 'geometry' }], scene, marking: { [qid]: { kind: 'geometry', geometry, criteria: variant === 0 ? ['Har A og B som hjørner.', 'Danner et rektangel med areal som angivet.'] : variant === 1 ? ['Har A og B som grundlinje.', 'Det tredje hjørne giver det angivne areal.'] : ['Flytter både x- og y-koordinat med den givne vektor.'], examples: variant === 0 ? ['Rektanglet kan ligge over eller under AB.', 'Hjørnerne kan angives i vilkårlig rækkefølge.'] : variant === 1 ? ['Det tredje hjørne kan ligge på flere lodrette linjer.', 'Trekanten kan ligge på begge sider af AB.'] : [`P' = (${baseA.x + width}, ${baseA.y + height}).`, 'Læg vektorens x-led til x og y-led til y.'] } } };
+  return { id: taskId('F13', seed, variant, examType), familyId: 'F13', version: '1.0.0', seed, variant, examType, allowedExamTypes: ['with-aids','without-aids'], title: 'Konstruktion på koordinatplan', story: 'Brug koordinatgitteret. Der findes flere gyldige konstruktioner i de to første opgaver.', questions: [{ id: qid, prompt, answerKind: 'geometry' }], scene, marking: { [qid]: { kind: 'geometry', geometry, criteria: variant === 0 ? ['Har A og B som hjørner.', 'Danner et rektangel med areal som angivet.'] : variant === 1 ? ['Har A og B som grundlinje.', 'Det tredje hjørne giver det angivne areal.'] : ['Flytter både x- og y-koordinat med den givne vektor.'], examples: variant === 0 ? ['Rektanglet kan ligge over eller under AB.', 'Hjørnerne kan angives i vilkårlig rækkefølge.'] : variant === 1 ? ['Det tredje hjørne kan ligge på flere lodrette linjer.', 'Trekanten kan ligge på begge sider af AB.'] : [`P' = (${baseA.x + width}, ${baseA.y + height}).`, 'Læg vektorens x-led til x og y-led til y.'] } } };
 }
 
 function generateTransform(seed:number,variant:0|1|2,examType:ExamType):Task {
  const p={x:integer(seed,1,-5,4),y:integer(seed,2,-4,5)}, dx=integer(seed,3,1,4),dy=integer(seed,4,-3,3); const qid='q1';
  const target=variant===0?{x:-p.x,y:p.y}:variant===1?{x:-p.y,y:p.x}:{x:p.x+dx,y:p.y+dy};
  const instruction=variant===0?'Spejl punktet P i y-aksen.':variant===1?'Drej punktet P 90° mod uret om (0,0).':`Flyt punktet P med vektoren (${dx}, ${dy}).`;
- return {id:taskId('F14',seed,variant,examType),familyId:'F14',version:'1.1.0',seed,variant,examType,title:'Flytning i koordinatplan',story:'Brug koordinaterne; punktsættet vurderes efter den geometriske regel, ikke efter et billede.',questions:[{id:qid,prompt:'Indtegn billedpunktet P\'.',answerKind:'geometry'}],scene:{kind:'grid',axes:{x:axis('x',-10,10,1),y:axis('y',-10,10,1)},givens:{points:[{id:'P',point:p}],instruction}},marking:{[qid]:{kind:'geometry',geometry:{variant:2,source:p,translation:{x:target.x-p.x,y:target.y-p.y}},criteria:[instruction,'Angiver præcis ét billedpunkt.'],examples:[`P' = (${target.x}, ${target.y}).`]}}};
+ return {id:taskId('F14',seed,variant,examType),familyId:'F14',version:'1.1.0',seed,variant,examType,allowedExamTypes:['with-aids','without-aids'],title:'Flytning i koordinatplan',story:'Brug koordinaterne; punktsættet vurderes efter den geometriske regel, ikke efter et billede.',questions:[{id:qid,prompt:'Indtegn billedpunktet P\'.',answerKind:'geometry'}],scene:{kind:'grid',axes:{x:axis('x',-10,10,1),y:axis('y',-10,10,1)},givens:{points:[{id:'P',point:p}],instruction}},marking:{[qid]:{kind:'geometry',geometry:{variant:2,source:p,translation:{x:target.x-p.x,y:target.y-p.y}},criteria:[instruction,'Angiver præcis ét billedpunkt.'],examples:[`P' = (${target.x}, ${target.y}).`]}}};
 }
 
-function generateData(seed: number, variant: 0 | 1 | 2, examType: ExamType): Task {
-  const core = integer(seed, 1, 8, 14); const spread = integer(seed, 2, 2, 4); const a = [core - spread, core, core, core + spread, core]; const b = [core - 1, core - 1, core, core + 1, core + 1]; const outlier = core + integer(seed, 3, 12, 20); const data = variant === 2 ? [{ label: 'Fem normale målinger', values: b }, { label: 'Med én usædvanlig måling', values: [...b.slice(0, 4), outlier] }] : [{ label: 'Hold A', values: a }, { label: 'Hold B', values: b }];
-  const prompts: [string, string, string] = [
-    'Sammenlign holdenes resultater. Hvilket hold vil du beskrive som mest stabilt? Begrund med data.',
-    'Vil gennemsnit eller median være mest retvisende til at sammenligne holdene? Begrund dit valg.',
-    'Vurder, om den usædvanlige måling bør undersøges nærmere før man konkluderer. Begrund med data.',
+function generateData(seed:number,variant:0|1|2,examType:ExamType):Task {
+  const core=integer(seed,1,8,14),spread=integer(seed,2,2,4),outlier=core+integer(seed,3,12,20);
+  const a=[core-spread,core,core,core+spread,core],b=[core-1,core-1,core,core+1,core+1],withOutlier=[...b.slice(0,4),outlier];
+  const data=variant===0?[{label:'Hold A',values:a},{label:'Hold B',values:b}]:variant===1?[{label:'Hold A',values:a},{label:'Hold B',values:withOutlier}]:[{label:'Oprindelige målinger',values:b},{label:'Med ændret sidste måling',values:withOutlier}];
+  const average=(values:number[])=>values.reduce((sum,n)=>sum+n,0)/values.length;
+  const questions=[
+    'Hvilket hold har de mest stabile tider? Begrund med konkrete værdier eller et relevant mål for spredningen.',
+    'Klubben vil beskrive en typisk tid på hvert hold. Vil du bruge gennemsnit eller median her? Begrund dit valg og forklar, hvad den usædvanligt lange tid betyder.',
+    'Den sidste måling er ændret til en usædvanligt høj værdi. Bør den undersøges, før klubben konkluderer? Forklar med data og mindst én mulig årsag.',
   ];
-  const examples = variant === 0 ? ['Hold B er mest stabilt, fordi tallene ligger tættere omkring midten.', 'Man kan sammenligne spændvidderne og forklare, hvad den mindre spredning betyder.'] : variant === 1 ? ['Median kan være et godt valg, når man vil være mindre følsom over for enkelte ekstreme værdier.', 'Gennemsnittet bruger alle værdier; derfor skal valget begrundes ud fra formålet.'] : ['Den usædvanlige måling kan påvirke gennemsnittet meget og bør kontrolleres.', 'Man kan både nævne en mulig fejl og en mulig reel forklaring, før man vælger at fjerne en værdi.'];
-  return { id: taskId('F16', seed, variant, examType), familyId: 'F16', version: '1.0.0', seed, variant, examType, title: 'Undersøg målinger', story: 'To grupper har registreret antal minutter på en træningsøvelse. Dataene er opdigtede øvedata.', questions: [{ id: 'q1', prompt: prompts[variant], answerKind: 'reasoning' }], scene: { kind: 'data', axes: { x: axis('Måling', 1, 5, 1), y: axis('Minutter', 0, Math.max(outlier, core + 4) + 2, 1, 'min.') }, data, givens: { unit: 'minutter', description: 'Hver liste indeholder fem målinger.' } }, marking: { q1: { kind: 'review', criteria: ['Henviser til konkrete værdier eller et relevant mål i dataene.', 'Forklarer hvordan spredning, gennemsnit, median eller outlier understøtter konklusionen.', 'Skelner mellem en observation og en sikker forklaring.'], examples } } };
+  const examples=variant===0?[
+    `Hold B har variationsbredde 2 minutter, mens hold A har ${spread*2}. B varierer derfor mindst.`,
+    `Begge hold har midte ${core} minutter. B ligger højst 1 minut fra midten, mens A når ${spread} minutter væk. Det understøtter, at B er mest stabilt.`,
+  ]:variant===1?[
+    `Medianen er ${core} minutter for begge hold. Den er et muligt mål for den typiske tid, fordi den ikke trækkes op af værdien ${outlier}.`,
+    `Hold B har gennemsnit ${average(withOutlier).toLocaleString('da-DK')} minutter mod ${core} på A. Gennemsnittet er relevant, hvis alle tidsforbrug skal tælle med, men den lange tid skal omtales; det er ikke samme spørgsmål som den typiske deltagers tid.`,
+  ]:[
+    `Den sidste tid ændres fra ${core+1} til ${outlier}. Gennemsnittet stiger fra ${core} til ${average(withOutlier).toLocaleString('da-DK')} minutter. En indtastningsfejl bør undersøges.`,
+    `Tiden ${outlier} kan også være reel, fx hvis nogen blev afbrudt. Man bør kontrollere årsagen frem for automatisk at slette målingen.`,
+  ];
+  return {id:`fp9-f16-v2-${examType}-${seed}-${variant}`,familyId:'F16',version:'2.0.0',seed,variant,examType,allowedExamTypes:['with-aids','without-aids'],title:'Undersøg målinger',story:'En klub har registreret tider på en træningsøvelse. Alle data er opdigtede øvedata.',questions:[{id:'q1',prompt:questions[variant]!,answerKind:'reasoning'}],scene:{kind:'data',axes:{x:axis('Måling',1,5,1),y:axis('Minutter',0,Math.max(...data.flatMap(d=>d.values))+2,1,'min.')},data,givens:{unit:'minutter',description:'Hver række indeholder fem målinger.'}},marking:{q1:{kind:'review',criteria:['Henviser til konkrete værdier eller et relevant mål i dataene.','Forklarer, hvordan beregningen eller observationen understøtter konklusionen.','Skelner mellem en observation og en sikker forklaring.'],examples}}};
 }
 
 /** Fjerner bedømmelsesgrundlaget før opgaven gives til elevens almindelige scene. */
@@ -253,16 +259,6 @@ export function publicTask(task: Task): PublicTask {
   return visible;
 }
 
-const parseNumber = (text: string, marking?: Marking): number | null => {
-  const raw=text.trim(); const unit=marking?.unit;
-  if(unit){const suffix=new RegExp(`\\s*${unit.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}\\s*$`,'i');if(!suffix.test(raw))return null;}
-  else if(/[a-zæøå²³]/i.test(raw)) return null;
-  if(marking?.fraction){if(!/^[-+]?\d+\s*\/\s*\d+$/.test(raw))return null;const [p,q]=raw.split('/').map(Number);return q===undefined||p===undefined||q===0?null:p/q;}
-  if(marking?.scientific&&!/^[-+]?\d+(?:[,.]\d+)?\s*[·*]\s*10\s*\^\s*[-+]?\d+$/.test(raw))return null;
-  const normalized = unit?raw.replace(new RegExp(`\\s*${unit.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}\\s*$`,'i'),'').trim().replace(',','.') : raw.replace(',', '.');
-  if (!/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/.test(normalized)) return null;
-  const value = Number(normalized); return Number.isFinite(value) ? value : null;
-};
 const samePoint = (a: Point, b: Point) => a.x === b.x && a.y === b.y;
 const unique = (points: Point[]) => points.filter((p, i) => points.findIndex((other) => samePoint(p, other)) === i);
 const contains = (points: Point[], point: Point) => points.some((p) => samePoint(p, point));
@@ -285,17 +281,17 @@ export function assess(task: Task, questionId: string, answer: Answer): Assessme
   if (marking.kind === 'review') return { status: 'needs-review', feedback: answer.text.trim() || answer.explanation?.trim() ? 'Din begrundelse gemmes til gennemgang ud fra kriterierne. Der gives ingen automatisk pointscore.' : 'Skriv en begrundelse, som kan gennemgås ud fra kriterierne.', criteria: marking.criteria, examples: marking.examples };
   if (marking.kind === 'expression') {
     // Parseren er begrænset og ren; ingen eval eller punktprøver bruges.
-    const correct=!!marking.expression&&equivalent(answer.text,marking.expression);
+    const correct=!!marking.expression&&(!marking.expanded||!/[()]/.test(answer.text))&&equivalent(answer.text,marking.expression);
     return {status:correct?'correct':'incorrect',feedback:correct?'Udtrykket er algebraisk ækvivalent.':'Udtrykket kunne ikke bekræftes. Brug tal, x, parenteser og + − * / ^ inden for værktøjets grænser.',criteria:marking.criteria,examples:marking.examples};
   }
   if (marking.kind === 'numeric') {
-    const value = parseNumber(answer.text, marking);
-    if (value !== null && Math.abs(value - marking.expected!) <= (marking.tolerance ?? 0) && (!marking.integer || Number.isInteger(value))) {
+    const value = parseNumberAnswer(answer.text, {...marking,unit:marking.unit??task.questions.find(q=>q.id===questionId)?.unit});
+    if (value !== null && (marking.rational?exactFractionMatches(answer.text,marking.rational):Math.abs(value - marking.expected!) <= (marking.tolerance ?? 1e-10)) && (!marking.integer || Number.isInteger(value))) {
       if (marking.requiresExplanation && !answer.explanation?.trim()) return { status: 'partial', feedback: 'Tallet er korrekt, men opgaven beder også om en kort forklaring.', criteria: marking.criteria, examples: marking.examples };
       if (marking.requiresExplanation) return { status: 'needs-review', feedback: 'Tallet er korrekt. Din begrundelse skal gennemgås ud fra kriterierne.', criteria: marking.criteria, examples: marking.examples };
       return { status: 'correct', feedback: 'Dit svar opfylder den kontrollerbare del af opgaven.', criteria: marking.criteria, examples: marking.examples };
     }
-    return { status: 'incorrect', feedback: 'Tjek prisopstillingen og at antal besøg er hele tal.', criteria: marking.criteria, examples: marking.examples };
+    return { status: 'incorrect', feedback: 'Kontrollér beregningen, enheden og det svarformat, opgaven beder om.', criteria: marking.criteria, examples: marking.examples };
   }
   if (!(answer.points ?? []).every(p => p.length === 2 && p.every(v => Number.isFinite(v) && v >= -10 && v <= 10))) return { status: 'incorrect', feedback: 'Punkterne skal ligge i det viste koordinatgitter.', criteria: marking.criteria, examples: marking.examples };
   const points = unique((answer.points ?? []).map(([x, y]) => ({ x, y })));

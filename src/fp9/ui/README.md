@@ -10,8 +10,8 @@ generator eller bedømmelseslogik i browseren.
 ## Integrationpunkter
 
 - Forsøgsændringer er serialiserede `action`-kald med den viste revision.
-  En konflikt giver fejlstatus og genindlæsning i stedet for at overskrive nyere
-  serverdata.
+  En konflikt giver fejlstatus og opdaterer revisionsgrundlaget til et eksplicit
+  genforsøg. Ugemte felter bevares, og navigation blokeres ved gemmefejl.
 - Sceneobjekter fra eleven gemmes separat med `student`-aktionen. AI-objekter
   får stabile `data-ai-object-id`-attributter og bekræftes først efter en
   browser-frame; en manglende DOM-rendering rapporteres som `success: false`.
@@ -21,6 +21,6 @@ generator eller bedømmelseslogik i browseren.
 
 ## Kontrol
 
-`bun run check` er kørt efter ændringen. Backendens FP9-endpoints var ikke
-tilgængelige i dette worktree, så browserforløb mod et rigtigt forsøg, AI-render
-acknowledgement og import/eksport skal afprøves efter backendintegration.
+`bun run check` består. Endpoints er afprøvet gennem den rigtige lokale server.
+Browserforløb, faktisk render-kvittering, tastatur, touch og mobilvisning afventer
+adgang til den låste Mac. Se docs/FP9-IMPLEMENTATION.md for den samlede evidens.

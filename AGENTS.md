@@ -4,10 +4,10 @@
 
 Matematikværkstedet (`matematikvaerkstedet`) er en lokal prototype med React,
 TypeScript, Bun, Cordis og Mafs. Brugerflade og undervisningstekst er på dansk.
-Der er to demonstrationsforløb: brøker/procent til 6. klasse og parabler/tangenter
+Der er et FP9-forløb på `/fp9` med 18 generatorfamilier og to oprindelige demonstrationsforløb: brøker/procent til 6. klasse og parabler/tangenter
 til 2.g. Guiden kan bruge lokalt Codex/ChatGPT-login via en udskiftelig provider.
 AI fra bruger faste forklaringer. Præsenter aldrig lokale svar som modelsvar.
-Læs docs/AI-PROTOTYPE.md ved ændringer i AI-forbindelsen.
+Læs docs/AI-PROTOTYPE.md og docs/FP9-IMPLEMENTATION.md ved ændringer i AI-forbindelsen. FP9-browserkontrol og elevpilot er endnu ikke afsluttet; fremstil dem aldrig som udført.
 
 Læs README.md og research/PRODUCT-REQUIREMENTS.md før produktændringer.
 research/PROTOTYPE-RESULTS.md beskriver det afprøvede; SCRATCHPAD.md indeholder
@@ -18,6 +18,7 @@ funktioner eller automatisk en bestilling på at bygge dem.
 
 - `src/main.tsx`: brugerflade og guidede forløb.
 - `src/lessons.ts`: Cordis-registry og lektionsplugins.
+- `src/fp9/`: Domæne/generatorer, sceneejerskab, lokal forsøgsserver, værktøjer og FP9-brugerflade.
 - `src/ai/`: Provider-interface, Codex-adapter, HTTP-endpoints og scenevalidering.
 - `src/math.ts`: fælles matematiske beregninger og svarinput.
 - `src/math.test.ts`: tests for matematik og registry.
@@ -45,6 +46,9 @@ Ved kodeændringer skal typecheck, relevante tests og build bestå. Kontrollér
 ændret interaktion og layout i browseren, når det er relevant. Rene
 dokumentationsændringer kræver link- og indholdskontrol, ikke nye kodetests.
 Rapportér præcist, hvad der er afprøvet, og hvad der stadig er usikkert.
+Regenerér `research/fp9/generated/` med `bun research/fp9/generated/export-samples.ts`
+ved ændringer i generatorer eller scenegengivelse. QA-korpus indeholder bevidst
+referencefacit og må aldrig importeres i browserens produktkode.
 
 ## Matematik og visualisering
 

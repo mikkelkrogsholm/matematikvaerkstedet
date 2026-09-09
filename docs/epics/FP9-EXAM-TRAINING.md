@@ -3,8 +3,10 @@
 Registreret som [GitHub-epic #1](https://github.com/mikkelkrogsholm/matematikvaerkstedet/issues/1).
 GitHub-issue bruges til fremdrift; dette dokument bevarer det oprindelige planlægningsgrundlag.
 
-Status: Planlagt. Research og designgrundlag udarbejdet 9. september 2026.
-Implementeringen er ikke igangsat af denne epic.
+Status: Aktiv implementering, 9. september 2026. De 18 familier og den lokale
+arbejdsflade er implementeret; afsluttende browserkontrol, visuel gennemgang og
+reel elevpilot er åbne. [Verificeret status](../FP9-IMPLEMENTATION.md).
+Epic'en er ikke færdig, før de åbne acceptpunkter er opfyldt.
 
 ## Problem og ønsket resultat
 
@@ -80,12 +82,12 @@ alle tænkelige FP9-opgaver. Et publiceret dækningskort skal vise begrænsninge
 **Resultat:** Generator og brugerflade arbejder ud fra eksplicitte faglige mål
 og tilladelser frem for tilfældige emneord.
 
-- [ ] Registrér F01–F18 med underfærdigheder, forudsætninger, faglig handling,
+- [x] Registrér F01–F18 med underfærdigheder, forudsætninger, faglig handling,
   egnet prøvetype, svarform, kilde og bedømmelsestype.
-- [ ] Skeln officielle oplysninger, historiske observationer og produktvalg.
-- [ ] Implementér separate felter for prøvetype, hjælpemiddelprofil, AI-status,
+- [x] Skeln officielle oplysninger, historiske observationer og produktvalg.
+- [x] Implementér separate felter for prøvetype, hjælpemiddelprofil, AI-status,
   tidsprofil og feedbacktid; validér alle fire kombinationer.
-- [ ] Prøveprofilen har kildeversion og dato. Ingen hårdkodet påstand om
+- [x] Prøveprofilen har kildeversion og dato. Ingen hårdkodet påstand om
   gældende regler for alle fremtidige terminer.
 
 Afhænger af: det færdige researchgrundlag.
@@ -95,17 +97,17 @@ Afhænger af: det færdige researchgrundlag.
 **Resultat:** En opgave kan genereres igen med samme indhold, og variation
 træner mere end udskiftede tal.
 
-- [ ] Først F06/F13/F16, derefter resten af F01–F18. Hver familie får mindst
+- [x] Først F06/F13/F16, derefter resten af F01–F18. Hver familie får mindst
   to faglige varianter ud over nye tal, fx ændret ukendt, repræsentation eller
   ræsonnementsopgave. Tilladte prøvetyper mærkes pr. variant.
-- [ ] Gem seed, familieversion, opgaveinstans og bedømmelsesgrundlag.
-- [ ] Generatorer virker uden LLM og har begrænsninger for gyldige tal, figurer,
+- [x] Gem seed, familieversion, opgaveinstans og bedømmelsesgrundlag.
+- [x] Generatorer virker uden LLM og har begrænsninger for gyldige tal, figurer,
   enheder, løsninger og eventuelle flere gyldige svar.
-- [ ] Kør mindst 100 seeds pr. familie samt eksplicitte randtilfælde. Brug
+- [x] Kør mindst 100 seeds pr. familie samt eksplicitte randtilfælde. Brug
   uafhængige kendte resultater/invarianter, ikke kun generatorens egen løser.
 - [ ] Faglig og visuel gennemgang af mindst seks varianter pr. familie dækker
   variation, kompleksitet og begge tilladte prøvetyper, hvor relevant.
-- [ ] Delopgaver kan dele fortælling, men kræver ikke elevens tidligere svar.
+- [x] Delopgaver kan dele fortælling, men kræver ikke elevens tidligere svar.
   Tekst, figur og data er konsistente; originale prøvebilleder genudgives ikke.
 
 Afhænger af: E01. Vertikal del afprøves sammen med E03–E06 før resten af familierne.
@@ -115,15 +117,15 @@ Afhænger af: E01. Vertikal del afprøves sammen med E03–E06 før resten af fa
 **Resultat:** Eleven kan arbejde med tekst, tal, figurer, data og begrundelser
 på samme side, med et læseligt layout.
 
-- [ ] Opgavegrundlag, elevlag, forklaringslag og visning har særskilt ejerskab.
-- [ ] Understøt matematikinput, tabel/graf, gittergeometri og forklaring med
+- [x] Opgavegrundlag, elevlag, forklaringslag og visning har særskilt ejerskab.
+- [x] Understøt matematikinput, tabel/graf, gittergeometri og forklaring med
   tekst og relevante figurer. Flere gyldige konstruktioner accepteres.
-- [ ] Uden hjælpemidler tilbyder ikke en skjult automatisk løser. AI kan stadig
+- [x] Uden hjælpemidler tilbyder ikke en skjult automatisk løser. AI kan stadig
   vise et mærket forklaringstrin, når den er aktiveret.
-- [ ] Med hjælpemidler tilbyder de værktøjer, de valgte opgaver behøver:
+- [x] Med hjælpemidler tilbyder de værktøjer, de valgte opgaver behøver:
   beregning, tabel/regneark, geometri og afgrænset CAS ved relevante opgaver.
   Manglende værktøjsdækning vises; værktøjer må ikke blot være knapper uden funktion.
-- [ ] Valg af nye biblioteker dokumenteres med versionslicens og afprøvning.
+- [x] Valg af nye biblioteker dokumenteres med versionslicens og afprøvning.
   Bevar Cordis/Mafs hvor de passer; ingen generel omskrivning forudsættes.
 - [ ] Enheder, akser, målestok, labels og figurers begrænsninger kontrolleres.
   Mobil, tastatur, touch og reduceret bevægelse afprøves.
@@ -134,17 +136,17 @@ Afhænger af: E01 og E02's første familier.
 
 **Resultat:** Agentens forklaring henviser til det, der faktisk vises og sker.
 
-- [ ] Agenten kan læse den aktive opgave, scene, markering og relevante
+- [x] Agenten kan læse den aktive opgave, scene, markering og relevante
   elevhandlinger og udføre de beskrevne, typede sceneoperationer.
-- [ ] Agenten kan mindst tilføje, flytte, fremhæve og fjerne egne
+- [x] Agenten kan mindst tilføje, flytte, fremhæve og fjerne egne
   forklaringsobjekter samt vise et kort forløb trinvis.
-- [ ] Afvis ugyldige objekter, ukendte capabilities, gamle revisioner,
+- [x] Afvis ugyldige objekter, ukendte capabilities, gamle revisioner,
   uautoriserede ændringer og operationer mod et andet forsøg.
-- [ ] Retry af samme handling er idempotent; en mislykket batch efterlader
+- [x] Retry af samme handling er idempotent; en mislykket batch efterlader
   ikke en delvist ændret scene. Agentændringer kan fortrydes.
 - [ ] En agent må først hævde en udført handling efter bekræftet anvendelse og
   rendering. Test serveraccept efterfulgt af renderfejl og forsinket bekræftelse.
-- [ ] Ingen vilkårlig kodeafvikling fra modellen. Givne data og elevsvar kan
+- [x] Ingen vilkårlig kodeafvikling fra modellen. Givne data og elevsvar kan
   ikke overskrives skjult; demonstrationer har tydelig afsender.
 
 Afhænger af: E03.
@@ -154,19 +156,19 @@ Afhænger af: E03.
 **Resultat:** AI er valgfri og kan støtte begge prøvetyper uden at forfalske
 elevens selvstændige præstation.
 
-- [ ] Tilslut én faktisk modeludbyder gennem en adapter. API-nøgler er serverdata
+- [x] Tilslut én faktisk modeludbyder gennem en adapter. API-nøgler er serverdata
   og kommer ikke i browserkode, eksport eller repository.
-- [ ] Implementér spørgsmål → hint → vis et trin → løsning, med mulighed for
+- [x] Implementér spørgsmål → hint → vis et trin → løsning, med mulighed for
   at eleven selv vælger mere støtte. Ingen automatisk facitvisning ved første fejl.
-- [ ] AI fra betyder nul modelkald, ingen køede agentmutationer og fortsat
+- [x] AI fra betyder nul modelkald, ingen køede agentmutationer og fortsat
   fungerende opgaver, generatorer, relevante værktøjer og sikker svarfeedback.
-- [ ] Ved deaktivering af AI afvises forsinkede svar og ændringer gennem en
+- [x] Ved deaktivering af AI afvises forsinkede svar og ændringer gennem en
   opdateret politikrevision. Elevens arbejde og tidligere hjælprehistorik bevares.
-- [ ] Registrér faglig støtte uanset kilde. Et assisteret forsøg bliver ikke
+- [x] Registrér faglig støtte uanset kilde. Et assisteret forsøg bliver ikke
   selvstændigt ved blot at slukke AI; næste kontrol bruger en ny variant.
-- [ ] Udbyderfejl eller manglende nøgle giver mulighed for at fortsætte uden AI.
+- [x] Udbyderfejl eller manglende nøgle giver mulighed for at fortsætte uden AI.
   Systemet opfinder ikke en påstand om, at en modelhandling blev udført.
-- [ ] Beskriv dataflow, udbydervilkår og omkostningsgrænse for integrationen.
+- [x] Beskriv dataflow, udbydervilkår og omkostningsgrænse for integrationen.
   Ingen elevidentitet er nødvendig for den lokale pilot.
 
 Afhænger af: E04. AI-fri sti i E03 kan afprøves tidligere.
@@ -175,16 +177,16 @@ Afhænger af: E04. AI-fri sti i E03 kan afprøves tidligere.
 
 **Resultat:** Feedback skelner mellem korrekthed, begrundelse og brugt støtte.
 
-- [ ] Numeriske og symbolske svar håndteres med relevante domæner, enheder,
+- [x] Numeriske og symbolske svar håndteres med relevante domæner, enheder,
   tolerancer og ækvivalente former. Et påkrævet svarformat håndhæves særskilt.
-- [ ] Geometrisvar vurderes ud fra egenskaber, ikke lighed med et skærmbillede.
-- [ ] Frie begrundelser har kriterier, flere referenceeksempler og en tilstand
+- [x] Geometrisvar vurderes ud fra egenskaber, ikke lighed med et skærmbillede.
+- [x] Frie begrundelser har kriterier, flere referenceeksempler og en tilstand
   for uafklaret/menneskelig vurdering. LLM-feedback er ikke en officiel censor.
-- [ ] Uden AI kan eleven få kontrollerbare resultater og efter aflevering se
+- [x] Uden AI kan eleven få kontrollerbare resultater og efter aflevering se
   kriterier og eksempler; usikre dele får ikke en opdigtet præcis score.
-- [ ] Resultater viser selvstændigt/assisteret, relevante faglige observationer
+- [x] Resultater viser selvstændigt/assisteret, relevante faglige observationer
   og næste øvelse. Ingen automatisk officiel 7-trins-karakter.
-- [ ] Regressionseksempler inkluderer korrekt tal uden begrundelse, forskellige
+- [x] Regressionseksempler inkluderer korrekt tal uden begrundelse, forskellige
   gyldige argumenter, delvist korrekt arbejde og en ukorrekt standardmetode.
 
 Afhænger af: E02 og E03; AI-vurdering, hvis anvendt, afhænger af E05.
@@ -193,18 +195,18 @@ Afhænger af: E02 og E03; AI-vurdering, hvis anvendt, afhænger af E05.
 
 **Resultat:** Eleven kan gennemføre et sammenhængende forløb uden at miste sit arbejde.
 
-- [ ] Generér korte runder og hele sæt efter en versionsstyret fordeling af
+- [x] Generér korte runder og hele sæt efter en versionsstyret fordeling af
   områder, faglige handlinger, svarformer og anslået belastning.
-- [ ] En profil uden hjælpemidler kan danne 20 opgaver/50 delopgaver; profilen
+- [x] En profil uden hjælpemidler kan danne 20 opgaver/50 delopgaver; profilen
   med hjælpemidler har flere varierede historier og åbne delopgaver. Fordelingen
   er et dokumenteret produktvalg, ikke en påstået officiel emnevægtning.
-- [ ] Alle fire kombinationer kan gennemføres som træning. Ved timed forløb er
+- [x] Alle fire kombinationer kan gennemføres som træning. Ved timed forløb er
   afleverings- og hjælpestatus tydelig. Pause/ekstra tid logges, ikke skjules.
-- [ ] Skeln besøgt, besvaret, til senere og afleveret. Vis samlet kontrol før
+- [x] Skeln besøgt, besvaret, til senere og afleveret. Vis samlet kontrol før
   aflevering og lås afleveret forsøg; review ændrer ikke den afleverede besvarelse.
 - [ ] Gem lokalt, genoptag efter reload, og eksportér/importér et versionsmærket
   forsøg. Sletning virker. Giv printvenlig HTML med egne svar og figurer.
-- [ ] Prøveprofil og assistance logges. Funktionaliteten påstår ikke at kunne
+- [x] Prøveprofil og assistance logges. Funktionaliteten påstår ikke at kunne
   forhindre hjælp fra andre apps eller garantere eksamensintegritet.
 
 Afhænger af: E01, E02, E03 og E06; fuldt assisteret flow kræver E05.
@@ -225,7 +227,7 @@ Afhænger af: E01, E02, E03 og E06; fuldt assisteret flow kræver E05.
   at generalisere læringseffekt ud fra få børn.
 - [ ] Faglig gennemgang, generatorchecks, tilgængelighed, licenser, datadeling
   og testresultater er registreret; uafklarede dele er synlige i dækningskortet.
-- [ ] Genkontrollér ministeriets kildegrundlag for den valgte termin før release.
+- [x] Genkontrollér ministeriets kildegrundlag for den valgte termin før release.
 
 Afhænger af: E01–E07. Tidlige test af vertikal afprøvning sker før fuld indholdsudvidelse.
 

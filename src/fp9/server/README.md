@@ -1,16 +1,13 @@
 # FP9 lokal server
 
-`createFp9Api()` håndterer kontraktens lokale `/api/fp9/*`-endpoints og gemmer atomisk
-under `.local/fp9` (eller `FP9_STORE_PATH`). `Fp9Service` tager både en temp-sti og en
-`Fp9Provider`, så tests kan bruge en falsk provider uden modelkald.
+`createFp9Api()` betjener `/api/fp9/*`. `Fp9Service` modtager en injicerbar
+`LocalAttemptStore` og `Fp9Provider`; tests bruger midlertidige filer og falsk
+provider, mens den lokale app bruger Codex-abonnementet.
 
-De tre implementerede familier er F06, F13 og F16. Korte runder bruger én variant fra
-hver; emnetræning har de tre varianter. Domæne-blueprintet registrerer full/aids-former,
-men serveren begrænser denne vertikale leverance til de tre familier, indtil resten er
-genereret og verificeret.
+Alle 18 familier er tilsluttet. Korte runder har F06/F13/F16; emnetræning har
+3 varianter. Hele sæt følger den versionsstyrede produktfordeling i
+[implementeringsnoterne](../../../docs/FP9-IMPLEMENTATION.md).
 
-`FP9_AI_MAX_CALLS` (12) og `FP9_AI_TIMEOUT_MS` (90000) styrer Codex-budget og timeout.
-AI er server- og forsøgsstyret; slukning annullerer igangværende svar. Codex modtager kun
-den offentlige opgave, scene-snapshot og seneste handlinger. Tekst til sceneændringer
-frigives først efter en korrekt render-ack. Eksport er versioneret og indeholder aldrig
-intern marking eller credentials; import regenererer og sammenligner opgavegivens.
+Samme dokument beskriver dataflow, miljøvariabler, versionsgrænser, persistens,
+AI-afbrydelse og render-kvitteringer. Ingen facitfelter sendes til elevens
+almindelige GET/export; referencefeedback frigives efter gældende feedbackpolitik.

@@ -88,6 +88,7 @@ export type AddObjectOperation = Readonly<{ type: "addObject"; object: Explanati
 export type MoveObjectOperation = Readonly<{
   type: "moveObject";
   objectId: ObjectId;
+  text?: string;
   position: Readonly<{ x: number; y: number }> | Readonly<{ x1: number; y1: number; x2: number; y2: number }>;
 }>;
 export type HighlightOperation = Readonly<{ type: "highlight"; object: HighlightObject }>;
@@ -369,7 +370,12 @@ function applyOperations<G>(state: SceneState<G>, operations: readonly SceneOper
         const existing = objects[index]!;
         const moved = moveObject(existing, typed.position);
         if (typeof moved === "string") return moved;
-        objects[index] = moved;
+        // A moved point must never retain a stale coordinate label implicitly.
+        if (typed.text !== undefined && (typeof typed.text !== 'string' || typed.text.length > 1200)) return 'invalid moved object text';
+        const relabeled = { ...moved, text: typed.text ?? '' };
+        const labelError = validateExplanationObject(relabeled);
+        if (labelError) return labelError;
+        objects[index] = relabeled;
         break;
       }
       case "removeExplanationObject": {
