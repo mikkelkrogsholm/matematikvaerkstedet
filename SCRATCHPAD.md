@@ -152,3 +152,11 @@ En første lokal prototype er nu bygget med brøker/procent til 6. klasse og par
 - Hvordan kontrollerer vi både matematisk korrekthed og kvaliteten af forklaringen?
 - Hvilket emne er bedst til den første prototype? Brøker og procentregning er foreslået, men ikke valgt.
 - Hvilke konkrete mål skal vi sætte for hastighed og tokenforbrug?
+
+
+## 9. september 2026 — rigtig AI i demoen
+
+Brugerbeslutning: Brug eksisterende Codex/ChatGPT-abonnement under lokal test.
+Hold provider udskiftelig, så en API-adapter kan overtage senere. Implementeret
+med Codex CLI og fælles scene-/chatkontrakt; se [AI-prototypen](docs/AI-PROTOTYPE.md).
+Guiden kan ændre brøken og parablens punkt, og AI kan slås fra.

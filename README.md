@@ -1,11 +1,10 @@
 # Matematikværkstedet
 
-Lokal prototype til 6. klasse og 2.g. Interaktive brøker, procent, tallinje og funktioner med tangenter. Guiden er en tydeligt markeret lokal demo uden AI-forbindelse.
+Lokal prototype til 6. klasse og 2.g. Interaktive brøker, procent, tallinje og funktioner med tangenter. En rigtig AI-guide kan svare og ændre figuren via dit lokale Codex-login og ChatGPT-abonnement. AI kan slås til og fra.
 
 Målet er en pluginbaseret matematikunderviser med dynamiske visualiseringer og
-varierede øveopgaver, der træner begrebsforståelse. Generative prøvesæt og en
-AI-agent med adgang til arbejdsfladen er beskrevet som næste muligheder, men er
-endnu ikke implementeret.
+varierede øveopgaver, der træner begrebsforståelse. Generative prøvesæt er endnu ikke implementeret. AI-guidens sceneadgang er
+afgrænset til de to eksisterende visualiseringer.
 
 **Gratis til privat brug med egne børn.** Brug på skoler, i organisationer,
 til undervisning af andres børn eller i en virksomhed kræver en særskilt
@@ -35,6 +34,10 @@ bun run build
 bun run start
 ```
 
+For rigtig AI: installér Codex CLI, kør `codex login` med ChatGPT, og
+kontrollér med `codex login status`. [Opsætning og adapterdesign](docs/AI-PROTOTYPE.md).
+Uden AI: `AI_PROVIDER=off bun run dev`. Abonnementets Codex-grænser gælder.
+
 Alternativ port: `PORT=4320 bun run start`.
 
 ## Opbygning
@@ -42,6 +45,7 @@ Alternativ port: `PORT=4320 bun run start`.
 - `server.ts`: Bun-server og katalog-API.
 - `src/lessons.ts`: To lektionsplugins registreret med Cordis.
 - `src/main.tsx`: React-brugerflade, Mafs-graf og guidede forløb.
+- `src/ai/`: Udskiftelig AI-provider, Codex CLI-adapter og validerede scenedata.
 - `src/math.ts`: Fælles beregninger og dansk talinput.
 - `research/PROTOTYPE-RESULTS.md`: Udførte kontroller og afgrænsning.
 - `research/`: Produktkrav, prøveanalyse og biblioteksresearch.
@@ -49,7 +53,7 @@ Alternativ port: `PORT=4320 bun run start`.
 - `materialer/`: Kildemanifest; downloadede prøver holdes lokalt uden for Git.
 - `AGENTS.md`: Arbejdsvejledning for kodeagenter.
 
-Serveren er kun tilgængelig på denne computer. Ingen login, lagring eller eksterne modelkald. Se SCRATCHPAD.md for de langsigtede idéer.
+Serveren er kun tilgængelig på denne computer. Ingen elevlogin eller samtalelagring. Med AI til sendes spørgsmål, kort historik og figur til OpenAI via Codex. Se SCRATCHPAD.md for de langsigtede idéer.
 
 ## Dokumentation og bidrag
 

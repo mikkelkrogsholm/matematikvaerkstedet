@@ -2,7 +2,7 @@
 
 Dato: 9. september 2026. Levende dokument fra samtalen.
 
-**Status:** Brugerønsker beskriver den ønskede retning. Konkrete løsningsforslag og acceptkriterier nedenfor er arbejdsforslag, ikke dokumentation for implementeret funktionalitet. Den eksisterende prototype er en lokal, guidet demo uden AI-model; se [PROTOTYPE-RESULTS.md](PROTOTYPE-RESULTS.md).
+**Status:** Brugerønsker beskriver den ønskede retning. Konkrete løsningsforslag og acceptkriterier nedenfor er arbejdsforslag, ikke dokumentation for implementeret funktionalitet. Den eksisterende prototype har en lokal Codex-adapter med rigtig AI til de to demonstrationsscener; se [PROTOTYPE-RESULTS.md](PROTOTYPE-RESULTS.md).
 
 ## 1. Formål og brugere
 

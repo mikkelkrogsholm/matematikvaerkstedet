@@ -5,7 +5,9 @@
 Matematikværkstedet (`matematikvaerkstedet`) er en lokal prototype med React,
 TypeScript, Bun, Cordis og Mafs. Brugerflade og undervisningstekst er på dansk.
 Der er to demonstrationsforløb: brøker/procent til 6. klasse og parabler/tangenter
-til 2.g. Guiden er regelbaseret og må ikke præsenteres som en tilsluttet AI.
+til 2.g. Guiden kan bruge lokalt Codex/ChatGPT-login via en udskiftelig provider.
+AI fra bruger faste forklaringer. Præsenter aldrig lokale svar som modelsvar.
+Læs docs/AI-PROTOTYPE.md ved ændringer i AI-forbindelsen.
 
 Læs README.md og research/PRODUCT-REQUIREMENTS.md før produktændringer.
 research/PROTOTYPE-RESULTS.md beskriver det afprøvede; SCRATCHPAD.md indeholder
@@ -16,6 +18,7 @@ funktioner eller automatisk en bestilling på at bygge dem.
 
 - `src/main.tsx`: brugerflade og guidede forløb.
 - `src/lessons.ts`: Cordis-registry og lektionsplugins.
+- `src/ai/`: Provider-interface, Codex-adapter, HTTP-endpoints og scenevalidering.
 - `src/math.ts`: fælles matematiske beregninger og svarinput.
 - `src/math.test.ts`: tests for matematik og registry.
 - `src/style.css`: layout og visuel stil.
