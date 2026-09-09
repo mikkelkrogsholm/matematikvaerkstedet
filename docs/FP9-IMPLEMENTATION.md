@@ -99,12 +99,12 @@ Se [maskinlæsbar evidens](../research/fp9/verification.json).
   sletning, netværksfejl/genforsøg, pointer/tastatur og emuleret mobil/touch er
   nu afprøvet. Se [browserkontroller og resultater](../research/fp9/browser-checks/README.md).
   Renderfejlinjektion og print-HTML er nu også afprøvet. Lokal tekstredigering
-  målte p95 27,3 ms (100 input, browser-frame, Apple M3 Max). Afbrudt animation
-  står fortsat åben. Målingen er ikke en garanti for alle interaktioner.
+  målte p95 27,3 ms (100 input, browser-frame, Apple M3 Max). Trinvis animation og afbrydelse
+  er afprøvet med den rigtige AI. Målingen er ikke en garanti for alle interaktioner.
   Den rene sceneopdatering må ikke bruges som UI-latensmål.
 - [108 komplette QA-eksempler](../research/fp9/generated/samples.json) og
   [HTML-galleriet](../research/fp9/generated/gallery.html) er klar. Alle seks varianter pr. familie er nu set; se
-  [visuel QA](../research/fp9/generated/VISUAL-REVIEW.md). F05 har en åben faglig præcisering.
+  [visuel QA](../research/fp9/generated/VISUAL-REVIEW.md). F05 er præciseret til positivt reelt x.
 - [Elevpilot og forsinket gentagelse](FP9-PILOT.md) er ikke gennemført. Der
   hævdes ingen dokumenteret læringseffekt eller mestring på grundlag af modeltests.
 - Dækningen er afgrænset: ingen mundtlig prøve, generel CAS, frie beviser med
@@ -115,5 +115,5 @@ Andre blueprint-versioner afvises eksplicit. Gemte lokale forsøgsinstanser har
 selve opgaven og bedømmelsesgrundlaget, men import lover ikke bagudkompatibilitet
 med tidligere udviklingsversioner.
 
-Trinvis animation findes foreløbig kun i scenemotoren. API/UI-integration mangler;
+Trinvis animation er integreret med browserkvitteringer, Stop og reduceret bevægelse;
 se [den konkrete audit](../research/fp9/ANIMATION-INTEGRATION.md).

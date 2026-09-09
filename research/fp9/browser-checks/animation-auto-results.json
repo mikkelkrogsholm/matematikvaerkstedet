@@ -1,0 +1,14 @@
+{
+  "realModelCall": true,
+  "threeSteps": true,
+  "automaticPlayback": true,
+  "finalPosition": 3,
+  "assistanceRecordedOnce": true,
+  "guideTextReleasedAfterFinalAck": true,
+  "usage": {
+    "calls": 1,
+    "inputTokens": 10016,
+    "outputTokens": 163,
+    "lastLatencyMs": 11277
+  }
+}

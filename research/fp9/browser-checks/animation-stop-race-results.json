@@ -1,0 +1,13 @@
+{
+  "realModelCall": true,
+  "delayedStopResponseMs": 1600,
+  "nextRequests": 0,
+  "stopped": true,
+  "navigationNotBlocked": true,
+  "usage": {
+    "calls": 1,
+    "inputTokens": 10014,
+    "outputTokens": 165,
+    "lastLatencyMs": 17174
+  }
+}

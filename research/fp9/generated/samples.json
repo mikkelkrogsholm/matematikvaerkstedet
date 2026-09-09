@@ -71,9 +71,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -150,9 +150,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -225,9 +225,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -300,9 +300,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -379,9 +379,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -454,9 +454,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -531,9 +531,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -608,9 +608,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -685,9 +685,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -762,9 +762,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -839,9 +839,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -916,9 +916,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -991,9 +991,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1068,9 +1068,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1145,9 +1145,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1220,9 +1220,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1297,9 +1297,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1374,9 +1374,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1447,9 +1447,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1524,9 +1524,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1599,9 +1599,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1672,9 +1672,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1749,9 +1749,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1824,9 +1824,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1898,9 +1898,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -1924,7 +1924,7 @@
         "story": "To elever forsøger at beskrive den samme beregning.",
         "facts": [
           "Arealet af en figur beskrives ved A = 3x + 12.",
-          "x er et reelt tal."
+          "x er et positivt reelt tal."
         ],
         "questions": [
           {
@@ -1953,7 +1953,7 @@
             "heading": "Algebra på to måder",
             "lines": [
               "Arealet af en figur beskrives ved A = 3x + 12.",
-              "x er et reelt tal."
+              "x er et positivt reelt tal."
             ]
           }
         }
@@ -1974,9 +1974,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2047,9 +2047,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2121,9 +2121,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2147,7 +2147,7 @@
         "story": "To elever forsøger at beskrive den samme beregning.",
         "facts": [
           "Arealet af en figur beskrives ved A = 4x + 12.",
-          "x er et reelt tal."
+          "x er et positivt reelt tal."
         ],
         "questions": [
           {
@@ -2176,7 +2176,7 @@
             "heading": "Algebra på to måder",
             "lines": [
               "Arealet af en figur beskrives ved A = 4x + 12.",
-              "x er et reelt tal."
+              "x er et positivt reelt tal."
             ]
           }
         }
@@ -2197,9 +2197,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2270,9 +2270,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2349,9 +2349,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2428,9 +2428,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2508,9 +2508,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2587,9 +2587,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2666,9 +2666,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2746,9 +2746,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2824,9 +2824,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2900,9 +2900,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -2983,9 +2983,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3061,9 +3061,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3137,9 +3137,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3220,9 +3220,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3297,9 +3297,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3374,9 +3374,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3449,9 +3449,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3526,9 +3526,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3603,9 +3603,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3678,9 +3678,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3808,9 +3808,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -3948,9 +3948,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4086,9 +4086,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4216,9 +4216,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4356,9 +4356,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4494,9 +4494,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4571,9 +4571,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4646,9 +4646,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4723,9 +4723,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4800,9 +4800,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4875,9 +4875,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -4952,9 +4952,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -5076,9 +5076,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -5205,9 +5205,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -5282,9 +5282,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -5406,9 +5406,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -5535,9 +5535,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -5612,9 +5612,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -5732,9 +5732,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -5852,9 +5852,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -5926,9 +5926,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6046,9 +6046,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6166,9 +6166,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6240,9 +6240,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6337,9 +6337,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6434,9 +6434,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6520,9 +6520,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6617,9 +6617,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6714,9 +6714,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6800,9 +6800,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6886,9 +6886,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -6972,9 +6972,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7058,9 +7058,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7144,9 +7144,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7230,9 +7230,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7316,9 +7316,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7401,9 +7401,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7476,9 +7476,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7563,9 +7563,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7648,9 +7648,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7723,9 +7723,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7810,9 +7810,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7902,9 +7902,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -7994,9 +7994,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8086,9 +8086,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8178,9 +8178,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8270,9 +8270,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8362,9 +8362,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8443,9 +8443,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8522,9 +8522,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8601,9 +8601,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8682,9 +8682,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8761,9 +8761,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8840,9 +8840,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -8921,9 +8921,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -9002,9 +9002,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -9075,9 +9075,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -9156,9 +9156,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -9237,9 +9237,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     },
     {
@@ -9310,9 +9310,9 @@
       },
       "review": {
         "mathematicalChecks": "Covered by independent 100-seed tests; see generators.test.ts",
-        "visual": "pending",
-        "reviewer": null,
-        "date": null
+        "visual": "agent-reviewed",
+        "reviewer": "Codex main agent",
+        "date": "2026-09-09"
       }
     }
   ]

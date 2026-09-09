@@ -393,6 +393,73 @@
         "outputTokens": 131,
         "lastLatencyMs": 8330
       }
+    },
+    "animation": {
+      "animation": {
+        "realModelCall": true,
+        "threeSteps": true,
+        "ackBetweenSteps": true,
+        "reducedMotionManual": true,
+        "studentEditCancelsRemaining": true,
+        "studentWorkPreserved": true,
+        "finalClaimWithheld": true,
+        "usage": {
+          "calls": 1,
+          "inputTokens": 10009,
+          "outputTokens": 166,
+          "lastLatencyMs": 10005
+        }
+      },
+      "animation-auto": {
+        "realModelCall": true,
+        "threeSteps": true,
+        "automaticPlayback": true,
+        "finalPosition": 3,
+        "assistanceRecordedOnce": true,
+        "guideTextReleasedAfterFinalAck": true,
+        "usage": {
+          "calls": 1,
+          "inputTokens": 10016,
+          "outputTokens": 163,
+          "lastLatencyMs": 11277
+        }
+      },
+      "animation-ack-recovery": {
+        "realModelCall": true,
+        "threeSteps": true,
+        "automaticPlayback": true,
+        "committedAckResponseLost": true,
+        "ackCount": 3,
+        "finalPosition": 3,
+        "assistanceRecordedOnce": true,
+        "guideTextReleasedAfterFinalAck": true,
+        "usage": {
+          "calls": 1,
+          "inputTokens": 10012,
+          "outputTokens": 162,
+          "lastLatencyMs": 11411
+        }
+      },
+      "animation-stop-race": {
+        "realModelCall": true,
+        "delayedStopResponseMs": 1600,
+        "nextRequests": 0,
+        "stopped": true,
+        "navigationNotBlocked": true,
+        "usage": {
+          "calls": 1,
+          "inputTokens": 10014,
+          "outputTokens": 165,
+          "lastLatencyMs": 17174
+        }
+      }
     }
+  },
+  "visualReview": {
+    "count": 108,
+    "evidence": "generated/VISUAL-REVIEW.md",
+    "manifest": "generated/review-manifest.json",
+    "reviewer": "Codex main agent",
+    "studentPilot": false
   }
 }

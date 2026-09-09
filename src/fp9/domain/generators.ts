@@ -48,7 +48,7 @@ export function generateAdditional(f:FamilyId,s:number,v:0|1|2,e:ExamType):Task 
  case 'F05': {
   d={title:'Algebra på to måder',story:'To elever forsøger at beskrive den samme beregning.',givens:[],prompt:'',marking:numeric(0)};
   if(v===0){d.givens=[`Udtryk: ${a}(x + ${b}).`];d.prompt='Udvid udtrykket, så dit svar ikke indeholder parenteser.';d.marking=expression(`${a}x+${a*b}`,true);}
-  if(v===1){d.givens=[`Arealet af en figur beskrives ved A = ${a}x + ${a*b}.`,`x er et reelt tal.`];d.prompt=`Skriv det udtryk, der skal stå i □, så A = ${a} · □. Brug x som variabel.`;d.marking=expression(`x+${b}`);}
+  if(v===1){d.givens=[`Arealet af en figur beskrives ved A = ${a}x + ${a*b}.`,`x er et positivt reelt tal.`];d.prompt=`Skriv det udtryk, der skal stå i □, så A = ${a} · □. Brug x som variabel.`;d.marking=expression(`x+${b}`);}
   if(v===2){d.givens=[`En elev skriver ${a}(x + ${b}) = ${a}x + ${b}.`];d.prompt='Forklar fejlen, og skriv en korrekt omskrivning.';d.marking=review(['Forklarer, at begge led i parentesen skal multipliceres.','Giver den korrekte omskrivning eller et modbevis og en rettelse.'],[`Begge led ganges med ${a}: ${a}x + ${a*b}.`,`Ved x=0 giver elevens højre side ${b}, men venstre side giver ${a*b}. Fejlen er det manglende gangeled på konstanten.`]);}
   break;
  }

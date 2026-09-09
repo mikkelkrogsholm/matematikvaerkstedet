@@ -25,7 +25,8 @@ export type AttemptAction={expectedRevision:number}&(
  |{type:'extra';seconds:number}
  |{type:'tools';taskId:string;value:ToolState}
  |{type:'feedback';taskId:string;questionId:string}
- |{type:'undo';taskId:string}
+ |{type:'undo'|'animation-stop';taskId:string}
+ |{type:'animation-next';taskId:string;commandId:string}
 );
 export type HelpRequest={expectedRevision:number;taskId:string;level:HelpLevel;question:string};
 export type AckRequest={taskId:string;token:string;revision:number;success:boolean};

@@ -1,0 +1,15 @@
+{
+  "realModelCall": true,
+  "threeSteps": true,
+  "ackBetweenSteps": true,
+  "reducedMotionManual": true,
+  "studentEditCancelsRemaining": true,
+  "studentWorkPreserved": true,
+  "finalClaimWithheld": true,
+  "usage": {
+    "calls": 1,
+    "inputTokens": 10009,
+    "outputTokens": 166,
+    "lastLatencyMs": 10005
+  }
+}

@@ -1,13 +1,13 @@
 import { mkdir, readdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { assess, createProfile, families, generateTask, publicTask, type Answer, type ExamType, type FamilyId, type Profile, type Task } from '../domain';
-import { acknowledgeRender, applyCommand, createScene, reportRenderFailure, setAiEnabled, undoAgentAction, updateStudent, sceneSnapshot, type SceneOperation, type SceneState } from '../scene';
+import { acknowledgeRender, applyCommand, queueAnimation, advanceAnimation, cancelAnimation, createScene, reportRenderFailure, setAiEnabled, undoAgentAction, updateStudent, sceneSnapshot, type SceneOperation, type SceneState } from '../scene';
 import type { AckRequest, AttemptAction, AttemptSummary, AttemptView, Catalog, CreateAttempt, HelpLevel, HelpRequest, ToolState, Assistance } from '../api-types';
 import {fp9ReplySchema,sceneInstructions} from './scene-schema';
 import { allParts } from '../api-types';
 import { runCodex } from '../../ai/runtime';
 
-type Internal = { view: AttemptView; tasks: Record<string, Task>; seed: number; pendingText: Record<string, {token:string;text:string;assistance:Assistance}>; examType: ExamType; assisted: boolean; generation: CreateAttempt };
+type Internal = { view: AttemptView; tasks: Record<string, Task>; seed: number; pendingText: Record<string, {token:string;text:string;assistance:Assistance;recorded?:boolean}>; examType: ExamType; assisted: boolean; generation: CreateAttempt };
 export interface Fp9Provider { reply(input: Fp9Prompt, signal: AbortSignal): Promise<{ text: string; operations: SceneOperation[]; inputTokens: number; outputTokens: number; elapsedMs: number }>; }
 export type Fp9Prompt = { level: HelpLevel; question: string; task: ReturnType<typeof publicTask>; scene: unknown; answer: Record<string,Answer>; notes: string; tools: ToolState|null; recentActions: unknown[]; history: {role:string;text:string}[]; marking?: Task['marking'] };
 const MAX_BODY = 2 * 1024 * 1024, MAX_TEXT = 4000;
@@ -108,8 +108,10 @@ export class Fp9Service {
       const v = x.view; if(v.status==='submitted') throw Error('Forsøget er afleveret og kan ikke ændres.'); const task = (t: unknown) => { if (!id(t) || !Object.hasOwn(x.tasks,t)) throw Error('Ukendt opgave.'); return t; };
       const editable = () => { if (v.status === 'submitted') throw Error('Forsøget er afleveret og kan ikke ændres.'); if (this.expired(v)) throw Error('Tiden er udløbet. Registrér ekstra tid eller aflever forsøget.'); if(v.profile.timingMinutes!==null&&!v.clock.lastResumedAt)throw Error('Fortsæt uret, før du arbejder videre.'); };
       const cancelledPending=new Set<string>();
-      for(const key of Object.keys(v.scenes)){const scene=v.scenes[key]!;if(scene.pendingRender){const failed=reportRenderFailure(scene,scene.pendingRender);const undone=undoAgentAction(failed.state,scene.pendingRender.actionId);v.scenes[key]=undone.state;delete x.pendingText[key];cancelledPending.add(key);}}
+      for(const key of Object.keys(v.scenes)){const scene=v.scenes[key]!;if(action.type==='animation-next')continue;v.scenes[key]=cancelAnimation(scene);delete x.pendingText[key];if(scene.pendingRender){const failed=reportRenderFailure(scene,scene.pendingRender);const undone=undoAgentAction(failed.state,scene.pendingRender.actionId);v.scenes[key]=cancelAnimation(undone.state);delete x.pendingText[key];cancelledPending.add(key);}}
       switch (action.type) {
+        case 'animation-next': { editable(); const t=task(action.taskId);if(t!==v.activeTaskId||!v.profile.aiEnabled)throw Error('Forløbet er ikke aktivt.');const scene=v.scenes[t]!;if(!id(action.commandId))throw Error('Ugyldigt trin.');if(scene.actionLedger.some(entry=>entry.actionId===action.commandId))break;if(scene.pendingRender)throw Error('Vent på at trinnet bliver vist.');if(scene.animation?.steps[0]?.command.actionId!==action.commandId)throw Error('Trinnet er forældet.');v.scenes[t]=this.nextAnimation(scene);const held=x.pendingText[t];if(held)held.token=v.scenes[t]!.pendingRender!.token;break; }
+        case 'animation-stop': { task(action.taskId); break; }
         case 'answer': { editable(); const t = task(action.taskId); if (!id(action.questionId) || !x.tasks[t]!.questions.some(q => q.id === action.questionId) || !plain(action.answer) || !str(action.answer.text) || (action.answer.explanation !== undefined && !str(action.answer.explanation)) || (action.answer.points !== undefined && (!Array.isArray(action.answer.points) || action.answer.points.length > 20 || !action.answer.points.every(p => Array.isArray(p) && p.length === 2 && p.every(finite))))) throw Error('Ugyldigt svar.'); v.answers[t] = { ...(v.answers[t] ?? {}), [action.questionId]: clone(action.answer) }; if(x.tasks[t]!.questions.find(q=>q.id===action.questionId)!.answerKind==='geometry'){const objects=(action.answer.points??[]).map(([x,y],i)=>({id:`student-point-${i}`,source:'student' as const,kind:'point',x,y,visible:true}));this.validatePoints(x.tasks[t]!,objects);v.scenes[t]=updateStudent(v.scenes[t]!,{objects,selection:[]});} break; }
         case 'note': { editable(); const t = task(action.taskId); if (!str(action.text)) throw Error('Noten er for lang.'); v.notes[t] = action.text; break; }
         case 'navigate': { const t = task(action.taskId); v.activeTaskId = t; if (!v.visited.includes(t)) v.visited.push(t); break; }
@@ -125,8 +127,17 @@ export class Fp9Service {
         case 'submit': { v.clock.elapsedSeconds = this.elapsed(v); v.clock.lastResumedAt = null; v.status = 'submitted'; v.submittedAt = now(); x.pendingText={}; for(const key of Object.keys(v.scenes)){v.scenes[key]=setAiEnabled(v.scenes[key]!,false);}  for (const t of Object.keys(x.tasks)) for (const q of x.tasks[t]!.questions) v.assessments[t] = { ...(v.assessments[t] ?? {}), [q.id]: assess(x.tasks[t]!, q.id, v.answers[t]?.[q.id]??{text:''}) }; break; }
         default: throw Error('Ukendt handling.');
       }
-      if(action.type!=='ai') { for(const key of Object.keys(x.pendingText)) if(!v.scenes[key]?.pendingRender)delete x.pendingText[key]; }
+      if(action.type!=='ai') { for(const key of Object.keys(x.pendingText)) if(!v.scenes[key]?.pendingRender&&!v.scenes[key]?.animation)delete x.pendingText[key]; }
     });
+  }
+  private nextAnimation(scene:SceneState):SceneState {
+    if(!scene.animation)throw Error('Der er ikke flere trin.');
+    // Commands are generated and validated by this server, never supplied by the client.
+    // Rebase only the next trusted step after the preceding render ACK changed revision.
+    const steps=scene.animation.steps.map((step,i)=>i?step:{...step,command:{...step.command,expectedRevision:scene.revision,policyRevision:scene.policyRevision}});
+    const advanced=advanceAnimation({...scene,animation:{...scene.animation,steps}});
+    if(advanced.status!=='applied')throw Error('Trinnet blev afvist: '+advanced.reason);
+    return advanced.state;
   }
   private validatePoints(task:Task,objects:unknown){if(!Array.isArray(objects)||objects.length>20||!objects.every(o=>plain(o)&&id(o.id)&&o.id.startsWith('student-')&&o.source==='student'&&o.kind==='point'&&finite(o.x)&&finite(o.y)&&o.x>=task.scene.axes.x.min&&o.x<=task.scene.axes.x.max&&o.y>=task.scene.axes.y.min&&o.y<=task.scene.axes.y.max&&(o.text===undefined||str(o.text,400))))throw Error('Ugyldige elevpunkter. Brug punkter inden for figurens akser.');}
   private validateVisibleScene(task:Task,scene:SceneState){
@@ -148,7 +159,7 @@ export class Fp9Service {
       if(this.aborts.has(id0))throw Error('Guiden arbejder allerede. Vent eller slå AI fra.');
       if(x.view.aiUsage.calls>=MAX_CALLS||x.view.aiUsage.inputTokens+x.view.aiUsage.outputTokens>=MAX_TOKENS)throw Error('AI-budgettet er brugt. Du kan fortsætte uden AI.');
       const task=x.tasks[request.taskId];if(!task||request.taskId!==x.view.activeTaskId)throw Error('Hjælp skal gælde den aktive opgave.');
-      if(x.view.scenes[request.taskId]!.pendingRender)throw Error('Vent på at forklaringen bliver vist.');
+      if(x.view.scenes[request.taskId]!.pendingRender||x.view.scenes[request.taskId]!.animation)throw Error('Vent på at forklaringen bliver vist.');
       const controller=new AbortController();this.aborts.set(id0,controller);
       // Reserve the call BEFORE dispatch, including failed/cancelled calls. Usage is
       // bookkeeping, not a student/policy revision, so AI-off can still use this revision.
@@ -179,7 +190,15 @@ export class Fp9Service {
         const applied=applyCommand(scene,{attemptId:id0,sceneId:request.taskId,expectedRevision:scene.revision,policyRevision:scene.policyRevision,actionId:`ai-${crypto.randomUUID()}`,operations:response.operations});
         if(applied.status!=='applied')throw Error('AI-handlingen blev afvist: '+applied.reason);
         this.validateVisibleScene(x.tasks[request.taskId]!,applied.state);
-        x.view.scenes[request.taskId]=applied.state;x.pendingText[request.taskId]={token:applied.pendingRender!.token,text:response.text,assistance};
+        let displayed=applied.state;
+        if(response.operations.length>1){
+          // Verify every intermediate state before accepting any of the sequence.
+          let probe=scene;
+          for(const operation of response.operations){const checked=applyCommand(probe,{attemptId:id0,sceneId:request.taskId,expectedRevision:probe.revision,policyRevision:probe.policyRevision,actionId:`check-${crypto.randomUUID()}`,operations:[operation]});if(checked.status!=='applied')throw Error('Ugyldigt mellemtrin.');this.validateVisibleScene(x.tasks[request.taskId]!,checked.state);probe=acknowledgeRender(checked.state,checked.pendingRender!).state;}
+          const queued=queueAnimation(scene,`sequence-${crypto.randomUUID()}`,response.operations.map((operation,i)=>({stepId:`step-${i}`,command:{attemptId:id0,sceneId:request.taskId,expectedRevision:scene.revision,policyRevision:scene.policyRevision,actionId:`ai-${crypto.randomUUID()}`,operations:[operation]}})));
+          if(queued.status!=='applied')throw Error('Forløbet kunne ikke startes.');displayed=this.nextAnimation(queued.state);
+        }
+        x.view.scenes[request.taskId]=displayed;x.pendingText[request.taskId]={token:displayed.pendingRender!.token,text:response.text,assistance};
       }
       if(!response.operations.length){x.assisted=true;x.view.assistance.push(assistance);}
       x.view.chat[request.taskId]=[...(x.view.chat[request.taskId]??[]),{role:'student' as const,text:request.question},...(response.operations.length?[]:[{role:'guide' as const,text:response.text}])].slice(-50);
@@ -191,23 +210,27 @@ export class Fp9Service {
     return this.locked(id0,async()=>{
       const x=await this.store.get(id0),scene=x.view.scenes[request.taskId];
       if(!scene||!x.view.profile.aiEnabled||x.view.status!=='active')throw Object.assign(Error('Render-bekræftelsen er forældet.'),{status:409});
+      if(scene.renderRecords.some(record=>record.token===request.token&&record.revision===request.revision&&record.status===(request.success?'confirmed':'failed')))return this.project(x);
       const result=request.success?acknowledgeRender(scene,request):reportRenderFailure(scene,request);
       if(result.status==='rejected')throw Object.assign(Error(result.reason),{status:409});
       x.view.scenes[request.taskId]=result.state;
       const held=x.pendingText[request.taskId];
-      if(request.success&&held?.token===request.token){x.view.chat[request.taskId]=[...(x.view.chat[request.taskId]??[]),{role:'guide' as const,text:held.text}].slice(-50);x.view.assistance.push(held.assistance);x.assisted=true;}
+      if(request.success&&held?.token===request.token){
+        if(!held.recorded){x.view.assistance.push(held.assistance);x.assisted=true;held.recorded=true;}
+        if(!result.state.animation)x.view.chat[request.taskId]=[...(x.view.chat[request.taskId]??[]),{role:'guide' as const,text:held.text}].slice(-50);
+      }
       if(!request.success&&scene.pendingRender){
-        const undone=undoAgentAction(result.state,scene.pendingRender.actionId);if(undone.status==='applied')x.view.scenes[request.taskId]=undone.state;
+        const undone=undoAgentAction(result.state,scene.pendingRender.actionId);if(undone.status==='applied')x.view.scenes[request.taskId]=cancelAnimation(undone.state);
         x.view.chat[request.taskId]=[...(x.view.chat[request.taskId]??[]),{role:'guide',text:'Forklaringslaget kunne ikke vises. Handlingen er rullet tilbage.'}];
       }
-      delete x.pendingText[request.taskId];x.view.revision++;await this.store.save(x);return this.project(x);
+      if(!request.success||!result.state.animation)delete x.pendingText[request.taskId];x.view.revision++;await this.store.save(x);return this.project(x);
     });
   }
   async remove(id0:string){return this.locked(id0,async()=>{this.aborts.get(id0)?.abort();await this.store.delete(id0);});}
   async export(id0:string){
     const x=await this.store.get(id0),snapshot=this.project(x);
     snapshot.clock.elapsedSeconds=this.elapsed(snapshot);snapshot.clock.lastResumedAt=null;
-    for(const [key,scene] of Object.entries(snapshot.scenes)){if(scene.pendingRender){const failed=reportRenderFailure(scene,scene.pendingRender);const undone=undoAgentAction(failed.state,scene.pendingRender.actionId);snapshot.scenes[key]=undone.state;}}
+    for(const [key,scene] of Object.entries(snapshot.scenes)){snapshot.scenes[key]=cancelAnimation(scene);if(scene.pendingRender){const failed=reportRenderFailure(scene,scene.pendingRender);const undone=undoAgentAction(failed.state,scene.pendingRender.actionId);snapshot.scenes[key]=cancelAnimation(undone.state);}}
     return {version:'1',blueprintVersion:'fp9-blueprint-2',exportedAt:now(),attempt:snapshot,generation:x.generation};
   }
   async import(value:unknown){

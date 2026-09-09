@@ -1,3 +1,5 @@
+import type {AttemptAction} from "../api-types";
+
 import {afterEach,expect,test} from 'bun:test';
 import {mkdtemp,rm,writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
@@ -118,4 +120,46 @@ test('guide receives current answer/notes/tools; invisible and distorted command
  v=await s.create({...base,aiEnabled:true,length:'topic',familyId:'F13'});
  ops=[{type:'setViewport',viewport:{xMin:-10,xMax:10,yMin:-5,yMax:5}}];
  await expect(s.help(v.id,question(v,'step'))).rejects.toThrow('målestok');
+});
+
+test('animation waits for each render, records help once, and releases text only at completion',async()=>{
+ const move:SceneOperation={type:'moveObject',objectId:'ai-example',position:{x:2,y:2},text:'Flyttet'};
+ const s=await service({reply:async()=>result([point,move])});let v=await s.create({...base,aiEnabled:true});const t=v.activeTaskId;
+ v=await s.help(v.id,question(v,'step'));expect(v.scenes[t]!.animation?.steps.length).toBe(1);expect(v.chat[t]!.filter(m=>m.role==='guide')).toHaveLength(0);
+ await expect(s.action(v.id,{type:'animation-next',taskId:t,commandId:v.scenes[t]!.animation?.steps[0]?.command.actionId??'missing',expectedRevision:v.revision})).rejects.toThrow('Vent');
+ v=await s.ack(v.id,{taskId:t,...v.scenes[t]!.pendingRender!,success:true});expect(v.assistance).toHaveLength(1);expect(v.chat[t]!.filter(m=>m.role==='guide')).toHaveLength(0);
+ const before=v.revision;v=await s.action(v.id,{type:'animation-next',taskId:t,commandId:v.scenes[t]!.animation?.steps[0]?.command.actionId??'missing',expectedRevision:before});
+ await expect(s.action(v.id,{type:'animation-next',taskId:t,commandId:v.scenes[t]!.animation?.steps[0]?.command.actionId??'missing',expectedRevision:before})).rejects.toThrow();
+ expect((v.scenes[t]!.explanationObjects[0] as {x:number}).x).toBe(2);
+ v=await s.ack(v.id,{taskId:t,...v.scenes[t]!.pendingRender!,success:true});expect(v.scenes[t]!.animation).toBeNull();expect(v.assistance).toHaveLength(1);expect(v.chat[t]!.at(-1)?.text).toBe('Se mit eksempel.');
+});
+
+test('animation cancels on student edits, stop, policy, navigation, submission and render failure',async()=>{
+ for(const kind of ['student','animation-stop','ai','navigate','submit','failure'] as const){
+  const s=await service({reply:async()=>result([point,{type:'moveObject',objectId:'ai-example',position:{x:2,y:2},text:'Flyttet'},{type:'moveObject',objectId:'ai-example',position:{x:3,y:3},text:'Sidste'}])});let v=await s.create({...base,aiEnabled:true});const t=v.activeTaskId;
+  v=await s.help(v.id,question(v,'step'));
+  if(kind==='failure')v=await s.ack(v.id,{taskId:t,...v.scenes[t]!.pendingRender!,success:false});
+  else{
+   v=await s.ack(v.id,{taskId:t,...v.scenes[t]!.pendingRender!,success:true});
+   const action=kind==='student'?{type:kind,taskId:t,objects:[{id:'student-own',source:'student',kind:'point',x:4,y:4,visible:true}],selection:['student-own']}:kind==='ai'?{type:kind,enabled:false}:kind==='submit'?{type:kind}:{type:kind,taskId:kind==='navigate'?allParts(v)[1]!.id:t};
+   v=await s.action(v.id,{...action,expectedRevision:v.revision} as AttemptAction);
+  }
+  expect(v.scenes[t]!.animation).toBeNull();expect(v.scenes[t]!.pendingRender).toBeNull();expect(v.chat[t]!.some(m=>m.text==='Se mit eksempel.')).toBeFalse();
+  if(kind==='student')expect(v.scenes[t]!.studentObjects[0]!.x).toBe(4);
+  await expect(s.action(v.id,{type:'animation-next',taskId:t,commandId:v.scenes[t]!.animation?.steps[0]?.command.actionId??'missing',expectedRevision:v.revision})).rejects.toThrow();
+ }
+});
+
+test('retry after lost animation response does not execute a different step',async()=>{
+ const s=await service({reply:async()=>result([point,{type:'moveObject',objectId:'ai-example',position:{x:2,y:2},text:'To'},{type:'moveObject',objectId:'ai-example',position:{x:3,y:3},text:'Tre'}])});
+ let v=await s.create({...base,aiEnabled:true});const t=v.activeTaskId;
+ v=await s.help(v.id,question(v,'step'));v=await s.ack(v.id,{taskId:t,...v.scenes[t]!.pendingRender!,success:true});
+ const commandId=v.scenes[t]!.animation!.steps[0]!.command.actionId;
+ v=await s.action(v.id,{type:'animation-next',taskId:t,commandId,expectedRevision:v.revision});
+ const token=v.scenes[t]!.pendingRender!;
+ v=await s.action(v.id,{type:'animation-next',taskId:t,commandId,expectedRevision:v.revision});expect(v.scenes[t]!.pendingRender!.token).toBe(token.token);expect(v.scenes[t]!.animation!.steps).toHaveLength(1);
+ v=await s.ack(v.id,{taskId:t,...token,success:true});const revision=v.revision;
+ v=await s.ack(v.id,{taskId:t,...token,success:true});expect(v.revision).toBe(revision);expect(v.assistance).toHaveLength(1);
+ v=await s.action(v.id,{type:'animation-next',taskId:t,commandId,expectedRevision:v.revision});
+ expect(v.scenes[t]!.animation!.steps).toHaveLength(1);expect((v.scenes[t]!.explanationObjects[0] as {x:number}).x).toBe(2);expect(v.scenes[t]!.pendingRender).toBeNull();
 });

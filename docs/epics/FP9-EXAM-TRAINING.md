@@ -105,7 +105,7 @@ træner mere end udskiftede tal.
   enheder, løsninger og eventuelle flere gyldige svar.
 - [x] Kør mindst 100 seeds pr. familie samt eksplicitte randtilfælde. Brug
   uafhængige kendte resultater/invarianter, ikke kun generatorens egen løser.
-- [ ] Faglig og visuel gennemgang af mindst seks varianter pr. familie dækker
+- [x] Faglig og visuel gennemgang af mindst seks varianter pr. familie dækker
   variation, kompleksitet og begge tilladte prøvetyper, hvor relevant.
 - [x] Delopgaver kan dele fortælling, men kræver ikke elevens tidligere svar.
   Tekst, figur og data er konsistente; originale prøvebilleder genudgives ikke.
@@ -127,7 +127,7 @@ på samme side, med et læseligt layout.
   Manglende værktøjsdækning vises; værktøjer må ikke blot være knapper uden funktion.
 - [x] Valg af nye biblioteker dokumenteres med versionslicens og afprøvning.
   Bevar Cordis/Mafs hvor de passer; ingen generel omskrivning forudsættes.
-- [ ] Enheder, akser, målestok, labels og figurers begrænsninger kontrolleres.
+- [x] Enheder, akser, målestok, labels og figurers begrænsninger kontrolleres.
   Mobil, tastatur, touch og reduceret bevægelse afprøves.
 
 Afhænger af: E01 og E02's første familier.
@@ -138,7 +138,7 @@ Afhænger af: E01 og E02's første familier.
 
 - [x] Agenten kan læse den aktive opgave, scene, markering og relevante
   elevhandlinger og udføre de beskrevne, typede sceneoperationer.
-- [ ] Agenten kan mindst tilføje, flytte, fremhæve og fjerne egne
+- [x] Agenten kan mindst tilføje, flytte, fremhæve og fjerne egne
   forklaringsobjekter samt vise et kort forløb trinvis.
 - [x] Afvis ugyldige objekter, ukendte capabilities, gamle revisioner,
   uautoriserede ændringer og operationer mod et andet forsøg.
@@ -215,7 +215,7 @@ Afhænger af: E01, E02, E03 og E06; fuldt assisteret flow kræver E05.
 
 **Resultat:** Dokumentation viser, hvad der fungerer og hvad der stadig ikke er valideret.
 
-- [ ] Automatiske forløb dækker alle fire kombinationer, AI-skift, retry,
+- [x] Automatiske forløb dækker alle fire kombinationer, AI-skift, retry,
   netværksfejl, afbrudt animation, aflevering og gendannelse.
 - [x] Modellen kan demonstrere en flytning/tilføjelse og derefter aflæse elevens
   efterfølgende ændring i pris-, geometri- og datafamilierne.
@@ -270,3 +270,7 @@ se [gennemgang](../../research/fp9/generated/VISUAL-REVIEW.md).
 F05 har en åben faglig præcisering. Trinvis animation er endnu ikke koblet til
 API/UI; E04-kriteriet er derfor genåbnet efter uafhængig kodekontrol.
 Se [integrationskrav](../../research/fp9/ANIMATION-INTEGRATION.md).
+
+Opdatering: trinvis animation er nu integreret og verificeret, inklusive Stop-race
+og tabt ACK-svar. F05 er præciseret, og 108 visninger er gennemgået med hashmanifest.
+Tidligere noter om manglende integration ovenfor er historiske. Elevpilot er fortsat åben.

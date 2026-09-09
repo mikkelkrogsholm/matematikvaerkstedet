@@ -33,14 +33,15 @@ og reviewmateriale, aldrig en del af elevappens datakilde. `gallery.html`
 viser samme opgaver gennem den faktiske SceneView-komponent, server-renderet.
 
 Regenerér med `bun research/fp9/generated/export-samples.ts`. Scriptet udfører
-ikke en visuel gennemgang. Hvert QA-eksempel har eksplicit åben reviewstatus.
+ikke en visuel gennemgang. Reviewstatus kræver match med det særskilt registrerede indholdshash; ændrede opgaver bliver pending.
 
 Uafhængige matematiske kontroller: `src/fp9/domain/generators.test.ts`.
 Reproduktion, profilmatrix og oprindelige regressioner: `index.test.ts`.
 Domænegrænser, formater, præcis brøkækvivalens, metriske figurer og alternative
 geometrisvar indgår. Rene tests og SSR beviser ikke layout/touch eller læring.
 
-Visuel gennemgang af de 108 eksempler og afbrudt animation er åbne.
+Alle 108 eksempler er visuelt gennemgået; se [review](VISUAL-REVIEW.md).
+Trinvis animation og afbrydelse er koblet til API/UI og afprøvet.
 Renderfejlinjektion, print-HTML og lokal tekstinteraktion (p95 27,3 ms) er kontrolleret. Browserens fire træningskombinationer, reel AI-sceneinteraktion,
 gendannelse og mobil/touch er afprøvet; se [evidens](../browser-checks/README.md).
 Reel elevpilot og forsinket kontrol er også åbne.

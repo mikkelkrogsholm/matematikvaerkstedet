@@ -11,7 +11,7 @@ Scenekomponenten er den samme som i elevappen, server-renderet i QA-galleriet.
 | Familier | Gennemgang |
 |---|---|
 | F01–F04 | Seks varianter hver: brøker, procent, enheder, ligninger og svarformat læselige; ingen beskårne tekster. |
-| F05 | Seks varianter læselige. Åben faglig præcisering: arealhistorien angiver alle reelle x, også værdier der giver negativt areal. |
+| F05 | Seks varianter læselige. Arealhistorien er præciseret til positivt reelt x; de seks visninger er set igen efter rettelsen. |
 | F06 | Seks varianter: tabel svarer til prislinjer; startbetaling, besøg og kroner fremgår; diagram kun med hjælpemidler. |
 | F07–F08 | Seks varianter hver: vækstdata, enheder og spørgsmål læselige. Overflødig tom anden signatur i F07 rettet. |
 | F09 | Seks varianter: indre/ydre vinkler og parallel linje kontrolleret. C og ydre vinkel stod for tæt; etiketten flyttet og alle seks set igen. |
@@ -26,5 +26,5 @@ Begrænsninger: Dette er agentens visuelle QA, ikke en matematiklærers godkende
 eller en elevpilot. Matematiske størrelsesforhold og facit har særskilte uafhængige
 beregningskontroller i generator- og figurtests. Denne gennemgang certificerer
 ikke alle seeds eller vilkårlige AI-etiketter. Mobil/touch er afprøvet særskilt
-på et kort F13-forløb, ikke på hver af disse 108 visninger. Korpus' samlede
-faglige accept står åben indtil den noterede F05-præcisering er håndteret.
+på et kort F13-forløb, ikke på hver af disse 108 visninger. F05-præciseringen er håndteret. De automatiske kontroller supplerer den
+visuelle gennemgang; der hævdes ingen læringseffekt ud fra dette materiale.

@@ -32,5 +32,12 @@ mobilbilledet viser den rettede placering.
   Printmediet viser tre opgaver, elevsvar, noter og dataceller; kontrolknapper skjules.
   Dette kontrollerer print-HTML, ikke fysisk printer eller paginering.
 
-Åbent: afbrudt animation, samlet visuel gennemgang af 108 opgaver samt rigtig elevpilot med
-forsinket gentagelse. Browserkontrollen beviser ikke læringseffekt.
+- `animation.js` og `animation-auto.js`: faktisk model, tre trin, browser-ACK,
+  automatisk afspilning og reduceret bevægelse; elevændring afbryder resten.
+- `animation-ack-recovery.js`: server committer ACK, svar tabes; UI genlæser
+  og gennemfører uden at registrere hjælpen flere gange.
+- `animation-stop-race.js`: Stop-svar forsinkes 1600 ms, ingen senere trin
+  afsendes, og eleven kan navigere videre.
+
+Alle 108 QA-visninger er gennemgået; se `../generated/VISUAL-REVIEW.md`.
+Åbent: rigtig elevpilot med forsinket gentagelse. Browserkontrollen beviser ikke læringseffekt.
