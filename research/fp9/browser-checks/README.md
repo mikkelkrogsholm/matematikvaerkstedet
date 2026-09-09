@@ -41,3 +41,7 @@ mobilbilledet viser den rettede placering.
 
 Alle 108 QA-visninger er gennemgået; se `../generated/VISUAL-REVIEW.md`.
 Åbent: rigtig elevpilot med forsinket gentagelse. Browserkontrollen beviser ikke læringseffekt.
+
+`help-levels.js` måler spørgsmål, hint, trin og løsning med fire faktiske modelkald.
+Resultaterne registrerer tokens og latenstid separat. Samtalehistorikken vokser
+undervejs, så tallene er stikprøver og ikke en kontrolleret sammenligning.

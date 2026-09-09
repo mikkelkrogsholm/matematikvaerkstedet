@@ -219,13 +219,13 @@ Afhænger af: E01, E02, E03 og E06; fuldt assisteret flow kræver E05.
   netværksfejl, afbrudt animation, aflevering og gendannelse.
 - [x] Modellen kan demonstrere en flytning/tilføjelse og derefter aflæse elevens
   efterfølgende ændring i pris-, geometri- og datafamilierne.
-- [ ] Mål lokal interaktionsrespons på dokumenteret referenceudstyr; foreslået
+- [x] Mål lokal interaktionsrespons på dokumenteret referenceudstyr; foreslået
   mål er p95 under 100 ms uden modelkald. Registrér AI-latens og faktiske tokens
   pr. hjælpeniveau separat; budget og timeout er konfigurerbare.
 - [ ] Afprøv et elevforløb med gradvist mindre støtte og en ny, tilbageholdt
   variant uden hjælp. Gentag efter en forsinkelse og beskriv resultaterne uden
   at generalisere læringseffekt ud fra få børn.
-- [ ] Faglig gennemgang, generatorchecks, tilgængelighed, licenser, datadeling
+- [x] Faglig gennemgang, generatorchecks, tilgængelighed, licenser, datadeling
   og testresultater er registreret; uafklarede dele er synlige i dækningskortet.
 - [x] Genkontrollér ministeriets kildegrundlag for den valgte termin før release.
 
@@ -274,3 +274,7 @@ Se [integrationskrav](../../research/fp9/ANIMATION-INTEGRATION.md).
 Opdatering: trinvis animation er nu integreret og verificeret, inklusive Stop-race
 og tabt ACK-svar. F05 er præciseret, og 108 visninger er gennemgået med hashmanifest.
 Tidligere noter om manglende integration ovenfor er historiske. Elevpilot er fortsat åben.
+
+Den samlede [acceptkontrol](../FP9-ACCEPTANCE.md) registrerer evidens for E01–E08.
+Tokens/latenstid er nu målt for alle fire hjælpeniveauer. Kun den faktiske elevpilot
+med forsinket gentagelse står tilbage som åbent acceptkriterium.

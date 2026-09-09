@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-09",
+  "provider": "Codex CLI with ChatGPT subscription",
+  "realModelCalls": 4,
+  "syntheticData": true,
+  "sequence": "One F06 attempt, growing chat history; samples are not a controlled comparison or latency guarantee",
+  "results": [
+    {
+      "level": "question",
+      "inputTokens": 9927,
+      "outputTokens": 46,
+      "latencyMs": 11378,
+      "text": "Tilbud A koster 20 kr. pr. besøg. Hvilket regnestykke kan du skrive for 9 besøg?"
+    },
+    {
+      "level": "hint",
+      "inputTokens": 9981,
+      "outputTokens": 36,
+      "latencyMs": 5890,
+      "text": "Hvad skal du gange 20 kr. med, når der er 9 besøg?"
+    },
+    {
+      "level": "step",
+      "inputTokens": 10045,
+      "outputTokens": 53,
+      "latencyMs": 6444,
+      "text": "Første regnetrin er at gange prisen pr. besøg med antal besøg: 20 · 9. Vil du prøve at regne produktet ud?"
+    },
+    {
+      "level": "solution",
+      "inputTokens": 10179,
+      "outputTokens": 82,
+      "latencyMs": 7652,
+      "text": "Tilbud A koster 20 kr. pr. besøg.\n\nRegnestykket er: 20 · 9 = 180 kr.\n\nMan ganger altså prisen pr. besøg med antallet af besøg. Tilbud A koster derfor **180 kr. ved 9 besøg**."
+    }
+  ]
+}

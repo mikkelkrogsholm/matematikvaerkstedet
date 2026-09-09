@@ -39,3 +39,7 @@ læringseffekt for andre elever.
 | Ny variant uden AI og uden tidligere hint til samme instans | Afventer elevafprøvning | Åben |
 | Forsinket gentagelse | Afventer ny session | Åben |
 | Observerede problemer og efterfølgende produktændringer | Afventer | Åben |
+
+En tom [CSV-skabelon](../research/fp9/pilot-observation-template.csv) er klar.
+Kopiér den til en ignoreret lokal mappe før registrering. Ingen pilotresultater
+er udfyldt. Valg af elev og faktiske observationer afventer brugeren.
