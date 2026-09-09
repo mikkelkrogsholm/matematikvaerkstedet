@@ -1,4 +1,4 @@
-# Matematik A: fagligt grundlag og eksamenstræning
+# Matematik A på gymnasieniveau — stx
 
 Undersøgt 9. september 2026. Status: research og indholdsplan, ingen ny produktkode.
 
@@ -7,9 +7,10 @@ Undersøgt 9. september 2026. Status: research og indholdsplan, ingen ny produkt
 Ejerens søn går i 2.g med matematik A. Dette er nu første prioritet for udbygning
 af fagligt indhold. Organisationer og brugere forbliver udskudt.
 
-**Uddannelsestypen er endnu ikke bekræftet. Dette notat undersøger stx som en
-foreløbig arbejdshypotese.** Det må ikke anvendes som hhx-/htx-plan eller som
-bekræftet beskrivelse af sønnens undervisning. Spørgsmålet er stillet til ejeren.
+**Ejeren har bekræftet stx.** Produktets navn er “Matematik A på gymnasieniveau”.
+Indhold organiseres efter emner og faglige forudsætninger, uden opdeling i 1.g,
+2.g og 3.g. Stx og læreplansversion bevares som faglig afgrænsning og metadata;
+materialet er ikke automatisk dækkende for hhx eller htx.
 
 For et normalt treårigt forløb med start i 2025 og afslutning i 2028 peger
 ikrafttrædelsesreglen på 2024-læreplanen. Start- og eksamensår er en slutning ud
@@ -37,24 +38,26 @@ formidling går på tværs. Supplerende stof udgør mindst 10 % og omfatter hist
 perspektiver. Treårige hold har mundtlig fordybelse.
 [Kilde: læreplan, §§ 2–3](https://uvm.dk/media/yleizedu/240613-matematik-a-stx-august-2024.pdf).
 
-## Forslag til fordeling på 1.g, 2.g og 3.g
+## Emner og faglig progression
 
-**Vores pædagogiske rækkefølge, ikke en national årgangsplan eller en kortlægning
- af skolernes faktiske praksis.** Ministeriets læreplan angiver slutmål og enkelte
-forløbskrav; undervisningsrækkefølgen skal tilpasses holdet. Eleven skal kunne
-vælge emner på tværs af årgang. Skolens undervisningsbeskrivelse er den bedste
-kilde til hans konkrete rækkefølge og supplerende stof.
+Vores indholdsstruktur er emnebaseret. Eleven kan vælge efter behov og få hjælp
+til nødvendige forudsætninger. Skolens rækkefølge kan bruges til personlig
+prioritering, men er ikke en forudsætning for at opbygge emnebiblioteket.
 
-| Arbejdsspor | Foreslået indhold | Elevens arbejde og visuel støtte |
-|---|---|---|
-| 1.g: fundament | Algebra, ligninger, procent/rente, lineære og eksponentielle modeller, potens/logaritme, andengrad, trekantsgeometri og indledende statistik | Skift mellem situation, tabel, formel og graf; forklar beregninger; undersøg vækst, rødder og geometriske forhold |
-| 2.g: sammenhænge | Konsolidering af funktioner; differentialregning, tangenter, monotoniforhold og optimering; analytisk plangeometri/vektorer; sandsynlighed og binomialmodeller | Undersøg sekant → tangent; forbind graf og afledt; byg en model med antagelser; forklar vektorprojektion og sandsynlighed |
-| 3.g: udbygning og syntese | Integral, differentialligninger, rumgeometri, trigonometriske modeller, normalfordeling og numeriske metoder; blandet repetition og supplerende stof | Forbind akkumulation og ændring; fortolk hældningsfelter; roter rumfigurer; vælg metode og vurder modellens gyldighed |
+| Emne | Arbejde og visualisering |
+|---|---|
+| Tal, algebra og ligninger | Omskrivninger, ækvivalens og sammenhæng mellem ligning og graf |
+| Funktioner og modeller | Tabeller, grafer, forskrifter, vækst og modellernes gyldighed |
+| Differentialregning | Sekant → tangent, afledt, monotoni og optimering |
+| Geometri og vektorer | Konstruktion, projektion, afstande og vinkler i plan og rum |
+| Integralregning | Akkumulation, areal, stamfunktion og volumen |
+| Differentialligninger og numeriske metoder | Hældningsfelter, løsningskurver og tilnærmelser |
+| Sandsynlighed og statistik | Udfald, fordelinger, data og statistisk argumentation |
+| Beviser og matematisk formidling | Begrundelser, mundtlige forklaringer og supplerende stof på tværs af emner |
 
-Emner kan ligge tidligere eller senere. Fx kan integration begynde i 2.g, og
-vektorer eller sandsynlighed introduceres tidligere. Rækkefølgen i appen bør
-bygges på forudsætninger, ikke hårde årgangslåse. Tabellen er heller ikke et
-løfte om, at alle underemner er specificeret som opgavefamilier endnu.
+Dette er en navigationsstruktur, ikke en færdig specifikation af samtlige
+opgavefamilier. Forudsætninger knyttes til den enkelte familie; fx bygger
+optimering på funktioner og differentialregning. Ingen emner låses til en årgang.
 
 ## Prøver og andre vurderingssituationer
 
@@ -120,7 +123,7 @@ Vi skal generere egne opgaver; kildefiler må ikke automatisk genudgives i vores
 source-available produkt. Gamle sæt mærkes med ordning frem for at blandes ind
 som repræsentative for 2024-læreplanen.
 
-## Anbefalet første byggeforløb: brugbart for en elev i 2.g
+## Anbefalet første byggeforløb: funktionsværksted
 
 Vores forslag er et sammenhængende funktionsværksted først, tilpasset hans aktuelle emne:
 
@@ -140,7 +143,7 @@ og uafhængig facit-/egenskabskontrol ved implementering.
 
 Efter dette: plangeometri/vektorer og sandsynlighed, så A-niveauets øvrige stof
 og til sidst dækkende blandede prøveprofiler. Første blok vælges endeligt efter
-bekræftelse af uddannelse og hans aktuelle undervisning, ikke blot årgang.
+hans aktuelle undervisning og faglige behov; stx er bekræftet.
 
 ## Konsekvenser for den eksisterende motor
 
@@ -159,6 +162,6 @@ bekræftelse af uddannelse og hans aktuelle undervisning, ikke blot årgang.
 
 ## Manglende afklaringer før en præcis implementeringsepic
 
-Uddannelse (stx/htx/hhx), aktuelt emne/undervisningsbeskrivelse, skolens CAS-værktøj
+Aktuelt emne/undervisningsbeskrivelse, skolens CAS-værktøj
 og holdets læreplansversion. Skoleoplysninger er nødvendige for personlig
 rækkefølge, men ikke for at opbygge genbrugelige matematikfamilier.

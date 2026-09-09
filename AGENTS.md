@@ -20,7 +20,9 @@ Ejeren har udskudt organisations-/brugerimplementering. Planen findes i
 `docs/epics/ORGANISATIONS-AND-USERS.md`. Næste ønskede planlægningsfokus er fagligt
 indhold på den eksisterende motor til 0.–9. klasse og gymnasiets årgange/niveauer;
 se SCRATCHPAD.md. Første prioritet er nu matematik A til ejerens søn i 2.g,
-med research i research/gymnasium/MATEMATIK-A.md (stx foreløbigt, ikke bekræftet). Dette er en prioritering, ikke automatisk autorisation til en
+med research i research/gymnasium/MATEMATIK-A.md. Stx er bekræftet. Produktet
+kaldes Matematik A på gymnasieniveau og organiseres efter emner og forudsætninger,
+ikke 1.g/2.g/3.g. Dette er en prioritering, ikke automatisk autorisation til en
 fuld indholdsudbygning. Afklar gymnasial uddannelse og faglig dækningsmatrix før påstande om alle niveauer.
 
 ## Struktur
