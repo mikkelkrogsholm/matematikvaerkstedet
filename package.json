@@ -1,0 +1,32 @@
+{
+  "name": "matematikvaerkstedet",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/bun": "latest",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.2"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "cordis": "^4.0.0-rc.10",
+    "mafs": "^0.21.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "scripts": {
+    "dev": "bun run build && bun server.ts",
+    "build": "bun --bun vite build",
+    "start": "bun server.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "check": "bun run typecheck && bun test && bun run build"
+  },
+  "description": "Interaktivt matematikværksted med dynamiske visualiseringer og en pluginbaseret undervisningsprototype.",
+  "packageManager": "bun@1.4.0"
+}

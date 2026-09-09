@@ -1,0 +1,37 @@
+[
+  {
+    "file": "fp9-matematik-2022-12-02-uden-hjaelpemidler.pdf",
+    "source_url": "https://www.bk-net.dk/MC/FP9MA/uden.pdf",
+    "downloaded": "2026-09-09",
+    "bytes": 1591520,
+    "sha256": "306acd7faedcead1d3cccb358484defd2626f4a5d08aa0982e4fb2ab3d6a8d7c"
+  },
+  {
+    "file": "fp9-matematik-2022-12-02-med-hjaelpemidler.pdf",
+    "source_url": "https://www.bk-net.dk/MC/FP9MA/med.pdf",
+    "downloaded": "2026-09-09",
+    "bytes": 2503958,
+    "sha256": "064729331e4ec3c37af14d3e888af2ba47a040148929a17142a326c33ae3328e"
+  },
+  {
+    "file": "fp9-matematik-2023-05-03-uden-hjaelpemidler.pdf",
+    "source_url": "https://slutspurt.nu/wp-content/uploads/2024/10/FP9-Matematik-uden-hjaelpemidler-maj-2023.pdf",
+    "downloaded": "2026-09-09",
+    "bytes": 1234153,
+    "sha256": "c3238900fbcf9c6edf2a17f49d88c324c8b05dd72f8f3e7d8367c1aee7b1988d"
+  },
+  {
+    "file": "fp9-matematik-2022-12-02-bilag-tider.xlsx",
+    "source_url": "https://www.bk-net.dk/MC/FP9MA/tider.xlsx",
+    "downloaded": "2026-09-09",
+    "bytes": 9711,
+    "sha256": "3133e6e1b88f7e8abc5909224fe72d14189bcee23ddbc3bc7fd0f3ebabd37523"
+  },
+  {
+    "file": "fp9-matematik-2022-12-02-bilag-januar.xlsx",
+    "source_url": "https://www.bk-net.dk/MC/FP9MA/januar.xlsx",
+    "downloaded": "2026-09-09",
+    "bytes": 12724,
+    "sha256": "2462922857acddb949a3cf8d3ce2738550d250dbdde2a1433927bae075f665c1"
+  }
+]
