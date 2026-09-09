@@ -2,6 +2,8 @@
 
 Undersøgt 9. september 2026. Status: research og indholdsplan, ingen ny produktkode.
 
+Omsat til [implementeringsepic #3](../../docs/epics/MATEMATIK-A-STX.md).
+
 ## Målgruppe og afgrænsning
 
 Ejerens søn går i 2.g med matematik A. Dette er nu første prioritet for udbygning
@@ -160,7 +162,7 @@ hans aktuelle undervisning og faglige behov; stx er bekræftet.
 - “Klar til eksamen” kræver bred indholdskontrol og en fuld prøveprofil. En vellykket
   funktionsdemo må ikke præsenteres som fuld eksamensforberedelse.
 
-## Manglende afklaringer før en præcis implementeringsepic
+## Afklaringer ved implementering
 
 Aktuelt emne/undervisningsbeskrivelse, skolens CAS-værktøj
 og holdets læreplansversion. Skoleoplysninger er nødvendige for personlig

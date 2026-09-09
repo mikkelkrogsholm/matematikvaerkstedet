@@ -6,6 +6,10 @@ Samlet beskrivelse: [Krav og designnoter](research/PRODUCT-REQUIREMENTS.md). Dok
 
 ## Første indholdsprioritet: Matematik A på gymnasieniveau
 
+Planlagt som [epic #3](https://github.com/mikkelkrogsholm/matematikvaerkstedet/issues/3);
+[detaljeret plan](docs/epics/MATEMATIK-A-STX.md) med ti delopgaver, faglig dækning,
+AI/visualiseringer og skriftlig/mundtlig træning. Implementering er ikke startet.
+
 Ejeren har bekræftet, at sønnen har matematik A på stx og går i 2.g.
 Produktet kaldes Matematik A på gymnasieniveau og organiseres efter emner og
 forudsætninger uden opdeling i 1.g, 2.g og 3.g. Indhold og eksamensforberedelse
