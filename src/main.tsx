@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Mafs, Coordinates, Plot, MovablePoint, Line } from 'mafs';
 import { parseReply, type Scene } from './ai/contracts';
+import { FP9App } from './fp9/ui/FP9App';
 import type { Lesson } from './lessons';
 import { percent, curve, slope, tangent, format, parseAnswer } from './math';
 import 'mafs/core.css';
@@ -112,7 +113,7 @@ function App() {
   return <div className="app-shell">
     <header className="topbar flex items-center justify-between gap-4">
       <a href="/" className="brand flex items-center gap-3"><span className="brand-symbol">m<span>·</span></span><span>matematik<span className="brand-light">værkstedet</span></span></a>
-      <span className="prototype-label">ET STED AT FORSTÅ</span><span className="status"><i/> Lokal prototype</span>
+      <span className="prototype-label">ET STED AT FORSTÅ</span><a className="status" href="/fp9">FP9-træning</a><span className="status"><i/> Lokal prototype</span>
     </header>
     <div className="workspace">
       <aside className="sidebar">
@@ -157,4 +158,4 @@ function App() {
 function Slider({label,value,min,max,step=1,onChange}:{label:string;value:number;min:number;max:number;step?:number;onChange:(value:number)=>void}) {
   return <label className="slider"><span>{label}<output>{format(value)}</output></span><input aria-label={label} type="range" min={min} max={max} step={step} value={value} onChange={e=>onChange(Number(e.target.value))}/><span className="range-labels"><small>{format(min)}</small><small>{format(max)}</small></span></label>;
 }
-createRoot(document.getElementById('root')!).render(<App/>);
+createRoot(document.getElementById('root')!).render(window.location.pathname.startsWith('/fp9') ? <FP9App/> : <App/>);
