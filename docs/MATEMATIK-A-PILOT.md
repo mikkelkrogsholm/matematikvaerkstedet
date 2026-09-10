@@ -63,6 +63,28 @@ seeds giver ikke uendelig faglig variation. Næste indholdsudbygning bør varier
 repræsentation, kontekst og metodevalg. Ingen elevtest eller læringseffekt er
 påstået. Build har fortsat en advarsel om størrelsen på den fælles JS-fil.
 
+## Fast app-ramme — 10. september 2026
+
+Matematik A-forløbene bruger nu en fast ramme tilpasset den synlige viewport.
+Top, trin og bundnavigation bliver stående. Computer viser figur og opgave i
+hver sit panel; på mobil står figuren over opgaven med mulighed for stor figur.
+Opgave og AI-guide vælges i samme panel. Svar og samtale bevares ved panelskift.
+Lange opgaver, begrundelser, tilbageblik og samtaler kan rulle **inde i panelet**;
+selve dokumentet ruller ikke. Det bevarer adgang til indhold ved små skærme og zoom.
+
+Figurens forhold bevares via SVG's ens skalering. Mobil har læsbare værdier ved
+figuren og en knap til stor visning. Figurens forklaring findes under “Om figuren”.
+Trinskift nulstiller opgavepanelets læseposition. VisualViewport bruges til at
+følge ændringer i det tilgængelige skærmareal, fx ved skærmtastatur.
+
+Kontrol: begge forløb gennemført i browseren, 62 tests/typecheck/build består,
+fast bund og intet dokumentoverflow ved 1366×768, 1280×720, 390×844, 375×667,
+844×390 og 683×384. Mobilfigur og desktop-layout er visuelt inspiceret. En lang
+AI-besked er afprøvet med en syntetisk providerrespons; ingen ny live-modeltest
+i denne layoutændring. Et fysisk iOS-/Android-tastatur og faktisk browserzoom
+er ikke afprøvet; små viewports er kontrolleret som layoutbelastning.
+Se [layoutkontroller](../research/gymnasium/app-layout-checks.json).
+
 ## Øvebiblioteket — bevaret på `/matematik-a/opgaver`
 
 | Gruppe | De tre opgaveformer |

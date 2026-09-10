@@ -170,3 +170,12 @@ Start med prisfamilien og to tilbud, før vi udvider til tre tilbud og hele prø
 5. Afprøv både støttet træning og en ny variant uden hjælp. Registrér begrænsninger frem for at konkludere læring alene ud fra gennemført interaktion.
 
 Udvidet begrundelse og indledende forskningskilder: [GENERATIVE-EXAMS.md](GENERATIVE-EXAMS.md). Næste beslutninger er første målgruppe, den præcise opgavefamilie og målbare krav til hastighed. Dette dokument igangsætter ikke i sig selv implementering.
+
+## 11. Fast app-oplevelse (ejerbeslutning 10. september 2026)
+
+Brugerfladen skal fungere som et arbejdsbord med faste områder og navigation,
+ikke som en lang side. Den første implementering gælder Matematik A-forløbene.
+Dokumentet ruller ikke. Lange tekster kan rulle lokalt i et afgrænset panel,
+så indhold forbliver tilgængeligt ved små skærme og forstørrelse. På mobil skal
+figuren kunne åbnes stort, og opgavesvar skal bevares ved skift af visning.
+Det er produktretningen; FP9 og det tidligere øvebibliotek er ikke omlagt endnu.

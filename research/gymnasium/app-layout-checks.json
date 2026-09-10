@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-10",
+  "scope": "/matematik-a guided journeys",
+  "tests": {"passed": 62, "assertions": 109362, "typecheck": "pass", "build": "pass"},
+  "browser": {
+    "completedJourneys": ["geometry", "statistics"],
+    "viewportChecks": [[1366,768],[1280,720],[390,844],[375,667],[844,390],[683,384]],
+    "documentOverflow": false,
+    "footerAlignedToViewportBottom": true,
+    "mobileExpandedFigure": "opened and returned to task successfully",
+    "longGuideFixture": "panel scrolls, document scrollY remains zero",
+    "visualInspection": ["desktop geometry exploration", "mobile geometry exploration", "mobile statistics exploration"],
+    "assessment": "numeric answers, written reasons, final independent tasks and summaries completed"
+  },
+  "limitations": ["Local panel scrolling is intentional", "No physical phone keyboard test", "No actual browser zoom test", "No new live AI call for this layout-only change", "Existing shared bundle size warning remains"]
+}
